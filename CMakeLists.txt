@@ -40,24 +40,11 @@ cmake_minimum_required (VERSION 2.8)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules/")
 set(LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib/)
 set(ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/dist/)
-set(RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+set(RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/out/)
 
 
 project (PyOpenNI)
 
-# Find the needed libraries
-find_package (PythonLibs REQUIRED)
-include_directories(${PYTHON_INCLUDE_DIRS})
-set(LIBS ${LIBS} ${PYTHON_LIBRARIES})
-
-find_package (OpenNI REQUIRED)
-include_directories(${OPENNI_INCLUDE_DIRS})
-set(LIBS ${LIBS} ${OPENNI_LIBRARIES})
-
-#TODO find Boost.Python
-
-
-# Finally, set add subdirectory and target libraries:
+# Build the library
 add_subdirectory (src)
-target_link_libraries (PyOpenNI ${LIBS})
 

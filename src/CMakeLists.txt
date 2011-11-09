@@ -22,5 +22,33 @@
 # ***** END GPL LICENSE BLOCK *****
 
 
-#TODO: add wrapper content
+# Find the needed libraries
+find_package (PythonLibs REQUIRED)
+include_directories(${PYTHON_INCLUDE_DIRS})
+set(LIBS ${LIBS} ${PYTHON_LIBRARIES})
 
+find_package (OpenNI REQUIRED)
+include_directories(${OPENNI_INCLUDE_DIRS})
+set(LIBS ${LIBS} ${OPENNI_LIBRARIES})
+
+#TODO find Boost.Python
+
+
+set (SOURCES
+    wrapper.cpp
+    OpenNIWrapperTypes.h
+    OpenNIImageMetaDataWrapper.cpp
+    OpenNIImageGeneratorWrapper.cpp
+    OpenNIDepthGeneratorWrapper.cpp
+    OpenNIContextWrapper.cpp
+    conversionHelpers.cpp
+    util/PythonOutputStream.cpp
+    util/PythonOutputStreamManager.hpp
+    util/PythonOutputStreamSink.hpp
+)
+
+add_library (PyOpenNI SHARED ${SOURCES})
+target_link_libraries (PyOpenNI ${LIBS})
+
+#FIXME: change library output filename
+#TODO: refractor source files
