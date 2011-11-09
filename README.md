@@ -15,21 +15,23 @@ PyOpenNI is written with the [Boost.Python](http://www.boost.org/doc/libs/releas
 
 **An example script that uses the bindings:**
 
-    from openni import *
+```python
+from openni import *
 
-    ctx = Context()
-    ctx.init()
-    gest = GestureGenerator()
-    gest.create(ctx)
+ctx = Context()
+ctx.init()
+gest = GestureGenerator()
+gest.create(ctx)
+    
+def gesture_detected(gesture, id, endPoint):
+    print "Detected gesture %s!" % gesture
 
-    def gesture_detected(gesture, id, endPoint):
-        print "Detected gesture %s!" % gesture
+for gesture in gest.get_supported_gestures():
+    gest.add_gesture(gesture)
+gest.register_gesture_callbacks(gesture_detected)
 
-    for gesture in gest.get_supported_gestures():
-        gest.add_gesture(gesture)
-    gest.register_gesture_callbacks(gesture_detected)
-
-    input_raw("Press ENTER to quit.")
+input_raw("Press ENTER to quit.")
+```
 
 We tried to respect the C++ names and structure.  
 See the documentation (stored at `doc/`) for more details.
