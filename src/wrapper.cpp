@@ -62,7 +62,7 @@ BOOST_PYTHON_MODULE(openni) {
     ////////////////////////////////////////////////////////////////////////////
     // enumerations
 
-    enum_< XnProductionNodeType > ("XnProductionNodeType")
+    enum_< XnProductionNodeType > ("ProductionNodeType")
             .value("XN_NODE_TYPE_DEVICE", XN_NODE_TYPE_DEVICE)
             .value("XN_NODE_TYPE_DEPTH", XN_NODE_TYPE_DEPTH)
             .value("XN_NODE_TYPE_IMAGE", XN_NODE_TYPE_IMAGE)
@@ -91,11 +91,11 @@ BOOST_PYTHON_MODULE(openni) {
 
             // methods
 
-            .def("InitFromXmlFile", &ContextWrapper::InitFromXmlFile)
-            .def("Shutdown", &ContextWrapper::Shutdown)
-            .def("WaitAnyUpdateAll", &ContextWrapper::WaitAnyUpdateAll)
-            .def("WaitAndUpdateAll", &ContextWrapper::WaitAndUpdateAll)
-            .def("FindExistingNode", &ContextWrapper::FindExistingNode)
+            .def("init_from_xml_file", &ContextWrapper::InitFromXmlFile)
+            .def("shutdown", &ContextWrapper::Shutdown)
+            .def("wait_any_update_all", &ContextWrapper::WaitAnyUpdateAll)
+            .def("wait_and_update_all", &ContextWrapper::WaitAndUpdateAll)
+            .def("find_existing_node", &ContextWrapper::FindExistingNode)
 
             ;
 
@@ -115,29 +115,29 @@ BOOST_PYTHON_MODULE(openni) {
 
             // methods
 
-            .def("IsValid", &ImageGeneratorWrapper::IsValid)
-            .def("XRes", &ImageGeneratorWrapper::XRes)
-            .def("YRes", &ImageGeneratorWrapper::YRes)
-            .def("Res", &ImageGeneratorWrapper::Res)
+            .def("is_valid", &ImageGeneratorWrapper::IsValid)
+            .def("get_x_resolution", &ImageGeneratorWrapper::XRes)
+            .def("get_y_resolution", &ImageGeneratorWrapper::YRes)
+            .def("get_resolution", &ImageGeneratorWrapper::Res)
 
             .def(
-            "GetRGB24ImageMapTuple",
+            "get_tuple_image_map",
             &ImageGeneratorWrapper::GetRGB24ImageMapTuple)
 
             .def(
-            "GetRGB24ImageMapRaw",
+            "get_raw_image_map",
             &ImageGeneratorWrapper::GetRGB24ImageMapRaw)
 
             .def(
-            "GetSyncedRGB24ImageMapRaw",
+            "get_synced_image_map",
             &ImageGeneratorWrapper::GetSyncedRGB24ImageMapRaw)
 
             .def(
-            "GetBGR24ImageMapRaw",
+            "get_raw_image_map_bgr",
             &ImageGeneratorWrapper::GetBGR24ImageMapRaw)
 
             .def(
-            "GetSyncedBGR24ImageMapRaw",
+            "get_synced_image_map_bgr",
             &ImageGeneratorWrapper::GetSyncedBGR24ImageMapRaw)
 
             ;
@@ -158,21 +158,22 @@ BOOST_PYTHON_MODULE(openni) {
 
             // methods
 
-            .def("IsValid", &DepthGeneratorWrapper::IsValid)
-            .def("XRes", &DepthGeneratorWrapper::XRes)
-            .def("YRes", &DepthGeneratorWrapper::YRes)
-            .def("Res", &DepthGeneratorWrapper::Res)
+            .def("is_valid", &DepthGeneratorWrapper::IsValid)
+            .def("get_x_resolution", &DepthGeneratorWrapper::XRes)
+            .def("get_y_resolution", &DepthGeneratorWrapper::YRes)
+            .def("get_resolution", &DepthGeneratorWrapper::Res)
 
-            .def("GetGrayscale16DepthMapTuple",
+            .def("get_tuple_depth_map",
             &DepthGeneratorWrapper::GetGrayscale16DepthMapTuple)
 
-            .def("GetGrayscale16DepthMapRaw",
+            .def("get_raw_depth_map",
             &DepthGeneratorWrapper::GetGrayscale16DepthMapRaw)
 
-            .def("GetGrayscale8DepthMapRaw",
+            .def("get_raw_depth_map_8",
             &DepthGeneratorWrapper::GetGrayscale8DepthMapRaw)
 
             ;
 
 
 } // End Boost Python module OpenNIPythonWrapper
+
