@@ -8,8 +8,11 @@
  * Uses CMake, the popular cross-platform buildsystem, to configure & compile the bindings.
  * Autodetects needed libraries and warns you if they're not found.
  * Code cleanup and formatted according to [PEP 8](http://www.python.org/dev/peps/pep-0008) rules.
+ * Directory structure simplified.
 
-PyOpenNI is written with the [Boost.Python](http://www.boost.org/doc/libs/release/libs/python/doc/index.html) libraries.
+PyOpenNI is written with the [Boost.Python](http://www.boost.org/doc/libs/release/libs/python/doc/index.html) libraries. PyOpenNI is released under the [GNU GPL](http://www.gnu.org/copyleft/gpl.html) verson 3.
+
+**Note:** Currently, only a _small group of features_ are being exposed to Python. We are working to add more, but if you want to accelerate this process you are free to collaborate. See the [github page](https://github.com/jmendeth/PyOpenNI) or [contact me](jmendeth@gmail.com) if you wish to develop PyOpenNI.
 
 ## Using the bindings ##
 
