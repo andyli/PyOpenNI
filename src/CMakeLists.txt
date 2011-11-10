@@ -38,11 +38,11 @@ set(LIBS ${LIBS} ${Boost_LIBRARIES})
 
 set (SOURCES
     wrapper.cpp
-    OpenNIWrapperTypes.h
-    OpenNIImageMetaDataWrapper.cpp
-    OpenNIImageGeneratorWrapper.cpp
-    OpenNIDepthGeneratorWrapper.cpp
-    OpenNIContextWrapper.cpp
+    wrapperTypes.h
+    ImageMetaDataWrapper.cpp
+    ImageGeneratorWrapper.cpp
+    DepthGeneratorWrapper.cpp
+    ContextWrapper.cpp
     conversionHelpers.cpp
     util/PythonOutputStream.cpp
     util/PythonOutputStreamManager.hpp
