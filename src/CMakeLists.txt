@@ -31,7 +31,9 @@ find_package (OpenNI REQUIRED)
 include_directories(${OPENNI_INCLUDE_DIRS})
 set(LIBS ${LIBS} ${OPENNI_LIBRARIES})
 
-#TODO find Boost.Python
+find_package (Boost REQUIRED COMPONENTS python)
+include_directories(${Boost_INCLUDE_DIRS})
+set(LIBS ${LIBS} ${Boost_LIBRARIES})
 
 
 set (SOURCES
