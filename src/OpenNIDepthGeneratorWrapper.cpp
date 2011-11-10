@@ -26,7 +26,7 @@
 
 #include "util/PythonOutputStream.h"
 
-OpenNIDepthGeneratorWrapper::OpenNIDepthGeneratorWrapper() {
+DepthGeneratorWrapper::DepthGeneratorWrapper() {
 
 #ifdef _DEBUG
     PyCout << "Creating DepthGenerator" << std::endl;
@@ -34,7 +34,7 @@ OpenNIDepthGeneratorWrapper::OpenNIDepthGeneratorWrapper() {
 
 } // OpenNIDepthGeneratorWrapper::OpenNIDepthGeneratorWrapper
 
-XnUInt32 OpenNIDepthGeneratorWrapper::XRes() const {
+XnUInt32 DepthGeneratorWrapper::XRes() const {
 
     xn::DepthMetaData proxyDepthMetaData;
     xn::DepthGenerator::GetMetaData(proxyDepthMetaData);
@@ -43,7 +43,7 @@ XnUInt32 OpenNIDepthGeneratorWrapper::XRes() const {
 
 } // OpenNIDepthGeneratorWrapper::XRes
 
-XnUInt32 OpenNIDepthGeneratorWrapper::YRes() const {
+XnUInt32 DepthGeneratorWrapper::YRes() const {
 
     xn::DepthMetaData proxyDepthMetaData;
     xn::DepthGenerator::GetMetaData(proxyDepthMetaData);
@@ -52,13 +52,13 @@ XnUInt32 OpenNIDepthGeneratorWrapper::YRes() const {
 
 } // OpenNIDepthGeneratorWrapper::YRes
 
-BP::tuple OpenNIDepthGeneratorWrapper::Res() const {
+BP::tuple DepthGeneratorWrapper::Res() const {
 
     return BP::make_tuple(XRes(), YRes());
 
 } // OpenNIDepthGeneratorWrapper::Res
 
-BP::tuple OpenNIDepthGeneratorWrapper::GetGrayscale16DepthMapTuple() const {
+BP::tuple DepthGeneratorWrapper::GetGrayscale16DepthMapTuple() const {
 
     // PRECONDITION: the generator is valid
     assert(IsValid());
@@ -77,7 +77,7 @@ BP::tuple OpenNIDepthGeneratorWrapper::GetGrayscale16DepthMapTuple() const {
 
 } // OpenNIDepthGeneratorWrapper::GetGrayscale16DepthMapTuple
 
-std::string OpenNIDepthGeneratorWrapper::GetGrayscale16DepthMapRaw() const {
+std::string DepthGeneratorWrapper::GetGrayscale16DepthMapRaw() const {
 
     // PRECONDITION: the generator is valid
     assert(IsValid());
@@ -97,7 +97,7 @@ std::string OpenNIDepthGeneratorWrapper::GetGrayscale16DepthMapRaw() const {
 
 } // OpenNIDepthGeneratorWrapper::GetGrayscale16DepthMapRaw
 
-std::string OpenNIDepthGeneratorWrapper::GetGrayscale8DepthMapRaw() const {
+std::string DepthGeneratorWrapper::GetGrayscale8DepthMapRaw() const {
 
     // PRECONDITION: the generator is valid
     assert(IsValid());

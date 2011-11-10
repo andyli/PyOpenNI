@@ -31,11 +31,11 @@
 // custom
 #include "OpenNIWrapperTypes.h"
 
-class OpenNIDepthGeneratorWrapper : public xn::DepthGenerator
+class DepthGeneratorWrapper : public xn::DepthGenerator
 {
 
 public:
-    OpenNIDepthGeneratorWrapper();
+    DepthGeneratorWrapper();
 
     // return the x resolution of the map
     XnUInt32 XRes() const;    

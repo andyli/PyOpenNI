@@ -25,8 +25,8 @@
 #define OPENNI_WRAPPER_TYPES_H
 
 // forward declarations
-class OpenNIContextWrapper;
-class OpenNIImageMetaDataWrapper;
+class ContextWrapper;
+class ImageMetaDataWrapper;
 
 // Boost
 #include <boost/python.hpp>

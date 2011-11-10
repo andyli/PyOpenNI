@@ -24,7 +24,7 @@
 #include "OpenNIContextWrapper.h"
 #include "util/PythonOutputStream.h"
 
-XnStatus OpenNIContextWrapper::InitFromXmlFile(const std::string& initializationFilename) {
+XnStatus ContextWrapper::InitFromXmlFile(const std::string& initializationFilename) {
 
 #ifdef _DEBUG
     PyCout << "Initializing OpenNI.." << std::endl;
@@ -46,7 +46,7 @@ XnStatus OpenNIContextWrapper::InitFromXmlFile(const std::string& initialization
 
 } // OpenNIContextWrapper::InitFromXmlFile
 
-void OpenNIContextWrapper::Shutdown() {
+void ContextWrapper::Shutdown() {
 
 #ifdef _DEBUG
     PyCout << "Shutting down OpenNI.." << std::endl;

@@ -31,12 +31,12 @@
 // custom
 #include "OpenNIWrapperTypes.h"
 
-class OpenNIImageGeneratorWrapper : public xn::ImageGenerator {
+class ImageGeneratorWrapper : public xn::ImageGenerator {
 public:
-    OpenNIImageGeneratorWrapper();
+    ImageGeneratorWrapper();
 
     // WARNING: this function does not work!
-    void GetMetaData(OpenNIImageMetaDataWrapper& metaData) const;
+    void GetMetaData(ImageMetaDataWrapper& metaData) const;
 
     // NOTE: the meta data is exposed directly through the generator
     XnUInt32 XRes() const;

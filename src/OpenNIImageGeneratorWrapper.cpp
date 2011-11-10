@@ -26,7 +26,7 @@
 
 #include "util/PythonOutputStream.h"
 
-OpenNIImageGeneratorWrapper::OpenNIImageGeneratorWrapper() {
+ImageGeneratorWrapper::ImageGeneratorWrapper() {
 
 #ifdef _DEBUG
     PyCout << "Creating ImageGenerator" << std::endl;
@@ -34,8 +34,8 @@ OpenNIImageGeneratorWrapper::OpenNIImageGeneratorWrapper() {
 
 } // OpenNIImageGeneratorWrapper::OpenNIImageGeneratorWrapper
 
-void OpenNIImageGeneratorWrapper::GetMetaData(
-        OpenNIImageMetaDataWrapper& metaData) const {
+void ImageGeneratorWrapper::GetMetaData(
+        ImageMetaDataWrapper& metaData) const {
 
     // FIXME: it does not seem to be a good idea to expose the meta data
     // directly to Python
@@ -43,7 +43,7 @@ void OpenNIImageGeneratorWrapper::GetMetaData(
 
 } // OpenNIImageGeneratorWrapper::GetMetaData
 
-XnUInt32 OpenNIImageGeneratorWrapper::XRes() const {
+XnUInt32 ImageGeneratorWrapper::XRes() const {
 
     xn::ImageMetaData proxyImageMetaData;
     xn::ImageGenerator::GetMetaData(proxyImageMetaData);
@@ -52,7 +52,7 @@ XnUInt32 OpenNIImageGeneratorWrapper::XRes() const {
 
 } // OpenNIImageGeneratorWrapper::XRes
 
-XnUInt32 OpenNIImageGeneratorWrapper::YRes() const {
+XnUInt32 ImageGeneratorWrapper::YRes() const {
 
     xn::ImageMetaData proxyImageMetaData;
     xn::ImageGenerator::GetMetaData(proxyImageMetaData);
@@ -61,13 +61,13 @@ XnUInt32 OpenNIImageGeneratorWrapper::YRes() const {
 
 } // OpenNIImageGeneratorWrapper::YRes
 
-BP::tuple OpenNIImageGeneratorWrapper::Res() const {
+BP::tuple ImageGeneratorWrapper::Res() const {
 
     return BP::make_tuple(XRes(), YRes());
 
 } // OpenNIImageGeneratorWrapper::Res
 
-BP::tuple OpenNIImageGeneratorWrapper::GetRGB24ImageMapTuple() const {
+BP::tuple ImageGeneratorWrapper::GetRGB24ImageMapTuple() const {
 
     // PRECONDITION: the generator is valid
     assert(IsValid());
@@ -86,7 +86,7 @@ BP::tuple OpenNIImageGeneratorWrapper::GetRGB24ImageMapTuple() const {
 
 } // OpenNIImageGeneratorWrapper::GetRGB24ImageMapTuple
 
-std::string OpenNIImageGeneratorWrapper::GetRGB24ImageMapRaw() {
+std::string ImageGeneratorWrapper::GetRGB24ImageMapRaw() {
 
     _GetRGB24ImageMapRaw();
 
@@ -94,7 +94,7 @@ std::string OpenNIImageGeneratorWrapper::GetRGB24ImageMapRaw() {
 
 } // OpenNIImageGeneratorWrapper::GetRGB24ImageMapRaw
 
-std::string OpenNIImageGeneratorWrapper::GetSyncedRGB24ImageMapRaw() {
+std::string ImageGeneratorWrapper::GetSyncedRGB24ImageMapRaw() {
 
     WaitAndUpdateData();
 
@@ -104,7 +104,7 @@ std::string OpenNIImageGeneratorWrapper::GetSyncedRGB24ImageMapRaw() {
 
 } // OpenNIImageGeneratorWrapper::GetSyncedRGB24ImageMapRaw
 
-std::string OpenNIImageGeneratorWrapper::GetBGR24ImageMapRaw() {
+std::string ImageGeneratorWrapper::GetBGR24ImageMapRaw() {
 
     _GetBGR24ImageMapRaw();
 
@@ -112,7 +112,7 @@ std::string OpenNIImageGeneratorWrapper::GetBGR24ImageMapRaw() {
 
 }
 
-std::string OpenNIImageGeneratorWrapper::GetSyncedBGR24ImageMapRaw() {
+std::string ImageGeneratorWrapper::GetSyncedBGR24ImageMapRaw() {
 
     WaitAndUpdateData();
 
@@ -122,7 +122,7 @@ std::string OpenNIImageGeneratorWrapper::GetSyncedBGR24ImageMapRaw() {
 
 }
 
-void OpenNIImageGeneratorWrapper::_GetRGB24ImageMapRaw() {
+void ImageGeneratorWrapper::_GetRGB24ImageMapRaw() {
 
     // PRECONDITION: the generator is valid
     assert(IsValid());
@@ -137,7 +137,7 @@ void OpenNIImageGeneratorWrapper::_GetRGB24ImageMapRaw() {
 
 } // OpenNIImageGeneratorWrapper::_GetRGB24ImageMapRaw
 
-void OpenNIImageGeneratorWrapper::_GetBGR24ImageMapRaw() {
+void ImageGeneratorWrapper::_GetBGR24ImageMapRaw() {
 
     // PRECONDITION: the generator is valid
     assert(IsValid());

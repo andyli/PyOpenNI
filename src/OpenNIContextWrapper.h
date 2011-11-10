@@ -34,7 +34,7 @@
 // custom
 #include "OpenNIWrapperTypes.h"
 
-class OpenNIContextWrapper : public xn::Context {
+class ContextWrapper : public xn::Context {
 public:
     XnStatus InitFromXmlFile(const std::string& initializationFilename);
     void Shutdown();

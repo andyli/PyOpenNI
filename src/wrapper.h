@@ -30,7 +30,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Constants
 
-const std::string OPENNI_WRAPPER_VERSION_STRING = "0.4.0 alpha";
+const std::string OPENNI_WRAPPER_VERSION_STRING = "0.4.0 alpha"; //FIXME: CMake has to configure this
 
 #ifdef _DEBUG
 const std::string DEBUG_TAG = " [debug]";

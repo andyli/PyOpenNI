@@ -28,8 +28,8 @@
 #include "wrapper.h"
 #include "OpenNIContextWrapper.h"
 #include "OpenNIImageGeneratorWrapper.h"
-#include "OpenNIDepthGeneratorWrapper.h"
 #include "OpenNIImageMetaDataWrapper.h"
+#include "OpenNIDepthGeneratorWrapper.h"
 
 // OpenNI
 #include <XnOpenNI.h>
@@ -49,7 +49,7 @@ std::string version() {
 ////////////////////////////////////////////////////////////////////////////////
 // Boost Python wrapper code
 
-BOOST_PYTHON_MODULE(OpenNIPythonWrapper) {
+BOOST_PYTHON_MODULE(PyOpenNI) {
 
     using namespace boost::python;
 
@@ -80,103 +80,99 @@ BOOST_PYTHON_MODULE(OpenNIPythonWrapper) {
     ////////////////////////////////////////////////////////////////////////////
     // global functions
 
-    def("version", version);
+    def("bindings_version", version);
+    //FIXME: Also provide OpenNI version
 
 
     ////////////////////////////////////////////////////////////////////////////
     // class OpenNIContext
 
-    class_< OpenNIContextWrapper > ("OpenNIContext")
+    class_< ContextWrapper > ("Context")
 
             // methods
 
-            .def("InitFromXmlFile", &OpenNIContextWrapper::InitFromXmlFile)
-            .def("Shutdown", &OpenNIContextWrapper::Shutdown)
-            .def("WaitAnyUpdateAll", &OpenNIContextWrapper::WaitAnyUpdateAll)
-            .def("WaitAndUpdateAll", &OpenNIContextWrapper::WaitAndUpdateAll)
-            .def("FindExistingNode", &OpenNIContextWrapper::FindExistingNode)
+            .def("InitFromXmlFile", &ContextWrapper::InitFromXmlFile)
+            .def("Shutdown", &ContextWrapper::Shutdown)
+            .def("WaitAnyUpdateAll", &ContextWrapper::WaitAnyUpdateAll)
+            .def("WaitAndUpdateAll", &ContextWrapper::WaitAndUpdateAll)
+            .def("FindExistingNode", &ContextWrapper::FindExistingNode)
 
-            ; // class OpenNIContext
+            ;
 
 
     ////////////////////////////////////////////////////////////////////////////
     // class OpenNIProductionNode
 
-    class_< xn::ProductionNode > ("OpenNIProductionNode")
-            ; // class OpenNIProductionNode
+    class_< xn::ProductionNode > ("ProductionNode")
+            ;
 
 
     ////////////////////////////////////////////////////////////////////////////
     // class OpenNIImageGenerator
 
-    class_<
-            OpenNIImageGeneratorWrapper,
-            bases< xn::ProductionNode > >("OpenNIImageGenerator")
+    class_< ImageGeneratorWrapper,
+            bases< xn::ProductionNode > >("ImageGenerator")
 
             // methods
 
-            .def("IsValid", &OpenNIImageGeneratorWrapper::IsValid)
-            .def("XRes", &OpenNIImageGeneratorWrapper::XRes)
-            .def("YRes", &OpenNIImageGeneratorWrapper::YRes)
-            .def("Res", &OpenNIImageGeneratorWrapper::Res)
+            .def("IsValid", &ImageGeneratorWrapper::IsValid)
+            .def("XRes", &ImageGeneratorWrapper::XRes)
+            .def("YRes", &ImageGeneratorWrapper::YRes)
+            .def("Res", &ImageGeneratorWrapper::Res)
 
             .def(
             "GetRGB24ImageMapTuple",
-            &OpenNIImageGeneratorWrapper::GetRGB24ImageMapTuple)
+            &ImageGeneratorWrapper::GetRGB24ImageMapTuple)
 
             .def(
             "GetRGB24ImageMapRaw",
-            &OpenNIImageGeneratorWrapper::GetRGB24ImageMapRaw)
+            &ImageGeneratorWrapper::GetRGB24ImageMapRaw)
 
             .def(
             "GetSyncedRGB24ImageMapRaw",
-            &OpenNIImageGeneratorWrapper::GetSyncedRGB24ImageMapRaw)
+            &ImageGeneratorWrapper::GetSyncedRGB24ImageMapRaw)
 
             .def(
             "GetBGR24ImageMapRaw",
-            &OpenNIImageGeneratorWrapper::GetBGR24ImageMapRaw)
+            &ImageGeneratorWrapper::GetBGR24ImageMapRaw)
 
             .def(
             "GetSyncedBGR24ImageMapRaw",
-            &OpenNIImageGeneratorWrapper::GetSyncedBGR24ImageMapRaw)
+            &ImageGeneratorWrapper::GetSyncedBGR24ImageMapRaw)
 
-            ; // class OpenNIImageGenerator
+            ;
 
 
     ////////////////////////////////////////////////////////////////////////////
     // class OpenNIImageMetaData
 
-    class_< OpenNIImageMetaDataWrapper > ("OpenNIImageMetaData")
-
-            ; // class OpenNIImageMetaData
+    class_< ImageMetaDataWrapper > ("ImageMetaData")
+            ;
 
 
     ////////////////////////////////////////////////////////////////////////////
     // class OpenNIDepthGenerator
 
-    class_<
-            OpenNIDepthGeneratorWrapper,
-            bases< xn::ProductionNode > >("OpenNIDepthGenerator")
+    class_< DepthGeneratorWrapper,
+            bases<xn::ProductionNode> >("DepthGenerator")
 
             // methods
 
-            .def("IsValid", &OpenNIDepthGeneratorWrapper::IsValid)
-            .def("XRes", &OpenNIDepthGeneratorWrapper::XRes)
-            .def("YRes", &OpenNIDepthGeneratorWrapper::YRes)
-            .def("Res", &OpenNIDepthGeneratorWrapper::Res)
+            .def("IsValid", &DepthGeneratorWrapper::IsValid)
+            .def("XRes", &DepthGeneratorWrapper::XRes)
+            .def("YRes", &DepthGeneratorWrapper::YRes)
+            .def("Res", &DepthGeneratorWrapper::Res)
 
-            .def(
-            "GetGrayscale16DepthMapTuple",
-            &OpenNIDepthGeneratorWrapper::GetGrayscale16DepthMapTuple)
+            .def("GetGrayscale16DepthMapTuple",
+            &DepthGeneratorWrapper::GetGrayscale16DepthMapTuple)
 
-            .def(
-            "GetGrayscale16DepthMapRaw",
-            &OpenNIDepthGeneratorWrapper::GetGrayscale16DepthMapRaw)
+            .def("GetGrayscale16DepthMapRaw",
+            &DepthGeneratorWrapper::GetGrayscale16DepthMapRaw)
 
-            .def(
-            "GetGrayscale8DepthMapRaw",
-            &OpenNIDepthGeneratorWrapper::GetGrayscale8DepthMapRaw)
+            .def("GetGrayscale8DepthMapRaw",
+            &DepthGeneratorWrapper::GetGrayscale8DepthMapRaw)
 
-            ; // class OpenNIImageGenerator
+            ;
 
-} // Boost Python module OpenNIPythonWrapper
+
+} // End Boost Python module OpenNIPythonWrapper

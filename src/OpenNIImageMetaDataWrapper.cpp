@@ -24,13 +24,13 @@
 #include "OpenNIImageMetaDataWrapper.h"
 #include "util/PythonOutputStream.h"
 
-OpenNIImageMetaDataWrapper::OpenNIImageMetaDataWrapper() :
+ImageMetaDataWrapper::ImageMetaDataWrapper() :
 ImageMetaData() {
 
 } // OpenNIImageMetaDataWrapper::OpenNIImageMetaDataWrapper
 
-OpenNIImageMetaDataWrapper::OpenNIImageMetaDataWrapper(
-        const OpenNIImageMetaDataWrapper&) {
+ImageMetaDataWrapper::ImageMetaDataWrapper(
+        const ImageMetaDataWrapper&) {
 
 #ifdef _DEBUG
 
@@ -40,7 +40,7 @@ OpenNIImageMetaDataWrapper::OpenNIImageMetaDataWrapper(
 
 } // OpenNIImageMetaDataWrapper::OpenNIImageMetaDataWrapper
 
-XnUInt32 OpenNIImageMetaDataWrapper::XRes() const {
+XnUInt32 ImageMetaDataWrapper::XRes() const {
 
     return xn::ImageMetaData::XRes();
 

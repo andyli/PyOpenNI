@@ -31,13 +31,13 @@
 // custom
 #include "OpenNIWrapperTypes.h"
 
-class OpenNIImageMetaDataWrapper : public xn::ImageMetaData {
+class ImageMetaDataWrapper : public xn::ImageMetaData {
 public:
-    OpenNIImageMetaDataWrapper();
+    ImageMetaDataWrapper();
 
     // enable the copy constructor to make Boost Python happy
-    OpenNIImageMetaDataWrapper(
-            const OpenNIImageMetaDataWrapper&);
+    ImageMetaDataWrapper(
+            const ImageMetaDataWrapper&);
 
     XnUInt32 XRes() const;
 
