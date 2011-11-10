@@ -4,6 +4,7 @@
 
 **PyOpenNI** is a project providing bindings for the [OpenNI](http://openni.org) computer vision library on Python. It is a fork of [onipy](http://code.google.com/p/onipy) but adds many improvements to it:
 
+ * Implemented more features.
  * Removed unnecessary `OpenNI` prefixes.
  * Uses CMake, the popular cross-platform buildsystem, to configure & compile the bindings.
  * Autodetects needed libraries and warns you if they're not found.
@@ -12,7 +13,8 @@
 
 PyOpenNI is written with the [Boost.Python](http://www.boost.org/doc/libs/release/libs/python/doc/index.html) libraries. PyOpenNI is released under the [GNU GPL](http://www.gnu.org/copyleft/gpl.html) verson 3.
 
-**Note:** Currently, only a _small group of features_ are being exposed to Python. We are working to add more, but if you want to accelerate this process you are free to collaborate. See the [github page](https://github.com/jmendeth/PyOpenNI) or [contact me](mailto:jmendeth@gmail.com) if you wish to help develop PyOpenNI.
+**Note:** Currently, only a _small group of features_ are being exposed to Python. We are working to add more, but if you want to accelerate this process you are free to collaborate. [Contact me](mailto:jmendeth@gmail.com) if you wish to help develop PyOpenNI.
+See the [github page](https://github.com/jmendeth/PyOpenNI) if you want to submit a **bug** or a **feature request**. Thanks!
 
 ## Using the bindings ##
 
