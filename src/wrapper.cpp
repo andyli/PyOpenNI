@@ -49,7 +49,7 @@ std::string version() {
 ////////////////////////////////////////////////////////////////////////////////
 // Boost Python wrapper code
 
-BOOST_PYTHON_MODULE(PyOpenNI) {
+BOOST_PYTHON_MODULE(openni) {
 
     using namespace boost::python;
 

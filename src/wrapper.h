@@ -30,7 +30,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Constants
 
-const std::string OPENNI_WRAPPER_VERSION_STRING = "0.4.0 alpha"; //FIXME: CMake has to configure this
+const std::string OPENNI_WRAPPER_VERSION_STRING = "1.0.0 alpha"; //FIXME: CMake has to configure version, debug and modulename
 
 #ifdef _DEBUG
 const std::string DEBUG_TAG = " [debug]";

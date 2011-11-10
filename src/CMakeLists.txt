@@ -52,5 +52,13 @@ set (SOURCES
 add_library (PyOpenNI SHARED ${SOURCES})
 target_link_libraries (PyOpenNI ${LIBS})
 
+set_target_properties (PyOpenNI PROPERTIES OUTPUT_NAME ${MODULE_NAME})
+# Remove the "lib" prefix:
+set_target_properties (PyOpenNI PROPERTIES PREFIX "")
+# Set output directories:
+set_target_properties (PyOpenNI PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${LIBRARY_RESULT_DIR})
+set_target_properties (PyOpenNI PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${ARCHIVE_RESULT_DIR})
+set_target_properties (PyOpenNI PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${RUNTIME_RESULT_DIR})
+
 #FIXME: change library output filename
 #TODO: refractor source files
