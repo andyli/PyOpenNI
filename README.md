@@ -12,7 +12,7 @@
 
 PyOpenNI is written with the [Boost.Python](http://www.boost.org/doc/libs/release/libs/python/doc/index.html) libraries. PyOpenNI is released under the [GNU GPL](http://www.gnu.org/copyleft/gpl.html) verson 3.
 
-**Note:** Currently, only a _small group of features_ are being exposed to Python. We are working to add more, but if you want to accelerate this process you are free to collaborate. See the [github page](https://github.com/jmendeth/PyOpenNI) or [contact me](jmendeth@gmail.com) if you wish to develop PyOpenNI.
+**Note:** Currently, only a _small group of features_ are being exposed to Python. We are working to add more, but if you want to accelerate this process you are free to collaborate. See the [github page](https://github.com/jmendeth/PyOpenNI) or [contact me](jmendeth@gmail.com) if you wish to help develop PyOpenNI.
 
 ## Using the bindings ##
 
