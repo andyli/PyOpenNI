@@ -21,7 +21,7 @@
  * ***** END GPL LICENSE BLOCK ***** */
 
 
-#include "OpenNIContextWrapper.h"
+#include "ContextWrapper.h"
 #include "util/PythonOutputStream.h"
 
 XnStatus ContextWrapper::InitFromXmlFile(const std::string& initializationFilename) {

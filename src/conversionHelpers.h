@@ -24,7 +24,7 @@
 #ifndef CONVERSION_HELPERS_H
 #define CONVERSION_HELPERS_H
 
-#include "OpenNIWrapperTypes.h"
+#include "wrapperTypes.h"
 
 void convert(
         BP::tuple& targetTuple,

@@ -21,8 +21,8 @@
  * ***** END GPL LICENSE BLOCK ***** */
 
 
-#ifndef OPENNI_WRAPPER_TYPES_H
-#define OPENNI_WRAPPER_TYPES_H
+#ifndef WRAPPER_TYPES_H
+#define WRAPPER_TYPES_H
 
 // forward declarations
 class ContextWrapper;
@@ -36,4 +36,4 @@ namespace BP = boost::python;
 #include <XnOpenNI.h>
 #include <XnCppWrapper.h>
 
-#endif    // OPENNI_WRAPPER_TYPES_H
+#endif    // WRAPPER_TYPES_H

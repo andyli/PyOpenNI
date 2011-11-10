@@ -21,15 +21,15 @@
  * ***** END GPL LICENSE BLOCK ***** */
 
 
-#ifndef OPENNI_IMAGE_META_DATA_WRAPPER_H
-#define OPENNI_IMAGE_META_DATA_WRAPPER_H
+#ifndef IMAGE_META_DATA_WRAPPER_H
+#define IMAGE_META_DATA_WRAPPER_H
 
 // OpenNI
 #include <XnOpenNI.h>
 #include <XnCppWrapper.h>
 
 // custom
-#include "OpenNIWrapperTypes.h"
+#include "wrapperTypes.h"
 
 class ImageMetaDataWrapper : public xn::ImageMetaData {
 public:
@@ -45,4 +45,4 @@ public:
 };
 
 
-#endif    // OPENNI_IMAGE_META_DATA_WRAPPER_H
+#endif    // IMAGE_META_DATA_WRAPPER_H

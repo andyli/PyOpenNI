@@ -21,7 +21,7 @@
  * ***** END GPL LICENSE BLOCK ***** */
 
 
-#include "OpenNIDepthGeneratorWrapper.h"
+#include "DepthGeneratorWrapper.h"
 #include "conversionHelpers.h"
 
 #include "util/PythonOutputStream.h"

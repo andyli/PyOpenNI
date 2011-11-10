@@ -21,7 +21,7 @@
  * ***** END GPL LICENSE BLOCK ***** */
 
 
-#include "OpenNIImageGeneratorWrapper.h"
+#include "ImageGeneratorWrapper.h"
 #include "conversionHelpers.h"
 
 #include "util/PythonOutputStream.h"

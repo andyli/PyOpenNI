@@ -21,7 +21,7 @@
  * ***** END GPL LICENSE BLOCK ***** */
 
 
-#include "OpenNIImageMetaDataWrapper.h"
+#include "ImageMetaDataWrapper.h"
 #include "util/PythonOutputStream.h"
 
 ImageMetaDataWrapper::ImageMetaDataWrapper() :

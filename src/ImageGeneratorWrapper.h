@@ -21,15 +21,15 @@
  * ***** END GPL LICENSE BLOCK ***** */
 
 
-#ifndef OPENNI_IMAGE_GENERATOR_WRAPPER_H
-#define OPENNI_IMAGE_GENERATOR_WRAPPER_H
+#ifndef IMAGE_GENERATOR_WRAPPER_H
+#define IMAGE_GENERATOR_WRAPPER_H
 
 // OpenNI
 #include <XnOpenNI.h>
 #include <XnCppWrapper.h>
 
 // custom
-#include "OpenNIWrapperTypes.h"
+#include "wrapperTypes.h"
 
 class ImageGeneratorWrapper : public xn::ImageGenerator {
 public:
@@ -72,4 +72,4 @@ private:
 
 };
 
-#endif    // OPENNI_IMAGE_GENERATOR_WRAPPER_H
+#endif    // IMAGE_GENERATOR_WRAPPER_H

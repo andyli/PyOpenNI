@@ -21,8 +21,8 @@
  * ***** END GPL LICENSE BLOCK ***** */
 
 
-#ifndef OPENNI_CONTEXT_WRAPPER_H
-#define OPENNI_CONTEXT_WRAPPER_H
+#ifndef CONTEXT_WRAPPER_H
+#define CONTEXT_WRAPPER_H
 
 // STL
 #include <string>
@@ -32,7 +32,7 @@
 #include <XnCppWrapper.h>
 
 // custom
-#include "OpenNIWrapperTypes.h"
+#include "wrapperTypes.h"
 
 class ContextWrapper : public xn::Context {
 public:
@@ -41,4 +41,4 @@ public:
     void Shutdown();
 };
 
-#endif    // OPENNI_CONTEXT_WRAPPER_H
+#endif    // CONTEXT_WRAPPER_H

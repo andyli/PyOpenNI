@@ -26,10 +26,10 @@
 
 // custom
 #include "wrapper.h"
-#include "OpenNIContextWrapper.h"
-#include "OpenNIImageGeneratorWrapper.h"
-#include "OpenNIImageMetaDataWrapper.h"
-#include "OpenNIDepthGeneratorWrapper.h"
+#include "ContextWrapper.h"
+#include "ImageGeneratorWrapper.h"
+#include "ImageMetaDataWrapper.h"
+#include "DepthGeneratorWrapper.h"
 
 // OpenNI
 #include <XnOpenNI.h>

@@ -21,15 +21,15 @@
 *****************************************************************************/
 
 
-#ifndef OPENNI_DEPTH_GENERATOR_WRAPPER_H
-#define OPENNI_DEPTH_GENERATOR_WRAPPER_H
+#ifndef DEPTH_GENERATOR_WRAPPER_H
+#define DEPTH_GENERATOR_WRAPPER_H
 
 // OpenNI
 #include <XnOpenNI.h>
 #include <XnCppWrapper.h>
 
 // custom
-#include "OpenNIWrapperTypes.h"
+#include "wrapperTypes.h"
 
 class DepthGeneratorWrapper : public xn::DepthGenerator
 {
@@ -58,4 +58,4 @@ public:
 
 };
 
-#endif    // OPENNI_DEPTH_GENERATOR_WRAPPER_H
+#endif    // DEPTH_GENERATOR_WRAPPER_H
