@@ -36,9 +36,9 @@
 
 class ContextWrapper : public xn::Context {
 public:
+    XnStatus Init();
     XnStatus InitFromXmlFile(const std::string& initializationFilename);
     void Shutdown();
-
 };
 
 #endif    // OPENNI_CONTEXT_WRAPPER_H

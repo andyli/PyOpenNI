@@ -91,6 +91,7 @@ BOOST_PYTHON_MODULE(openni) {
 
             // methods
 
+            .def("init", &ContextWrapper::Init)
             .def("init_from_xml_file", &ContextWrapper::InitFromXmlFile)
             .def("shutdown", &ContextWrapper::Shutdown)
             .def("wait_any_update_all", &ContextWrapper::WaitAnyUpdateAll)
@@ -114,6 +115,8 @@ BOOST_PYTHON_MODULE(openni) {
             bases< xn::ProductionNode > >("ImageGenerator")
 
             // methods
+    
+            .def("create", &ImageGeneratorWrapper::Create)
 
             .def("is_valid", &ImageGeneratorWrapper::IsValid)
             .def("get_x_resolution", &ImageGeneratorWrapper::XRes)
@@ -157,6 +160,8 @@ BOOST_PYTHON_MODULE(openni) {
             bases<xn::ProductionNode> >("DepthGenerator")
 
             // methods
+    
+            .def("create", &DepthGeneratorWrapper::Create)
 
             .def("is_valid", &DepthGeneratorWrapper::IsValid)
             .def("get_x_resolution", &DepthGeneratorWrapper::XRes)

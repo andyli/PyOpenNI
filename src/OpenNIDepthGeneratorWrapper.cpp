@@ -32,7 +32,7 @@ DepthGeneratorWrapper::DepthGeneratorWrapper() {
     PyCout << "Creating DepthGenerator" << std::endl;
 #endif
 
-} // OpenNIDepthGeneratorWrapper::OpenNIDepthGeneratorWrapper
+}
 
 XnUInt32 DepthGeneratorWrapper::XRes() const {
 
@@ -41,7 +41,7 @@ XnUInt32 DepthGeneratorWrapper::XRes() const {
 
     return proxyDepthMetaData.XRes();
 
-} // OpenNIDepthGeneratorWrapper::XRes
+}
 
 XnUInt32 DepthGeneratorWrapper::YRes() const {
 
@@ -50,13 +50,13 @@ XnUInt32 DepthGeneratorWrapper::YRes() const {
 
     return proxyDepthMetaData.YRes();
 
-} // OpenNIDepthGeneratorWrapper::YRes
+}
 
 BP::tuple DepthGeneratorWrapper::Res() const {
 
     return BP::make_tuple(XRes(), YRes());
 
-} // OpenNIDepthGeneratorWrapper::Res
+}
 
 BP::tuple DepthGeneratorWrapper::GetGrayscale16DepthMapTuple() const {
 
@@ -75,7 +75,7 @@ BP::tuple DepthGeneratorWrapper::GetGrayscale16DepthMapTuple() const {
 
     return mapTuple;
 
-} // OpenNIDepthGeneratorWrapper::GetGrayscale16DepthMapTuple
+}
 
 std::string DepthGeneratorWrapper::GetGrayscale16DepthMapRaw() const {
 
@@ -95,7 +95,7 @@ std::string DepthGeneratorWrapper::GetGrayscale16DepthMapRaw() const {
 
     return rawData;
 
-} // OpenNIDepthGeneratorWrapper::GetGrayscale16DepthMapRaw
+}
 
 std::string DepthGeneratorWrapper::GetGrayscale8DepthMapRaw() const {
 
@@ -114,4 +114,8 @@ std::string DepthGeneratorWrapper::GetGrayscale8DepthMapRaw() const {
 
     return rawDataGrayscale8;
 
-} // OpenNIDepthGeneratorWrapper::GetGrayscale8DepthMapRaw
+}
+
+XnStatus DepthGeneratorWrapper::Create(const ContextWrapper& ctx) {
+    return xn::DepthGenerator::Create((xn::Context&)ctx, NULL, NULL);
+}

@@ -32,7 +32,7 @@ ImageGeneratorWrapper::ImageGeneratorWrapper() {
     PyCout << "Creating ImageGenerator" << std::endl;
 #endif
 
-} // OpenNIImageGeneratorWrapper::OpenNIImageGeneratorWrapper
+}
 
 void ImageGeneratorWrapper::GetMetaData(
         ImageMetaDataWrapper& metaData) const {
@@ -41,7 +41,7 @@ void ImageGeneratorWrapper::GetMetaData(
     // directly to Python
     assert(false);
 
-} // OpenNIImageGeneratorWrapper::GetMetaData
+}
 
 XnUInt32 ImageGeneratorWrapper::XRes() const {
 
@@ -50,7 +50,7 @@ XnUInt32 ImageGeneratorWrapper::XRes() const {
 
     return proxyImageMetaData.XRes();
 
-} // OpenNIImageGeneratorWrapper::XRes
+}
 
 XnUInt32 ImageGeneratorWrapper::YRes() const {
 
@@ -59,13 +59,13 @@ XnUInt32 ImageGeneratorWrapper::YRes() const {
 
     return proxyImageMetaData.YRes();
 
-} // OpenNIImageGeneratorWrapper::YRes
+}
 
 BP::tuple ImageGeneratorWrapper::Res() const {
 
     return BP::make_tuple(XRes(), YRes());
 
-} // OpenNIImageGeneratorWrapper::Res
+}
 
 BP::tuple ImageGeneratorWrapper::GetRGB24ImageMapTuple() const {
 
@@ -84,7 +84,7 @@ BP::tuple ImageGeneratorWrapper::GetRGB24ImageMapTuple() const {
 
     return mapTuple;
 
-} // OpenNIImageGeneratorWrapper::GetRGB24ImageMapTuple
+}
 
 std::string ImageGeneratorWrapper::GetRGB24ImageMapRaw() {
 
@@ -92,7 +92,7 @@ std::string ImageGeneratorWrapper::GetRGB24ImageMapRaw() {
 
     return _rawData;
 
-} // OpenNIImageGeneratorWrapper::GetRGB24ImageMapRaw
+}
 
 std::string ImageGeneratorWrapper::GetSyncedRGB24ImageMapRaw() {
 
@@ -102,7 +102,7 @@ std::string ImageGeneratorWrapper::GetSyncedRGB24ImageMapRaw() {
 
     return _rawData;
 
-} // OpenNIImageGeneratorWrapper::GetSyncedRGB24ImageMapRaw
+}
 
 std::string ImageGeneratorWrapper::GetBGR24ImageMapRaw() {
 
@@ -135,7 +135,7 @@ void ImageGeneratorWrapper::_GetRGB24ImageMapRaw() {
     XnRGB24Pixel const* imageMap = xn::ImageGenerator::GetRGB24ImageMap();
     _rawData.assign((const char*) imageMap, GetDataSize());
 
-} // OpenNIImageGeneratorWrapper::_GetRGB24ImageMapRaw
+}
 
 void ImageGeneratorWrapper::_GetBGR24ImageMapRaw() {
 
@@ -151,4 +151,8 @@ void ImageGeneratorWrapper::_GetBGR24ImageMapRaw() {
 
     convertToBGR24Raw(_rawData, imageMap, XRes(), YRes());
 
-} // OpenNIImageGeneratorWrapper::_GetBGR24ImageMapRaw
+}
+
+XnStatus ImageGeneratorWrapper::Create(const ContextWrapper& ctx) {
+    return xn::ImageGenerator::Create((xn::Context&)ctx, NULL, NULL);
+}

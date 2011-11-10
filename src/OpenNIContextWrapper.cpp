@@ -44,7 +44,7 @@ XnStatus ContextWrapper::InitFromXmlFile(const std::string& initializationFilena
 
     return returnCode;
 
-} // OpenNIContextWrapper::InitFromXmlFile
+}
 
 void ContextWrapper::Shutdown() {
 
@@ -52,4 +52,26 @@ void ContextWrapper::Shutdown() {
     PyCout << "Shutting down OpenNI.." << std::endl;
 #endif
 
-} // OpenNIContextWrapper::Shutdown
+}
+
+XnStatus ContextWrapper::Init() {
+ 
+#ifdef _DEBUG
+    PyCout << "Initializing OpenNI.." << std::endl;
+#endif
+
+    XnStatus returnCode;
+    returnCode = xn::Context::Init();
+
+#ifdef _DEBUG
+    if (returnCode == XN_STATUS_OK)
+        PyCout << "OpenNI was initialized successfully" << std::endl;
+    else {
+        PyCout << "OpenNI failed to initialize: " <<
+                xnGetStatusName(returnCode) << std::endl;
+    }
+#endif
+
+    return returnCode;
+    
+}
