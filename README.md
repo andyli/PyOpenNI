@@ -6,8 +6,8 @@
 
  * Implemented more features.
  * Removed unnecessary `OpenNI` prefixes.
- * Uses CMake, the popular cross-platform buildsystem, to configure & compile the bindings.
- * Autodetects needed libraries and warns you if they're not found.
+ * Uses CMake, the popular cross-platform buildsystem, to configure & compile the bindings.  
+   This way, it autodetects needed libraries and warns you if they're not found.
  * Code cleanup and formatted according to [PEP 8](http://www.python.org/dev/peps/pep-0008) rules.
  * Directory structure simplified.
 
