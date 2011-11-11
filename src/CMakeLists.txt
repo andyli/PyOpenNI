@@ -38,13 +38,24 @@ set(LIBS ${LIBS} ${Boost_LIBRARIES})
 
 set (SOURCES
     wrapper.cpp
+    wrapper.h
     wrapperTypes.h
+    wrapperExceptions.cpp
+    wrapperExceptions.h
     ImageMetaDataWrapper.cpp
+    ImageMetaDataWrapper.h
     ImageGeneratorWrapper.cpp
+    ImageGeneratorWrapper.h
     DepthGeneratorWrapper.cpp
+    DepthGeneratorWrapper.h
     ContextWrapper.cpp
+    ContextWrapper.h
+    OpenNIException.cpp
+    OpenNIException.h
     conversionHelpers.cpp
+    conversionHelpers.h
     util/PythonOutputStream.cpp
+    util/PythonOutputStream.h
     util/PythonOutputStreamManager.hpp
     util/PythonOutputStreamSink.hpp
 )

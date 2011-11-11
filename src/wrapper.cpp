@@ -26,6 +26,10 @@
 
 // custom
 #include "wrapper.h"
+
+#include "wrapperExceptions.h"
+
+#include "OpenNIException.h"
 #include "ContextWrapper.h"
 #include "ImageGeneratorWrapper.h"
 #include "ImageMetaDataWrapper.h"
@@ -84,8 +88,25 @@ BOOST_PYTHON_MODULE(openni) {
     //FIXME: Also provide OpenNI version
 
 
+    
     ////////////////////////////////////////////////////////////////////////////
-    // class OpenNIContext
+    // exception class OpenNIException
+    
+    class_<OpenNIException> generalExceptionClass("OpenNIError",
+            boost::python::init<XnStatus>());
+    
+    //properties
+    generalExceptionClass.add_property("message", &OpenNIException::getMessage)
+            .add_property("status", &OpenNIException::getStatus)
+            .add_property("status_name", &OpenNIException::getStatusName)
+            .add_property("status_string", &OpenNIException::getStatusString);
+    
+    exceptionType = generalExceptionClass.ptr();
+    register_exception_translator<OpenNIException> (&translateGeneralException);
+    
+    
+    ////////////////////////////////////////////////////////////////////////////
+    // class Context
 
     class_< ContextWrapper > ("Context")
 
@@ -102,14 +123,14 @@ BOOST_PYTHON_MODULE(openni) {
 
 
     ////////////////////////////////////////////////////////////////////////////
-    // class OpenNIProductionNode
+    // class ProductionNode
 
     class_< xn::ProductionNode > ("ProductionNode")
             ;
 
 
     ////////////////////////////////////////////////////////////////////////////
-    // class OpenNIImageGenerator
+    // class ImageGenerator
 
     class_< ImageGeneratorWrapper,
             bases< xn::ProductionNode > >("ImageGenerator")
@@ -147,14 +168,14 @@ BOOST_PYTHON_MODULE(openni) {
 
 
     ////////////////////////////////////////////////////////////////////////////
-    // class OpenNIImageMetaData
+    // class ImageMetaData
 
     class_< ImageMetaDataWrapper > ("ImageMetaData")
             ;
 
 
     ////////////////////////////////////////////////////////////////////////////
-    // class OpenNIDepthGenerator
+    // class DepthGenerator
 
     class_< DepthGeneratorWrapper,
             bases<xn::ProductionNode> >("DepthGenerator")
