@@ -27,96 +27,100 @@
 
 #include "util/PythonOutputStream.h"
 
-DepthGeneratorWrapper::DepthGeneratorWrapper() {
+XnUInt32 DepthGenerator_XRes_wrapped(xn::DepthGenerator const & self) {//FIXME: this should be removed! use metadata instead
 
-#ifdef _DEBUG
-    PyCout << "Creating DepthGenerator" << std::endl;
-#endif
+    xn::DepthMetaData metadata;
+    self.GetMetaData(metadata);
 
-}
-
-XnUInt32 DepthGeneratorWrapper::XRes() const {
-
-    xn::DepthMetaData proxyDepthMetaData;
-    xn::DepthGenerator::GetMetaData(proxyDepthMetaData);
-
-    return proxyDepthMetaData.XRes();
+    return metadata.XRes();
 
 }
 
-XnUInt32 DepthGeneratorWrapper::YRes() const {
+XnUInt32 DepthGenerator_YRes_wrapped(xn::DepthGenerator const & self) {
 
-    xn::DepthMetaData proxyDepthMetaData;
-    xn::DepthGenerator::GetMetaData(proxyDepthMetaData);
+    xn::DepthMetaData metadata;
+    self.GetMetaData(metadata);
 
-    return proxyDepthMetaData.YRes();
-
-}
-
-BP::tuple DepthGeneratorWrapper::Res() const {
-
-    return BP::make_tuple(XRes(), YRes());
+    return metadata.YRes();
 
 }
 
-BP::tuple DepthGeneratorWrapper::GetGrayscale16DepthMapTuple() const {
+BP::tuple DepthGenerator_Res_wrapped(xn::DepthGenerator const & self) {
+
+    xn::DepthMetaData metadata;
+    self.GetMetaData(metadata);
+    
+    return BP::make_tuple(metadata.XRes(), metadata.YRes());
+
+}
+
+BP::tuple DepthGenerator_GetGrayscale16DepthMapTuple_wrapped(xn::DepthGenerator const & self) {
 
     // PRECONDITION: the generator is valid
-    assert(IsValid());
+    assert(self.IsValid());
 
 #ifdef _DEBUG
     if (IsDataNew() == false)
         PyCout << "WARNING: data is out of sync!" << std::endl;
 #endif
 
-    XnDepthPixel const* depthMap = xn::DepthGenerator::GetDepthMap();
+    xn::DepthMetaData metadata;
+    self.GetMetaData(metadata);
+    
+    XnDepthPixel const* depthMap = self.GetDepthMap();
 
     BP::tuple mapTuple;
-    convert(mapTuple, depthMap, XRes(), YRes());
+    convert(mapTuple, depthMap, metadata.XRes(), metadata.YRes());
 
     return mapTuple;
 
 }
 
-std::string DepthGeneratorWrapper::GetGrayscale16DepthMapRaw() const {
+std::string DepthGenerator_GetGrayscale16DepthMapRaw_wrapped(xn::DepthGenerator const & self) {
 
     // PRECONDITION: the generator is valid
-    assert(IsValid());
+    assert(self.IsValid());
 
 #ifdef _DEBUG
     if (IsDataNew() == false)
         PyCout << "WARNING: data is out of sync!" << std::endl;
 #endif
 
-    XnDepthPixel const* depthMap = xn::DepthGenerator::GetDepthMap();
+    xn::DepthMetaData metadata;
+    self.GetMetaData(metadata);
+    
+    XnDepthPixel const* depthMap = self.GetDepthMap();
 
     std::string rawData(
             (const char*) depthMap,
-            XRes() * YRes() * sizeof ( XnDepthPixel));
+            metadata.XRes() * metadata.YRes() * sizeof ( XnDepthPixel));
 
     return rawData;
 
 }
 
-std::string DepthGeneratorWrapper::GetGrayscale8DepthMapRaw() const {
+std::string DepthGenerator_GetGrayscale8DepthMapRaw_wrapped(xn::DepthGenerator const & self) {
 
     // PRECONDITION: the generator is valid
-    assert(IsValid());
+    assert(self.IsValid());
 
 #ifdef _DEBUG
     if (IsDataNew() == false)
         PyCout << "WARNING: data is out of sync!" << std::endl;
 #endif
 
-    XnDepthPixel const* depthMap = xn::DepthGenerator::GetDepthMap();
+    xn::DepthMetaData metadata;
+    self.GetMetaData(metadata);
+    
+    XnDepthPixel const* depthMap = self.GetDepthMap();
 
     std::string rawDataGrayscale8;
-    convertToGrayscale8Raw(rawDataGrayscale8, depthMap, XRes(), YRes());
+    convertToGrayscale8Raw(rawDataGrayscale8, depthMap, metadata.XRes(), metadata.YRes());
 
     return rawDataGrayscale8;
 
 }
 
-void DepthGeneratorWrapper::_Create(xn::Context& ctx) {
-    check( xn::DepthGenerator::Create(ctx, NULL, NULL) );
+void DepthGenerator_Create_wrapped(xn::DepthGenerator& self, xn::Context& ctx) {
+    check( self.Create(ctx, NULL, NULL) );
 }

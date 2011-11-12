@@ -97,7 +97,7 @@ std::string ImageGeneratorWrapper::GetRGB24ImageMapRaw() {
 
 std::string ImageGeneratorWrapper::GetSyncedRGB24ImageMapRaw() {
 
-    WaitAndUpdateData();
+    WaitAndUpdateData();//FIXME
 
     _GetRGB24ImageMapRaw();
 
@@ -115,7 +115,7 @@ std::string ImageGeneratorWrapper::GetBGR24ImageMapRaw() {
 
 std::string ImageGeneratorWrapper::GetSyncedBGR24ImageMapRaw() {
 
-    WaitAndUpdateData();
+    WaitAndUpdateData();//FIXME
 
     _GetBGR24ImageMapRaw();
 

@@ -177,26 +177,26 @@ BOOST_PYTHON_MODULE(openni) {
     ////////////////////////////////////////////////////////////////////////////
     // class DepthGenerator
 
-    class_< DepthGeneratorWrapper,
+    class_< xn::DepthGenerator,
             bases<xn::ProductionNode> >("DepthGenerator")
 
             // methods
     
-            .def("create", &DepthGeneratorWrapper::_Create)
+            .def("create", &DepthGenerator_Create_wrapped)
 
-            .def("is_valid", &DepthGeneratorWrapper::IsValid)
-            .def("get_x_resolution", &DepthGeneratorWrapper::XRes)
-            .def("get_y_resolution", &DepthGeneratorWrapper::YRes)
-            .def("get_resolution", &DepthGeneratorWrapper::Res)
+            .def("is_valid", &xn::DepthGenerator::IsValid)
+            .def("get_x_resolution", &DepthGenerator_XRes_wrapped)
+            .def("get_y_resolution", &DepthGenerator_YRes_wrapped)
+            .def("get_resolution", &DepthGenerator_Res_wrapped)
 
             .def("get_tuple_depth_map",
-            &DepthGeneratorWrapper::GetGrayscale16DepthMapTuple)
+            &DepthGenerator_GetGrayscale16DepthMapTuple_wrapped)
 
             .def("get_raw_depth_map",
-            &DepthGeneratorWrapper::GetGrayscale16DepthMapRaw)
+            &DepthGenerator_GetGrayscale16DepthMapRaw_wrapped)
 
             .def("get_raw_depth_map_8",
-            &DepthGeneratorWrapper::GetGrayscale8DepthMapRaw)
+            &DepthGenerator_GetGrayscale8DepthMapRaw_wrapped)
 
             ;
 

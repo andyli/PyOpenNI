@@ -31,31 +31,18 @@
 // custom
 #include "wrapperTypes.h"
 
-class DepthGeneratorWrapper : public xn::DepthGenerator
-{
+XnUInt32 DepthGenerator_XRes_wrapped(xn::DepthGenerator const & self);
 
-public:
-    DepthGeneratorWrapper();
-    
-    void _Create(xn::Context& context);
+XnUInt32 DepthGenerator_YRes_wrapped(xn::DepthGenerator const & self);
 
-    // return the x resolution of the map
-    XnUInt32 XRes() const;    
+BP::tuple DepthGenerator_Res_wrapped(xn::DepthGenerator const & self);
 
-    // return the y resolution of the map
-    XnUInt32 YRes() const;    
+BP::tuple DepthGenerator_GetGrayscale16DepthMapTuple_wrapped(xn::DepthGenerator const & self);
 
-    // return a (x,y) with the resolution of the map
-    BP::tuple Res() const;
+std::string DepthGenerator_GetGrayscale16DepthMapRaw_wrapped(xn::DepthGenerator const & self);
 
-    BP::tuple GetGrayscale16DepthMapTuple() const;
-    std::string GetGrayscale16DepthMapRaw() const;
+std::string DepthGenerator_GetGrayscale8DepthMapRaw_wrapped(xn::DepthGenerator const & self);
 
-    // NOTE: this method converts the data supplied by OpenNI to a format that
-    // is more friendly for visualization (e.g. PIL in L mode). It is a slow 
-    // operation, so use it only for debugging
-    std::string GetGrayscale8DepthMapRaw() const;
-
-};
+void DepthGenerator_Create_wrapped(xn::DepthGenerator& self, xn::Context& ctx);
 
 #endif    // DEPTH_GENERATOR_WRAPPER_H
