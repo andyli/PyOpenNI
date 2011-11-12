@@ -31,6 +31,9 @@
 
 #include "OpenNIException.h"
 #include "ContextWrapper.h"
+#include "ProductionNodeWrapper.h"
+#include "GeneratorWrapper.h"
+#include "MapGeneratorWrapper.h"
 #include "ImageGeneratorWrapper.h"
 #include "ImageMetaDataWrapper.h"
 #include "DepthGeneratorWrapper.h"
@@ -136,6 +139,16 @@ BOOST_PYTHON_MODULE(openni) {
 
     class_< xn::Generator,
             bases<xn::ProductionNode> > ("Generator")
+    
+            //methods
+            .def("start_generating", &Generator_StartGenerating_wrapped)
+            .def("stop_generating", &Generator_StopGenerating_wrapped)
+            .def("wait_and_update_data", &Generator_WaitAndUpdateData_wrapped)
+    
+            //properties
+            .add_property("data_new", &xn::Generator::IsDataNew)
+            .add_property("generating", &xn::Generator::IsGenerating, &Generator_SetGenerating)
+    
             ;
 
     

@@ -24,6 +24,8 @@
 #ifndef PRODUCTION_NODE_WRAPPER_H
 #define	PRODUCTION_NODE_WRAPPER_H
 
+#include <XnCppWrapper.h>
+
 //Currently empty
 
 #endif	/* PRODUCTION_NODE_WRAPPER_H */

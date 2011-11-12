@@ -27,4 +27,3 @@
 //Currently empty
 
 #endif	/* MAP_GENERATOR_WRAPPER_H */
-

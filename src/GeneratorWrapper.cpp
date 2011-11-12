@@ -24,6 +24,27 @@
 #include "GeneratorWrapper.h"
 
 #include <string>
+#include <boost/python/detail/cv_category.hpp>
 #include "wrapperExceptions.h"
 
-//Currently empty
+#include <XnCppWrapper.h>
+
+void Generator_StartGenerating_wrapped(xn::Generator& self) {
+    check( self.StartGenerating() );
+}
+
+void Generator_StopGenerating_wrapped(xn::Generator& self) {
+    check( self.StopGenerating() );
+}
+
+void Generator_WaitAndUpdateData_wrapped(xn::Generator& self) {
+    check( self.WaitAndUpdateData() );
+}
+
+void Generator_SetGenerating(xn::Generator& self, XnBool value) {
+    if (value != self.IsGenerating()) {
+        check( self.StartGenerating() ); //TODO: test this
+    } else {
+        check( self.StopGenerating() );
+    }
+}

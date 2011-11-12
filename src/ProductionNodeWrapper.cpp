@@ -25,4 +25,6 @@
 
 #include "wrapperExceptions.h"
 
+#include <XnCppWrapper.h>
+
 //Currently empty

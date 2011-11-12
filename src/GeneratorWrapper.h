@@ -24,6 +24,13 @@
 #ifndef GENERATOR_WRAPPER_H
 #define	GENERATOR_WRAPPER_H
 
-//Currently empty
+#include <XnCppWrapper.h>
+
+void Generator_StartGenerating_wrapped(xn::Generator& self);
+void Generator_StopGenerating_wrapped(xn::Generator& self);
+
+void Generator_WaitAndUpdateData_wrapped(xn::Generator& self);
+
+void Generator_SetGenerating(xn::Generator& self, XnBool value);
 
 #endif	/* GENERATOR_WRAPPER_H */
