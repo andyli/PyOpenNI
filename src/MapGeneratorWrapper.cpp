@@ -21,8 +21,9 @@
  * ***** END GPL LICENSE BLOCK ***** */
 
 
-#include "ProductionNodeWrapper.h"
+#include "MapGeneratorWrapper.h"
 
+#include <string>
 #include "wrapperExceptions.h"
 
 //Currently empty

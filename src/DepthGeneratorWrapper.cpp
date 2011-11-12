@@ -27,7 +27,7 @@
 
 #include "util/PythonOutputStream.h"
 
-XnUInt32 DepthGenerator_XRes_wrapped(xn::DepthGenerator const & self) {//FIXME: this should be removed! use metadata instead
+/** XnUInt32 DepthGenerator_XRes_wrapped(xn::DepthGenerator const & self) {//FIXME: this should be removed! use metadata instead
 
     xn::DepthMetaData metadata;
     self.GetMetaData(metadata);
@@ -52,7 +52,7 @@ BP::tuple DepthGenerator_Res_wrapped(xn::DepthGenerator const & self) {
     
     return BP::make_tuple(metadata.XRes(), metadata.YRes());
 
-}
+} **/
 
 BP::tuple DepthGenerator_GetGrayscale16DepthMapTuple_wrapped(xn::DepthGenerator const & self) {
 

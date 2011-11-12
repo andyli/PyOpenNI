@@ -38,6 +38,7 @@
 // OpenNI
 #include <XnOpenNI.h>
 #include <XnCppWrapper.h>
+#include <boost/python/detail/cv_category.hpp>
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -88,23 +89,23 @@ BOOST_PYTHON_MODULE(openni) {
     //FIXME: Also provide OpenNI version
 
 
-    
+
     ////////////////////////////////////////////////////////////////////////////
     // exception class OpenNIException
-    
+
     class_<OpenNIException> generalExceptionClass("OpenNIError",
-            boost::python::init<XnStatus>());
-    
+            boost::python::init<XnStatus > ());
+
     //properties
     generalExceptionClass.add_property("message", &OpenNIException::getMessage)
             .add_property("status", &OpenNIException::getStatus)
             .add_property("status_name", &OpenNIException::getStatusName)
             .add_property("status_string", &OpenNIException::getStatusString)
             .def("__str__", &OpenNIException__str__);
-    
-    register_exception_translator<OpenNIException> (&translateGeneralException);
-    
-    
+
+    register_exception_translator<OpenNIException > (&translateGeneralException);
+
+
     ////////////////////////////////////////////////////////////////////////////
     // class Context
 
@@ -126,6 +127,28 @@ BOOST_PYTHON_MODULE(openni) {
     // class ProductionNode
 
     class_< xn::ProductionNode > ("ProductionNode")
+            .add_property("valid", &xn::ProductionNode::IsValid)
+            ;
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // class Generator
+
+    class_< xn::Generator,
+            bases<xn::ProductionNode> > ("Generator")
+            ;
+
+    
+    ////////////////////////////////////////////////////////////////////////////
+    // class MapGenerator
+
+    class_< xn::MapGenerator,
+            bases<xn::Generator> > ("MapGenerator")
+    
+            //.def("get_x_resolution", &MapGeneratorWrapper::XRes)
+            //.def("get_y_resolution", &MapGeneratorWrapper::YRes)
+            //.def("get_resolution", &MapGeneratorWrapper::Res)
+    
             ;
 
 
@@ -133,16 +156,11 @@ BOOST_PYTHON_MODULE(openni) {
     // class ImageGenerator
 
     class_< xn::ImageGenerator,
-            bases< xn::ProductionNode > >("ImageGenerator")
+            bases< xn::MapGenerator > >("ImageGenerator")
 
             // methods
-    
-            .def("create", &ImageGenerator_Create_wrapped)
 
-            .def("is_valid", &xn::ImageGenerator::IsValid)
-            //.def("get_x_resolution", &ImageGeneratorWrapper::XRes)
-            //.def("get_y_resolution", &ImageGeneratorWrapper::YRes)
-            //.def("get_resolution", &ImageGeneratorWrapper::Res)
+            .def("create", &ImageGenerator_Create_wrapped)
 
             .def(
             "get_tuple_image_map",
@@ -170,24 +188,19 @@ BOOST_PYTHON_MODULE(openni) {
     ////////////////////////////////////////////////////////////////////////////
     // class ImageMetaData
 
-    class_< ImageMetaDataWrapper > ("ImageMetaData")
-            ;
+    //    class_< ImageMetaDataWrapper > ("ImageMetaData")
+    //            ;
 
 
     ////////////////////////////////////////////////////////////////////////////
     // class DepthGenerator
 
     class_< xn::DepthGenerator,
-            bases<xn::ProductionNode> >("DepthGenerator")
+            bases<xn::MapGenerator> >("DepthGenerator")
 
             // methods
-    
-            .def("create", &DepthGenerator_Create_wrapped)
 
-            .def("is_valid", &xn::DepthGenerator::IsValid)
-            .def("get_x_resolution", &DepthGenerator_XRes_wrapped)
-            .def("get_y_resolution", &DepthGenerator_YRes_wrapped)
-            .def("get_resolution", &DepthGenerator_Res_wrapped)
+            .def("create", &DepthGenerator_Create_wrapped)
 
             .def("get_tuple_depth_map",
             &DepthGenerator_GetGrayscale16DepthMapTuple_wrapped)

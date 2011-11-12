@@ -21,8 +21,9 @@
  * ***** END GPL LICENSE BLOCK ***** */
 
 
-#include "ProductionNodeWrapper.h"
-
-#include "wrapperExceptions.h"
+#ifndef GENERATOR_WRAPPER_H
+#define	GENERATOR_WRAPPER_H
 
 //Currently empty
+
+#endif	/* GENERATOR_WRAPPER_H */

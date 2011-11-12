@@ -42,6 +42,12 @@ set (SOURCES
     wrapperTypes.h
     wrapperExceptions.cpp
     wrapperExceptions.h
+    ProductionNodeWrapper.cpp
+    ProductionNodeWrapper.h
+    GeneratorWrapper.cpp
+    GeneratorWrapper.h
+    MapGeneratorWrapper.cpp
+    MapGeneratorWrapper.h
     ImageMetaDataWrapper.cpp
     ImageMetaDataWrapper.h
     ImageGeneratorWrapper.cpp
