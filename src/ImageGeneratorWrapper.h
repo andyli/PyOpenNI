@@ -31,45 +31,23 @@
 // custom
 #include "wrapperTypes.h"
 
-class ImageGeneratorWrapper : public xn::ImageGenerator {
-public:
-    ImageGeneratorWrapper();
-    
-    void _Create(xn::Context& context);
+BP::tuple ImageGenerator_GetRGB24ImageMapTuple_wrapped(xn::ImageGenerator const & self);
 
-    // WARNING: this function does not work!
-    void GetMetaData(ImageMetaDataWrapper& metaData) const;
+std::string ImageGenerator_GetRGB24ImageMapRaw_wrapped(xn::ImageGenerator& self);
 
-    // NOTE: the meta data is exposed directly through the generator
-    XnUInt32 XRes() const;
-    XnUInt32 YRes() const;
-    BP::tuple Res() const;
+std::string ImageGenerator_GetSyncedRGB24ImageMapRaw_wrapped(xn::ImageGenerator& self);
 
-    // use this method if you want to readily manipulate image data with NumPy
-    BP::tuple GetRGB24ImageMapTuple() const;
+std::string ImageGenerator_GetBGR24ImageMapRaw_wrapped(xn::ImageGenerator& self);
+
+std::string ImageGenerator_GetSyncedBGR24ImageMapRaw_wrapped(xn::ImageGenerator& self);
+
+void ImageGenerator_Create_wrapped(xn::ImageGenerator& self, xn::Context& ctx);
 
 
-    // these methods are the preffered and fasted way to retrieve image data
-    // NOTE: these methods are not const because they modify shared data
+/** Utility methods **/
 
-    // get image data in the internal RGB24 data format
-    std::string GetRGB24ImageMapRaw();
+std::string ImageGenerator_GetRGB24ImageMapRaw(xn::ImageGenerator& self);
 
-    // same as before, but it updates the node with the latest image data first 
-    std::string GetSyncedRGB24ImageMapRaw();
-
-    // these methods are slower than the RGB version, but useful when using
-    // this wrapper with OpenCV
-
-    std::string GetBGR24ImageMapRaw();
-    std::string GetSyncedBGR24ImageMapRaw();
-
-private:
-    std::string _rawData;
-
-    void _GetRGB24ImageMapRaw();
-    void _GetBGR24ImageMapRaw();
-
-};
+std::string ImageGenerator_GetBGR24ImageMapRaw(xn::ImageGenerator& self);
 
 #endif    // IMAGE_GENERATOR_WRAPPER_H

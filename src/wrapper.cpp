@@ -132,37 +132,37 @@ BOOST_PYTHON_MODULE(openni) {
     ////////////////////////////////////////////////////////////////////////////
     // class ImageGenerator
 
-    class_< ImageGeneratorWrapper,
+    class_< xn::ImageGenerator,
             bases< xn::ProductionNode > >("ImageGenerator")
 
             // methods
     
-            .def("create", &ImageGeneratorWrapper::_Create)
+            .def("create", &ImageGenerator_Create_wrapped)
 
-            .def("is_valid", &ImageGeneratorWrapper::IsValid)
-            .def("get_x_resolution", &ImageGeneratorWrapper::XRes)
-            .def("get_y_resolution", &ImageGeneratorWrapper::YRes)
-            .def("get_resolution", &ImageGeneratorWrapper::Res)
+            .def("is_valid", &xn::ImageGenerator::IsValid)
+            //.def("get_x_resolution", &ImageGeneratorWrapper::XRes)
+            //.def("get_y_resolution", &ImageGeneratorWrapper::YRes)
+            //.def("get_resolution", &ImageGeneratorWrapper::Res)
 
             .def(
             "get_tuple_image_map",
-            &ImageGeneratorWrapper::GetRGB24ImageMapTuple)
+            &ImageGenerator_GetRGB24ImageMapTuple_wrapped)
 
             .def(
             "get_raw_image_map",
-            &ImageGeneratorWrapper::GetRGB24ImageMapRaw)
+            &ImageGenerator_GetRGB24ImageMapRaw_wrapped)
 
             .def(
             "get_synced_image_map",
-            &ImageGeneratorWrapper::GetSyncedRGB24ImageMapRaw)
+            &ImageGenerator_GetSyncedRGB24ImageMapRaw_wrapped)
 
             .def(
             "get_raw_image_map_bgr",
-            &ImageGeneratorWrapper::GetBGR24ImageMapRaw)
+            &ImageGenerator_GetBGR24ImageMapRaw_wrapped)
 
             .def(
             "get_synced_image_map_bgr",
-            &ImageGeneratorWrapper::GetSyncedBGR24ImageMapRaw)
+            &ImageGenerator_GetSyncedBGR24ImageMapRaw_wrapped)
 
             ;
 

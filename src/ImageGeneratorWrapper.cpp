@@ -21,25 +21,18 @@
  * ***** END GPL LICENSE BLOCK ***** */
 
 
+#include <bits/stringfwd.h>
+
 #include "ImageGeneratorWrapper.h"
 #include "wrapperExceptions.h"
 #include "conversionHelpers.h"
 
 #include "util/PythonOutputStream.h"
 
-ImageGeneratorWrapper::ImageGeneratorWrapper() {
-
-#ifdef _DEBUG
-    PyCout << "Creating ImageGenerator" << std::endl;
-#endif
-
-}
-
-void ImageGeneratorWrapper::GetMetaData(
+/**void ImageGeneratorWrapper::GetMetaData(
         ImageMetaDataWrapper& metaData) const {
 
-    // FIXME: it does not seem to be a good idea to expose the meta data
-    // directly to Python
+    // FIXME: use metadata instead
     assert(false);
 
 }
@@ -66,94 +59,89 @@ BP::tuple ImageGeneratorWrapper::Res() const {
 
     return BP::make_tuple(XRes(), YRes());
 
-}
+}*/
 
-BP::tuple ImageGeneratorWrapper::GetRGB24ImageMapTuple() const {
+BP::tuple ImageGenerator_GetRGB24ImageMapTuple_wrapped(xn::ImageGenerator const & self) {
 
     // PRECONDITION: the generator is valid
-    assert(IsValid());
+    assert(self.IsValid());//FIXME
 
 #ifdef _DEBUG
     if (IsDataNew() == false)
         PyCout << "WARNING: data is out of sync!" << std::endl;
 #endif
 
-    XnRGB24Pixel const* imageMap = xn::ImageGenerator::GetRGB24ImageMap();
+    xn::ImageMetaData metadata;
+    self.GetMetaData(metadata);
+    XnRGB24Pixel const* imageMap = self.GetRGB24ImageMap();
 
     BP::tuple mapTuple;
-    convert(mapTuple, imageMap, XRes(), YRes());
+    convert(mapTuple, imageMap, metadata.XRes(), metadata.YRes());
 
     return mapTuple;
+}
+
+std::string ImageGenerator_GetRGB24ImageMapRaw_wrapped(xn::ImageGenerator& self) {
+
+    return ImageGenerator_GetRGB24ImageMapRaw(self);
 
 }
 
-std::string ImageGeneratorWrapper::GetRGB24ImageMapRaw() {
+std::string ImageGenerator_GetSyncedRGB24ImageMapRaw_wrapped(xn::ImageGenerator& self) {
+    check( self.WaitAndUpdateData() );
 
-    _GetRGB24ImageMapRaw();
+    return ImageGenerator_GetRGB24ImageMapRaw(self);
+}
 
-    return _rawData;
+std::string ImageGenerator_GetBGR24ImageMapRaw_wrapped(xn::ImageGenerator& self) {
+
+    return ImageGenerator_GetBGR24ImageMapRaw(self);
 
 }
 
-std::string ImageGeneratorWrapper::GetSyncedRGB24ImageMapRaw() {
-
-    WaitAndUpdateData();//FIXME
-
-    _GetRGB24ImageMapRaw();
-
-    return _rawData;
-
+std::string ImageGenerator_GetSyncedBGR24ImageMapRaw_wrapped(xn::ImageGenerator& self) {
+    check( self.WaitAndUpdateData() );
+    
+    return ImageGenerator_GetBGR24ImageMapRaw(self);
 }
 
-std::string ImageGeneratorWrapper::GetBGR24ImageMapRaw() {
-
-    _GetBGR24ImageMapRaw();
-
-    return _rawData;
-
+void ImageGenerator_Create_wrapped(xn::ImageGenerator& self, xn::Context& ctx) {
+    check( self.Create(ctx, NULL, NULL) );
 }
 
-std::string ImageGeneratorWrapper::GetSyncedBGR24ImageMapRaw() {
 
-    WaitAndUpdateData();//FIXME
+/** Utility methods **/
 
-    _GetBGR24ImageMapRaw();
-
-    return _rawData;
-
-}
-
-void ImageGeneratorWrapper::_GetRGB24ImageMapRaw() {
+std::string ImageGenerator_GetRGB24ImageMapRaw(xn::ImageGenerator& self) {
 
     // PRECONDITION: the generator is valid
-    assert(IsValid());
+    assert(self.IsValid());//FIXME
 
 #ifdef _DEBUG
     if (IsDataNew() == false)
         PyCout << "WARNING: data is out of sync!" << std::endl;
 #endif
 
-    XnRGB24Pixel const* imageMap = xn::ImageGenerator::GetRGB24ImageMap();
-    _rawData.assign((const char*) imageMap, GetDataSize());
+    XnRGB24Pixel const* imageMap = self.GetRGB24ImageMap();
+    return std::string((const char*) imageMap, self.GetDataSize());
 
 }
 
-void ImageGeneratorWrapper::_GetBGR24ImageMapRaw() {
+std::string ImageGenerator_GetBGR24ImageMapRaw(xn::ImageGenerator& self) {
 
     // PRECONDITION: the generator is valid
-    assert(IsValid());
+    assert(self.IsValid());//FIXME
 
 #ifdef _DEBUG
     if (IsDataNew() == false)
         PyCout << "WARNING: data is out of sync!" << std::endl;
 #endif
 
-    XnRGB24Pixel const* imageMap = xn::ImageGenerator::GetRGB24ImageMap();
+    xn::ImageMetaData metadata;
+    self.GetMetaData(metadata);
+    XnRGB24Pixel const* imageMap = self.GetRGB24ImageMap();
 
-    convertToBGR24Raw(_rawData, imageMap, XRes(), YRes());
-
-}
-
-void ImageGeneratorWrapper::_Create(xn::Context& ctx) {
-    check( xn::ImageGenerator::Create(ctx, NULL, NULL) );
+    std::string ret;
+    convertToBGR24Raw(ret, imageMap, metadata.XRes(), metadata.YRes());
+    return ret;
 }
