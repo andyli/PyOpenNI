@@ -52,4 +52,8 @@ private:
     XnStatus status;
 };
 
+static std::string OpenNIException__str__(OpenNIException const & self) {
+    return std::string(self.what());
+}
+
 #endif	/* OPENNI_EXCEPTION_H */

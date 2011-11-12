@@ -99,9 +99,9 @@ BOOST_PYTHON_MODULE(openni) {
     generalExceptionClass.add_property("message", &OpenNIException::getMessage)
             .add_property("status", &OpenNIException::getStatus)
             .add_property("status_name", &OpenNIException::getStatusName)
-            .add_property("status_string", &OpenNIException::getStatusString);
+            .add_property("status_string", &OpenNIException::getStatusString)
+            .def("__str__", &OpenNIException__str__);
     
-    exceptionType = generalExceptionClass.ptr();
     register_exception_translator<OpenNIException> (&translateGeneralException);
     
     

@@ -30,7 +30,6 @@
 #include "OpenNIException.h"
 #include <openni/XnStatus.h>
 
-static PyObject *exceptionType = NULL;
 void translateGeneralException(OpenNIException const &e);
 
 void check(XnStatus status);

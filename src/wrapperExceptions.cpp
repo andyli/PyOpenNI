@@ -28,13 +28,14 @@
 #include <boost/python.hpp>
 
 #include <openni/XnStatus.h>
+#include <boost/iostreams/write.hpp>
 
 #include "OpenNIException.h"
 
 void translateGeneralException(OpenNIException const &e) {
-    assert(exceptionType != NULL);
     boost::python::object pythonExceptionInstance(e);
-    PyErr_SetObject(exceptionType, pythonExceptionInstance.ptr());
+    PyObject* ePtr = pythonExceptionInstance.ptr();
+    PyErr_SetObject((PyObject*)(ePtr->ob_type), ePtr);
 }
 
 void check(XnStatus status) {
