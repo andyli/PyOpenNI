@@ -154,6 +154,6 @@ void ImageGeneratorWrapper::_GetBGR24ImageMapRaw() {
 
 }
 
-void ImageGeneratorWrapper::_Create(const ContextWrapper& ctx) {
-    check( xn::ImageGenerator::Create((xn::Context&)ctx, NULL, NULL) );
+void ImageGeneratorWrapper::_Create(xn::Context& ctx) {
+    check( xn::ImageGenerator::Create(ctx, NULL, NULL) );
 }

@@ -108,16 +108,16 @@ BOOST_PYTHON_MODULE(openni) {
     ////////////////////////////////////////////////////////////////////////////
     // class Context
 
-    class_< ContextWrapper > ("Context")
+    class_< xn::Context > ("Context")
 
             // methods
 
-            .def("init", &ContextWrapper::_Init)
-            .def("init_from_xml_file", &ContextWrapper::_InitFromXmlFile)
-            .def("shutdown", &ContextWrapper::Shutdown)
-            .def("wait_any_update_all", &ContextWrapper::_WaitAnyUpdateAll)
-            .def("wait_and_update_all", &ContextWrapper::_WaitAndUpdateAll)
-            .def("find_existing_node", &ContextWrapper::_FindExistingNode)
+            .def("init", &Context_Init_wrapped)
+            .def("init_from_xml_file", &Context_InitFromXmlFile_wrapped)
+            .def("shutdown", &Context_Shutdown_wrapped)
+            .def("wait_any_update_all", &Context_WaitAnyUpdateAll_wrapped)
+            .def("wait_and_update_all", &Context_WaitAndUpdateAll_wrapped)
+            .def("find_existing_node", &Context_FindExistingNode_wrapped)
 
             ;
 

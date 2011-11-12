@@ -27,14 +27,14 @@
 
 #include <stddef.h>
 
-void ContextWrapper::_InitFromXmlFile(const std::string& initializationFilename) {
+void Context_InitFromXmlFile_wrapped(xn::Context& self, const std::string& initializationFilename) {
 
 #ifdef _DEBUG
     PyCout << "Initializing OpenNI.." << std::endl;
 #endif
 
     XnStatus returnCode;
-    returnCode = xn::Context::InitFromXmlFile(initializationFilename.c_str());
+    returnCode = self.InitFromXmlFile(initializationFilename.c_str());
 
 #ifdef _DEBUG
     if (returnCode == XN_STATUS_OK)
@@ -48,22 +48,23 @@ void ContextWrapper::_InitFromXmlFile(const std::string& initializationFilename)
     return check(returnCode);
 }
 
-void ContextWrapper::Shutdown() {
+void Context_Shutdown_wrapped(xn::Context& self) {
 
 #ifdef _DEBUG
     PyCout << "Shutting down OpenNI.." << std::endl;
 #endif
+    self.Shutdown();
 
 }
 
-void ContextWrapper::_Init() {
+void Context_Init_wrapped(xn::Context& self) {
  
 #ifdef _DEBUG
     PyCout << "Initializing OpenNI.." << std::endl;
 #endif
 
     XnStatus returnCode;
-    returnCode = xn::Context::Init();
+    returnCode = self.Init();
 
 #ifdef _DEBUG
     if (returnCode == XN_STATUS_OK)
@@ -77,16 +78,16 @@ void ContextWrapper::_Init() {
     check(returnCode);    
 }
 
-void ContextWrapper::_WaitAndUpdateAll() {
-    check( xn::Context::WaitAndUpdateAll() );
+void Context_WaitAndUpdateAll_wrapped(xn::Context& self) {
+    check( self.WaitAndUpdateAll() );
 }
 
-void ContextWrapper::_WaitAnyUpdateAll() {
-    check( xn::Context::WaitAnyUpdateAll() );
+void Context_WaitAnyUpdateAll_wrapped(xn::Context& self) {
+    check( self.WaitAnyUpdateAll() );
 }
 
-xn::ProductionNode ContextWrapper::_FindExistingNode(XnProductionNodeType type) const {
+xn::ProductionNode Context_FindExistingNode_wrapped(xn::Context& self, XnProductionNodeType type) {
     xn::ProductionNode* node = NULL;
-    check( xn::Context::FindExistingNode(type, *node) );
+    check( self.FindExistingNode(type, *node) );
     return *node;
 }

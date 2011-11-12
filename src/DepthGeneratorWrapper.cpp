@@ -117,6 +117,6 @@ std::string DepthGeneratorWrapper::GetGrayscale8DepthMapRaw() const {
 
 }
 
-void DepthGeneratorWrapper::_Create(const ContextWrapper& ctx) {
-    check( xn::DepthGenerator::Create((xn::Context&)ctx, NULL, NULL) );
+void DepthGeneratorWrapper::_Create(xn::Context& ctx) {
+    check( xn::DepthGenerator::Create(ctx, NULL, NULL) );
 }

@@ -35,7 +35,7 @@ class ImageGeneratorWrapper : public xn::ImageGenerator {
 public:
     ImageGeneratorWrapper();
     
-    void _Create(const ContextWrapper& context);
+    void _Create(xn::Context& context);
 
     // WARNING: this function does not work!
     void GetMetaData(ImageMetaDataWrapper& metaData) const;

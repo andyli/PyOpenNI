@@ -34,14 +34,11 @@
 // custom
 #include "wrapperTypes.h"
 
-class ContextWrapper : public xn::Context {
-public:
-    void _Init();
-    void _InitFromXmlFile(const std::string& initializationFilename);
-    void _WaitAnyUpdateAll();
-    void _WaitAndUpdateAll();
-    xn::ProductionNode _FindExistingNode(XnProductionNodeType type) const;
-    void Shutdown();
-};
+void Context_Init_wrapped(xn::Context& self);
+void Context_InitFromXmlFile_wrapped(xn::Context& self, const std::string& initializationFilename);
+void Context_WaitAnyUpdateAll_wrapped(xn::Context& self);
+void Context_WaitAndUpdateAll_wrapped(xn::Context& self);
+xn::ProductionNode Context_FindExistingNode_wrapped(xn::Context& self, XnProductionNodeType type);
+void Context_Shutdown_wrapped(xn::Context& self);
 
 #endif    // CONTEXT_WRAPPER_H
