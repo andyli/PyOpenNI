@@ -35,4 +35,3 @@ void translateGeneralException(OpenNIException const &e);
 void check(XnStatus status);
 
 #endif	/* WRAPPER_EXCEPTIONS_H */
-

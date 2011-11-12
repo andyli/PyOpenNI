@@ -22,6 +22,7 @@
 
 
 #include "ImageGeneratorWrapper.h"
+#include "wrapperExceptions.h"
 #include "conversionHelpers.h"
 
 #include "util/PythonOutputStream.h"
@@ -153,6 +154,6 @@ void ImageGeneratorWrapper::_GetBGR24ImageMapRaw() {
 
 }
 
-XnStatus ImageGeneratorWrapper::Create(const ContextWrapper& ctx) {
-    return xn::ImageGenerator::Create((xn::Context&)ctx, NULL, NULL);
+void ImageGeneratorWrapper::_Create(const ContextWrapper& ctx) {
+    check( xn::ImageGenerator::Create((xn::Context&)ctx, NULL, NULL) );
 }

@@ -37,7 +37,7 @@ class DepthGeneratorWrapper : public xn::DepthGenerator
 public:
     DepthGeneratorWrapper();
     
-    XnStatus Create(const ContextWrapper& context);
+    void _Create(const ContextWrapper& context);
 
     // return the x resolution of the map
     XnUInt32 XRes() const;    

@@ -112,12 +112,12 @@ BOOST_PYTHON_MODULE(openni) {
 
             // methods
 
-            .def("init", &ContextWrapper::Init)
-            .def("init_from_xml_file", &ContextWrapper::InitFromXmlFile)
+            .def("init", &ContextWrapper::_Init)
+            .def("init_from_xml_file", &ContextWrapper::_InitFromXmlFile)
             .def("shutdown", &ContextWrapper::Shutdown)
-            .def("wait_any_update_all", &ContextWrapper::WaitAnyUpdateAll)
-            .def("wait_and_update_all", &ContextWrapper::WaitAndUpdateAll)
-            .def("find_existing_node", &ContextWrapper::FindExistingNode)
+            .def("wait_any_update_all", &ContextWrapper::_WaitAnyUpdateAll)
+            .def("wait_and_update_all", &ContextWrapper::_WaitAndUpdateAll)
+            .def("find_existing_node", &ContextWrapper::_FindExistingNode)
 
             ;
 
@@ -137,7 +137,7 @@ BOOST_PYTHON_MODULE(openni) {
 
             // methods
     
-            .def("create", &ImageGeneratorWrapper::Create)
+            .def("create", &ImageGeneratorWrapper::_Create)
 
             .def("is_valid", &ImageGeneratorWrapper::IsValid)
             .def("get_x_resolution", &ImageGeneratorWrapper::XRes)
@@ -182,7 +182,7 @@ BOOST_PYTHON_MODULE(openni) {
 
             // methods
     
-            .def("create", &DepthGeneratorWrapper::Create)
+            .def("create", &DepthGeneratorWrapper::_Create)
 
             .def("is_valid", &DepthGeneratorWrapper::IsValid)
             .def("get_x_resolution", &DepthGeneratorWrapper::XRes)
@@ -202,4 +202,3 @@ BOOST_PYTHON_MODULE(openni) {
 
 
 } // End Boost Python module OpenNIPythonWrapper
-

@@ -22,6 +22,7 @@
 
 
 #include "DepthGeneratorWrapper.h"
+#include "wrapperExceptions.h"
 #include "conversionHelpers.h"
 
 #include "util/PythonOutputStream.h"
@@ -116,6 +117,6 @@ std::string DepthGeneratorWrapper::GetGrayscale8DepthMapRaw() const {
 
 }
 
-XnStatus DepthGeneratorWrapper::Create(const ContextWrapper& ctx) {
-    return xn::DepthGenerator::Create((xn::Context&)ctx, NULL, NULL);
+void DepthGeneratorWrapper::_Create(const ContextWrapper& ctx) {
+    check( xn::DepthGenerator::Create((xn::Context&)ctx, NULL, NULL) );
 }

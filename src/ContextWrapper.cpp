@@ -22,9 +22,12 @@
 
 
 #include "ContextWrapper.h"
+#include "wrapperExceptions.h"
 #include "util/PythonOutputStream.h"
 
-XnStatus ContextWrapper::InitFromXmlFile(const std::string& initializationFilename) {
+#include <stddef.h>
+
+void ContextWrapper::_InitFromXmlFile(const std::string& initializationFilename) {
 
 #ifdef _DEBUG
     PyCout << "Initializing OpenNI.." << std::endl;
@@ -42,8 +45,7 @@ XnStatus ContextWrapper::InitFromXmlFile(const std::string& initializationFilena
     }
 #endif
 
-    return returnCode;
-
+    return check(returnCode);
 }
 
 void ContextWrapper::Shutdown() {
@@ -54,7 +56,7 @@ void ContextWrapper::Shutdown() {
 
 }
 
-XnStatus ContextWrapper::Init() {
+void ContextWrapper::_Init() {
  
 #ifdef _DEBUG
     PyCout << "Initializing OpenNI.." << std::endl;
@@ -72,6 +74,19 @@ XnStatus ContextWrapper::Init() {
     }
 #endif
 
-    return returnCode;
-    
+    check(returnCode);    
+}
+
+void ContextWrapper::_WaitAndUpdateAll() {
+    check( xn::Context::WaitAndUpdateAll() );
+}
+
+void ContextWrapper::_WaitAnyUpdateAll() {
+    check( xn::Context::WaitAnyUpdateAll() );
+}
+
+xn::ProductionNode ContextWrapper::_FindExistingNode(XnProductionNodeType type) const {
+    xn::ProductionNode* node = NULL;
+    check( xn::Context::FindExistingNode(type, *node) );
+    return *node;
 }

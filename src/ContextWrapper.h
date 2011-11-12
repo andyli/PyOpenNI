@@ -36,8 +36,11 @@
 
 class ContextWrapper : public xn::Context {
 public:
-    XnStatus Init();
-    XnStatus InitFromXmlFile(const std::string& initializationFilename);
+    void _Init();
+    void _InitFromXmlFile(const std::string& initializationFilename);
+    void _WaitAnyUpdateAll();
+    void _WaitAndUpdateAll();
+    xn::ProductionNode _FindExistingNode(XnProductionNodeType type) const;
     void Shutdown();
 };
 
