@@ -42,6 +42,8 @@ set (SOURCES
     wrapperTypes.h
     wrapperExceptions.cpp
     wrapperExceptions.h
+    VersionWrapper.cpp
+    VersionWrapper.h
     ProductionNodeWrapper.cpp
     ProductionNodeWrapper.h
     GeneratorWrapper.cpp

@@ -55,9 +55,7 @@ BP::tuple DepthGenerator_Res_wrapped(xn::DepthGenerator const & self) {
 } **/
 
 BP::tuple DepthGenerator_GetGrayscale16DepthMapTuple_wrapped(xn::DepthGenerator const & self) {
-
-    // PRECONDITION: the generator is valid
-    assert(self.IsValid());
+    checkValid(self);
 
 #ifdef _DEBUG
     if (IsDataNew() == false)
@@ -77,9 +75,7 @@ BP::tuple DepthGenerator_GetGrayscale16DepthMapTuple_wrapped(xn::DepthGenerator 
 }
 
 std::string DepthGenerator_GetGrayscale16DepthMapRaw_wrapped(xn::DepthGenerator const & self) {
-
-    // PRECONDITION: the generator is valid
-    assert(self.IsValid());
+    checkValid(self);
 
 #ifdef _DEBUG
     if (IsDataNew() == false)
@@ -100,9 +96,7 @@ std::string DepthGenerator_GetGrayscale16DepthMapRaw_wrapped(xn::DepthGenerator 
 }
 
 std::string DepthGenerator_GetGrayscale8DepthMapRaw_wrapped(xn::DepthGenerator const & self) {
-
-    // PRECONDITION: the generator is valid
-    assert(self.IsValid());
+    checkValid(self);
 
 #ifdef _DEBUG
     if (IsDataNew() == false)

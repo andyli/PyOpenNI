@@ -31,6 +31,9 @@ void Generator_StopGenerating_wrapped(xn::Generator& self);
 
 void Generator_WaitAndUpdateData_wrapped(xn::Generator& self);
 
+XnBool Generator_IsGenerating_wrapped(xn::Generator& self);
 void Generator_SetGenerating(xn::Generator& self, XnBool value);
+
+XnBool Generator_IsDataNew_wrapped(xn::Generator& self);
 
 #endif	/* GENERATOR_WRAPPER_H */

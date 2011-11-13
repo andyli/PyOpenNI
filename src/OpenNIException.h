@@ -24,7 +24,7 @@
 #ifndef OPENNI_EXCEPTION_H
 #define	OPENNI_EXCEPTION_H
 
-#include <openni/XnStatus.h>
+#include <XnStatus.h>
 #include <string>
 
 class OpenNIException : public std::exception {

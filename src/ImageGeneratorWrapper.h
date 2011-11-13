@@ -46,8 +46,8 @@ void ImageGenerator_Create_wrapped(xn::ImageGenerator& self, xn::Context& ctx);
 
 /** Utility methods **/
 
-std::string ImageGenerator_GetRGB24ImageMapRaw(xn::ImageGenerator& self);
+std::string ImageGenerator_GetRGB24ImageMapRaw_private(xn::ImageGenerator& self);
 
-std::string ImageGenerator_GetBGR24ImageMapRaw(xn::ImageGenerator& self);
+std::string ImageGenerator_GetBGR24ImageMapRaw_private(xn::ImageGenerator& self);
 
 #endif    // IMAGE_GENERATOR_WRAPPER_H

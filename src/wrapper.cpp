@@ -37,6 +37,7 @@
 #include "ImageGeneratorWrapper.h"
 #include "ImageMetaDataWrapper.h"
 #include "DepthGeneratorWrapper.h"
+#include "VersionWrapper.h"
 
 // OpenNI
 #include <XnOpenNI.h>
@@ -89,7 +90,7 @@ BOOST_PYTHON_MODULE(openni) {
     // global functions
 
     def("bindings_version", version);
-    //FIXME: Also provide OpenNI version
+    def("version", &GetVersion_wrapped);
 
 
 
@@ -107,6 +108,18 @@ BOOST_PYTHON_MODULE(openni) {
             .def("__str__", &OpenNIException__str__);
 
     register_exception_translator<OpenNIException > (&translateGeneralException);
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // class Version
+    class_< XnVersion > ("Version")
+            .add_property("major", &XnVersion::nMajor, &XnVersion::nMajor)
+            .add_property("minor", &XnVersion::nMinor, &XnVersion::nMinor)
+            .add_property("maintenance", &XnVersion::nMaintenance, &XnVersion::nMaintenance)
+            .add_property("build", &XnVersion::nBuild, &XnVersion::nBuild)
+    
+            .def("__cmp__", &compareVersions)
+            .def("__str__", &Version__str__);
 
 
     ////////////////////////////////////////////////////////////////////////////
@@ -146,8 +159,8 @@ BOOST_PYTHON_MODULE(openni) {
             .def("wait_and_update_data", &Generator_WaitAndUpdateData_wrapped)
     
             //properties
-            .add_property("data_new", &xn::Generator::IsDataNew)
-            .add_property("generating", &xn::Generator::IsGenerating, &Generator_SetGenerating)
+            .add_property("data_new", &Generator_IsDataNew_wrapped)
+            .add_property("generating", &Generator_IsGenerating_wrapped, &Generator_SetGenerating)
     
             ;
 

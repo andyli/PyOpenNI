@@ -62,9 +62,7 @@ BP::tuple ImageGeneratorWrapper::Res() const {
 }*/
 
 BP::tuple ImageGenerator_GetRGB24ImageMapTuple_wrapped(xn::ImageGenerator const & self) {
-
-    // PRECONDITION: the generator is valid
-    assert(self.IsValid());//FIXME
+    checkValid(self);
 
 #ifdef _DEBUG
     if (IsDataNew() == false)
@@ -82,27 +80,33 @@ BP::tuple ImageGenerator_GetRGB24ImageMapTuple_wrapped(xn::ImageGenerator const 
 }
 
 std::string ImageGenerator_GetRGB24ImageMapRaw_wrapped(xn::ImageGenerator& self) {
+    checkValid(self);
 
-    return ImageGenerator_GetRGB24ImageMapRaw(self);
+    return ImageGenerator_GetRGB24ImageMapRaw_private(self);
 
 }
 
 std::string ImageGenerator_GetSyncedRGB24ImageMapRaw_wrapped(xn::ImageGenerator& self) {
+    checkValid(self);
+    
     check( self.WaitAndUpdateData() );
 
-    return ImageGenerator_GetRGB24ImageMapRaw(self);
+    return ImageGenerator_GetRGB24ImageMapRaw_private(self);
 }
 
 std::string ImageGenerator_GetBGR24ImageMapRaw_wrapped(xn::ImageGenerator& self) {
+    checkValid(self);
 
-    return ImageGenerator_GetBGR24ImageMapRaw(self);
+    return ImageGenerator_GetBGR24ImageMapRaw_private(self);
 
 }
 
 std::string ImageGenerator_GetSyncedBGR24ImageMapRaw_wrapped(xn::ImageGenerator& self) {
+    checkValid(self);
+    
     check( self.WaitAndUpdateData() );
     
-    return ImageGenerator_GetBGR24ImageMapRaw(self);
+    return ImageGenerator_GetBGR24ImageMapRaw_private(self);
 }
 
 void ImageGenerator_Create_wrapped(xn::ImageGenerator& self, xn::Context& ctx) {
@@ -112,10 +116,8 @@ void ImageGenerator_Create_wrapped(xn::ImageGenerator& self, xn::Context& ctx) {
 
 /** Utility methods **/
 
-std::string ImageGenerator_GetRGB24ImageMapRaw(xn::ImageGenerator& self) {
-
-    // PRECONDITION: the generator is valid
-    assert(self.IsValid());//FIXME
+std::string ImageGenerator_GetRGB24ImageMapRaw_private(xn::ImageGenerator& self) {
+    //checkValid(self);
 
 #ifdef _DEBUG
     if (IsDataNew() == false)
@@ -127,10 +129,8 @@ std::string ImageGenerator_GetRGB24ImageMapRaw(xn::ImageGenerator& self) {
 
 }
 
-std::string ImageGenerator_GetBGR24ImageMapRaw(xn::ImageGenerator& self) {
-
-    // PRECONDITION: the generator is valid
-    assert(self.IsValid());//FIXME
+std::string ImageGenerator_GetBGR24ImageMapRaw_private(xn::ImageGenerator& self) {
+    //checkValid(self);
 
 #ifdef _DEBUG
     if (IsDataNew() == false)

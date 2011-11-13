@@ -30,21 +30,41 @@
 #include <XnCppWrapper.h>
 
 void Generator_StartGenerating_wrapped(xn::Generator& self) {
+    checkValid(self);
+    
     check( self.StartGenerating() );
 }
 
 void Generator_StopGenerating_wrapped(xn::Generator& self) {
+    checkValid(self);
+    
     check( self.StopGenerating() );
 }
 
 void Generator_WaitAndUpdateData_wrapped(xn::Generator& self) {
+    checkValid(self);
+    
     check( self.WaitAndUpdateData() );
 }
 
 void Generator_SetGenerating(xn::Generator& self, XnBool value) {
+    checkValid(self);
+    
     if (value != self.IsGenerating()) {
         check( self.StartGenerating() ); //TODO: test this
     } else {
         check( self.StopGenerating() );
     }
+}
+
+XnBool Generator_IsGenerating_wrapped(xn::Generator& self) {
+    checkValid(self);
+    
+    return self.IsGenerating();
+}
+
+XnBool Generator_IsDataNew_wrapped(xn::Generator& self) {
+    checkValid(self);
+    
+    return self.IsDataNew();
 }

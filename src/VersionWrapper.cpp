@@ -21,20 +21,25 @@
  * ***** END GPL LICENSE BLOCK ***** */
 
 
-#ifndef WRAPPER_EXCEPTIONS_H
-#define	WRAPPER_EXCEPTIONS_H
+#include "VersionWrapper.h"
 
-#include <stddef.h>
-#include <Python.h>
+#include <string>
 
-#include "OpenNIException.h"
-#include <XnStatus.h>
-#include <XnCppWrapper.h>
+#include "XnUtils.h"
+#include "wrapperExceptions.h"
 
-void translateGeneralException(OpenNIException const &e);
+XnInt32 compareVersions(XnVersion& self, XnVersion& other) {
+    return xnVersionCompare(&self, &other);
+}
 
-void check(XnStatus status);
+std::string Version__str__(XnVersion& self) {
+    XnChar ret[40];
+    check( xnVersionToString(&self, ret, 40) );
+    return std::string(ret);
+}
 
-void checkValid(xn::NodeWrapper const & node);
-
-#endif	/* WRAPPER_EXCEPTIONS_H */
+XnVersion GetVersion_wrapped() {
+    XnVersion ret = XnVersion();
+    check( xnGetVersion(&ret) );
+    return ret;
+}

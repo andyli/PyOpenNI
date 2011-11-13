@@ -27,8 +27,8 @@
 #include <Python.h>
 #include <boost/python.hpp>
 
-#include <openni/XnStatus.h>
-#include <boost/iostreams/write.hpp>
+#include <XnStatus.h>
+#include <XnCppWrapper.h>
 
 #include "OpenNIException.h"
 
@@ -41,5 +41,12 @@ void translateGeneralException(OpenNIException const &e) {
 void check(XnStatus status) {
     if (status != XN_STATUS_OK) {
         throw OpenNIException(status);
+    }
+}
+
+void checkValid(xn::NodeWrapper const & node) {
+    if (node.IsValid() == false) {
+        PyErr_SetString(PyExc_RuntimeError, "The node isn't valid.");
+        throw boost::python::error_already_set();
     }
 }
