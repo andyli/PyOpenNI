@@ -23,6 +23,19 @@
 
 #include "conversionHelpers.h"
 
+#include <XnTypes.h>
+
+BP::list convertPair(XnUInt32 x, XnUInt32 y) {
+    BP::list ret;
+    ret.append(x);
+    ret.append(y);
+    return ret;
+}
+
+BP::list convertPair(XnUInt32XYPair const & pair) {
+    return convertPair(pair.X, pair.Y);
+}
+
 void convert(
         BP::tuple& targetTuple,
         XnRGB24Pixel const* sourceMap,

@@ -24,10 +24,6 @@
 #ifndef WRAPPER_TYPES_H
 #define WRAPPER_TYPES_H
 
-// forward declarations
-class ContextWrapper;
-class ImageMetaDataWrapper;
-
 // Boost
 #include <boost/python.hpp>
 namespace BP = boost::python;

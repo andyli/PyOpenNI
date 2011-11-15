@@ -50,10 +50,12 @@ void Generator_WaitAndUpdateData_wrapped(xn::Generator& self) {
 void Generator_SetGenerating(xn::Generator& self, XnBool value) {
     checkValid(self);
     
-    if (value != self.IsGenerating()) {
-        check( self.StartGenerating() ); //TODO: test this
-    } else {
-        check( self.StopGenerating() );
+    if (value != self.IsGenerating()) { //OPTIMIZATION
+        if (value) {
+            check( self.StartGenerating() );
+        } else {
+            check( self.StopGenerating() );
+        }
     }
 }
 

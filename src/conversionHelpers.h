@@ -26,6 +26,9 @@
 
 #include "wrapperTypes.h"
 
+BP::list convertPair(XnUInt32 x, XnUInt32 y);
+BP::list convertPair(XnUInt32XYPair const & pair);
+
 void convert(
         BP::tuple& targetTuple,
         XnRGB24Pixel const* sourceMap,

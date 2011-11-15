@@ -44,14 +44,16 @@ set (SOURCES
     wrapperExceptions.h
     VersionWrapper.cpp
     VersionWrapper.h
+    OutputMetaDataWrapper.cpp
+    OutputMetaDataWrapper.h
+    MapMetaDataWrapper.cpp
+    MapMetaDataWrapper.h
     ProductionNodeWrapper.cpp
     ProductionNodeWrapper.h
     GeneratorWrapper.cpp
     GeneratorWrapper.h
     MapGeneratorWrapper.cpp
     MapGeneratorWrapper.h
-    ImageMetaDataWrapper.cpp
-    ImageMetaDataWrapper.h
     ImageGeneratorWrapper.cpp
     ImageGeneratorWrapper.h
     DepthGeneratorWrapper.cpp

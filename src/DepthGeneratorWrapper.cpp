@@ -21,38 +21,21 @@
  * ***** END GPL LICENSE BLOCK ***** */
 
 
+#include <openni/XnCppWrapper.h>
+
 #include "DepthGeneratorWrapper.h"
 #include "wrapperExceptions.h"
 #include "conversionHelpers.h"
 
 #include "util/PythonOutputStream.h"
 
-/** XnUInt32 DepthGenerator_XRes_wrapped(xn::DepthGenerator const & self) {//FIXME: this should be removed! use metadata instead
-
-    xn::DepthMetaData metadata;
-    self.GetMetaData(metadata);
-
-    return metadata.XRes();
-
-}
-
-XnUInt32 DepthGenerator_YRes_wrapped(xn::DepthGenerator const & self) {
-
-    xn::DepthMetaData metadata;
-    self.GetMetaData(metadata);
-
-    return metadata.YRes();
-
-}
-
-BP::tuple DepthGenerator_Res_wrapped(xn::DepthGenerator const & self) {
-
-    xn::DepthMetaData metadata;
-    self.GetMetaData(metadata);
+xn::DepthMetaData* DepthGenerator_GetMetaData_wrapped(xn::DepthGenerator const & self) {
+    checkValid(self);
     
-    return BP::make_tuple(metadata.XRes(), metadata.YRes());
-
-} **/
+    xn::DepthMetaData * ret = new xn::DepthMetaData;
+    self.GetMetaData(*ret);
+    return ret;
+}
 
 BP::tuple DepthGenerator_GetGrayscale16DepthMapTuple_wrapped(xn::DepthGenerator const & self) {
     checkValid(self);

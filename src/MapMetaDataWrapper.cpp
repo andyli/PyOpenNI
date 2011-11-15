@@ -21,25 +21,29 @@
  * ***** END GPL LICENSE BLOCK ***** */
 
 
-#include "VersionWrapper.h"
+#include "MapMetaDataWrapper.h"
 
-#include <string>
+#include <XnCppWrapper.h>
+#include "conversionHelpers.h"
 
-#include "XnUtils.h"
-#include "wrapperExceptions.h"
-
-XnInt32 compareVersions(XnVersion& self, XnVersion& other) {
-    return xnVersionCompare(&self, &other);
+BP::list MapMetaData_Res(xn::MapMetaData& self) {
+    return convertPair(self.XRes(), self.YRes());
+}
+BP::list MapMetaData_FullRes(xn::MapMetaData& self) {
+    return convertPair(self.FullXRes(), self.FullYRes());
+}
+BP::list MapMetaData_Offset(xn::MapMetaData& self) {
+    return convertPair(self.XOffset(), self.YOffset());
 }
 
-std::string Version__str__(XnVersion& self) {
-    XnChar ret[40];
-    check( xnVersionToString(&self, ret, 40) );
-    return std::string(ret);
+XnUInt32 MapMetaData_FPS_wrapped(xn::MapMetaData& self) {
+    return self.FPS();
 }
 
-XnVersion* GetVersion_wrapped() {
-    XnVersion * ret = new XnVersion;
-    check( xnGetVersion(ret) );
-    return ret;
+XnUInt32 MapMetaData_BytesPerPixel_wrapped(xn::MapMetaData& self) {
+    return self.BytesPerPixel();
+}
+
+XnPixelFormat MapMetaData_PixelFormat_wrapped(xn::MapMetaData& self) {
+    return self.PixelFormat();
 }

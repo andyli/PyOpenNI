@@ -35,9 +35,10 @@
 #include "GeneratorWrapper.h"
 #include "MapGeneratorWrapper.h"
 #include "ImageGeneratorWrapper.h"
-#include "ImageMetaDataWrapper.h"
 #include "DepthGeneratorWrapper.h"
 #include "VersionWrapper.h"
+#include "OutputMetaDataWrapper.h"
+#include "MapMetaDataWrapper.h"
 
 // OpenNI
 #include <XnOpenNI.h>
@@ -65,23 +66,42 @@ BOOST_PYTHON_MODULE(openni) {
     ////////////////////////////////////////////////////////////////////////////
     // global constants
 
-    scope().attr("XN_STATUS_OK") = XN_STATUS_OK;
+    scope().attr("STATUS_OK") = XN_STATUS_OK;
 
 
     ////////////////////////////////////////////////////////////////////////////
     // enumerations
 
     enum_< XnProductionNodeType > ("ProductionNodeType")
-            .value("XN_NODE_TYPE_DEVICE", XN_NODE_TYPE_DEVICE)
-            .value("XN_NODE_TYPE_DEPTH", XN_NODE_TYPE_DEPTH)
-            .value("XN_NODE_TYPE_IMAGE", XN_NODE_TYPE_IMAGE)
-            .value("XN_NODE_TYPE_AUDIO", XN_NODE_TYPE_AUDIO)
-            .value("XN_NODE_TYPE_IR", XN_NODE_TYPE_IR)
-            .value("XN_NODE_TYPE_USER", XN_NODE_TYPE_USER)
-            .value("XN_NODE_TYPE_RECORDER", XN_NODE_TYPE_RECORDER)
-            .value("XN_NODE_TYPE_GESTURE", XN_NODE_TYPE_GESTURE)
-            .value("XN_NODE_TYPE_HANDS", XN_NODE_TYPE_HANDS)
-            .value("XN_NODE_TYPE_CODEC", XN_NODE_TYPE_CODEC)
+            .value("NODE_TYPE_DEVICE", XN_NODE_TYPE_DEVICE)
+            .value("NODE_TYPE_DEPTH", XN_NODE_TYPE_DEPTH)
+            .value("NODE_TYPE_IMAGE", XN_NODE_TYPE_IMAGE)
+            .value("NODE_TYPE_AUDIO", XN_NODE_TYPE_AUDIO)
+            .value("NODE_TYPE_IR", XN_NODE_TYPE_IR)
+            .value("NODE_TYPE_USER", XN_NODE_TYPE_USER)
+            .value("NODE_TYPE_RECORDER", XN_NODE_TYPE_RECORDER)
+            .value("NODE_TYPE_GESTURE", XN_NODE_TYPE_GESTURE)
+            .value("NODE_TYPE_HANDS", XN_NODE_TYPE_HANDS)
+            .value("NODE_TYPE_CODEC", XN_NODE_TYPE_CODEC)
+            .value("NODE_TYPE_PLAYER", XN_NODE_TYPE_PLAYER)
+            .value("NODE_TYPE_SCENE", XN_NODE_TYPE_SCENE)
+    
+            .value("NODE_TYPE_INVALID", XN_NODE_TYPE_INVALID)
+    
+            //Abstract types
+            .value("NODE_TYPE_GENERATOR", XN_NODE_TYPE_GENERATOR)
+            .value("NODE_TYPE_MAP_GENERATOR", XN_NODE_TYPE_MAP_GENERATOR)
+            .value("NODE_TYPE_FIRST_EXTENSION", XN_NODE_TYPE_FIRST_EXTENSION)
+            .value("NODE_TYPE_PRODUCTION_NODE", XN_NODE_TYPE_PRODUCTION_NODE)
+            .value("NODE_TYPE_SCRIPT", XN_NODE_TYPE_SCRIPT)
+            .export_values()
+            ;
+    enum_< XnPixelFormat > ("PixelFormat")
+            .value("PIXEL_FORMAT_GRAYSCALE_16_BIT", XN_PIXEL_FORMAT_GRAYSCALE_16_BIT)
+            .value("PIXEL_FORMAT_GRAYSCALE_8_BIT", XN_PIXEL_FORMAT_GRAYSCALE_8_BIT)
+            .value("PIXEL_FORMAT_MJPEG", XN_PIXEL_FORMAT_MJPEG)
+            .value("PIXEL_FORMAT_RGB24", XN_PIXEL_FORMAT_RGB24)
+            .value("PIXEL_FORMAT_YUV422", XN_PIXEL_FORMAT_YUV422)
             .export_values()
             ;
 
@@ -90,7 +110,7 @@ BOOST_PYTHON_MODULE(openni) {
     // global functions
 
     def("bindings_version", version);
-    def("version", &GetVersion_wrapped);
+    def("version", &GetVersion_wrapped, return_value_policy<manage_new_object>());
 
 
 
@@ -123,6 +143,49 @@ BOOST_PYTHON_MODULE(openni) {
 
 
     ////////////////////////////////////////////////////////////////////////////
+    // class OutputMetaData
+
+    class_< xn::OutputMetaData > ("OutputMetaData", no_init)
+            .add_property("timestamp", &OutputMetaData_Timestamp_wrapped)
+            .add_property("frame_id", &OutputMetaData_FrameID_wrapped)
+            .add_property("data_new", &OutputMetaData_IsDataNew_wrapped)
+            ;
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // class MapMetaData
+
+    class_< xn::MapMetaData,
+            bases<xn::OutputMetaData>, boost::noncopyable > ("MapMetaData", no_init)
+            .add_property("bytes_per_pixel", &xn::MapMetaData::BytesPerPixel)
+            .add_property("pixel_format", &xn::MapMetaData::PixelFormat)
+            .add_property("fps", &MapMetaData_FPS_wrapped)
+            
+            .add_property("res", make_function(&MapMetaData_Res))
+            .add_property("offset", make_function(&MapMetaData_Offset))
+            .add_property("full_res", make_function(&MapMetaData_FullRes))
+            ;
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // class ImageMetaData
+
+    class_< xn::ImageMetaData,
+            bases<xn::MapMetaData>, boost::noncopyable > ("ImageMetaData", no_init)
+            ;//TODO: make files for imagemetadata and depthmetadata
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // class DepthMetaData
+
+    class_< xn::DepthMetaData,
+            bases<xn::MapMetaData>, boost::noncopyable> ("DepthMetaData", no_init)
+            ;
+    
+
+
+
+    ////////////////////////////////////////////////////////////////////////////
     // class Context
 
     class_< xn::Context > ("Context")
@@ -151,7 +214,7 @@ BOOST_PYTHON_MODULE(openni) {
     // class Generator
 
     class_< xn::Generator,
-            bases<xn::ProductionNode> > ("Generator")
+            bases<xn::ProductionNode> > ("Generator", no_init)
     
             //methods
             .def("start_generating", &Generator_StartGenerating_wrapped)
@@ -169,7 +232,7 @@ BOOST_PYTHON_MODULE(openni) {
     // class MapGenerator
 
     class_< xn::MapGenerator,
-            bases<xn::Generator> > ("MapGenerator")
+            bases<xn::Generator> > ("MapGenerator", no_init)
     
             //.def("get_x_resolution", &MapGeneratorWrapper::XRes)
             //.def("get_y_resolution", &MapGeneratorWrapper::YRes)
@@ -187,6 +250,8 @@ BOOST_PYTHON_MODULE(openni) {
             // methods
 
             .def("create", &ImageGenerator_Create_wrapped)
+    
+            .add_property("metadata", make_function(&ImageGenerator_GetMetaData_wrapped, return_value_policy<manage_new_object>()))
 
             .def(
             "get_tuple_image_map",
@@ -212,13 +277,6 @@ BOOST_PYTHON_MODULE(openni) {
 
 
     ////////////////////////////////////////////////////////////////////////////
-    // class ImageMetaData
-
-    //    class_< ImageMetaDataWrapper > ("ImageMetaData")
-    //            ;
-
-
-    ////////////////////////////////////////////////////////////////////////////
     // class DepthGenerator
 
     class_< xn::DepthGenerator,
@@ -237,6 +295,8 @@ BOOST_PYTHON_MODULE(openni) {
             .def("get_raw_depth_map_8",
             &DepthGenerator_GetGrayscale8DepthMapRaw_wrapped)
 
+            .add_property("metadata", make_function(&DepthGenerator_GetMetaData_wrapped, return_value_policy<manage_new_object>()))
+    
             ;
 
 

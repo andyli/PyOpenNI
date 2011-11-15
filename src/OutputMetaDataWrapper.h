@@ -21,25 +21,13 @@
  * ***** END GPL LICENSE BLOCK ***** */
 
 
-#include "VersionWrapper.h"
+#ifndef OUTPUT_META_DATA_WRAPPER_H
+#define	OUTPUT_META_DATA_WRAPPER_H
 
-#include <string>
+#include <XnCppWrapper.h>
 
-#include "XnUtils.h"
-#include "wrapperExceptions.h"
+XnUInt64 OutputMetaData_Timestamp_wrapped(xn::OutputMetaData& self);
+XnUInt32 OutputMetaData_FrameID_wrapped(xn::OutputMetaData& self);
+XnBool OutputMetaData_IsDataNew_wrapped(xn::OutputMetaData& self);
 
-XnInt32 compareVersions(XnVersion& self, XnVersion& other) {
-    return xnVersionCompare(&self, &other);
-}
-
-std::string Version__str__(XnVersion& self) {
-    XnChar ret[40];
-    check( xnVersionToString(&self, ret, 40) );
-    return std::string(ret);
-}
-
-XnVersion* GetVersion_wrapped() {
-    XnVersion * ret = new XnVersion;
-    check( xnGetVersion(ret) );
-    return ret;
-}
+#endif	/* OUTPUT_META_DATA_WRAPPER_H */

@@ -43,6 +43,8 @@ std::string ImageGenerator_GetSyncedBGR24ImageMapRaw_wrapped(xn::ImageGenerator&
 
 void ImageGenerator_Create_wrapped(xn::ImageGenerator& self, xn::Context& ctx);
 
+xn::ImageMetaData* ImageGenerator_GetMetaData_wrapped(xn::ImageGenerator const & self);
+
 
 /** Utility methods **/
 

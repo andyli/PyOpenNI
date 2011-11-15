@@ -26,40 +26,17 @@
 #include "ImageGeneratorWrapper.h"
 #include "wrapperExceptions.h"
 #include "conversionHelpers.h"
+#include <XnCppWrapper.h>
 
 #include "util/PythonOutputStream.h"
 
-/**void ImageGeneratorWrapper::GetMetaData(
-        ImageMetaDataWrapper& metaData) const {
-
-    // FIXME: use metadata instead
-    assert(false);
-
+xn::ImageMetaData* ImageGenerator_GetMetaData_wrapped(xn::ImageGenerator const & self) {
+    checkValid(self);
+    
+    xn::ImageMetaData * ret = new xn::ImageMetaData;
+    self.GetMetaData(*ret);
+    return ret;
 }
-
-XnUInt32 ImageGeneratorWrapper::XRes() const {
-
-    xn::ImageMetaData proxyImageMetaData;
-    xn::ImageGenerator::GetMetaData(proxyImageMetaData);
-
-    return proxyImageMetaData.XRes();
-
-}
-
-XnUInt32 ImageGeneratorWrapper::YRes() const {
-
-    xn::ImageMetaData proxyImageMetaData;
-    xn::ImageGenerator::GetMetaData(proxyImageMetaData);
-
-    return proxyImageMetaData.YRes();
-
-}
-
-BP::tuple ImageGeneratorWrapper::Res() const {
-
-    return BP::make_tuple(XRes(), YRes());
-
-}*/
 
 BP::tuple ImageGenerator_GetRGB24ImageMapTuple_wrapped(xn::ImageGenerator const & self) {
     checkValid(self);

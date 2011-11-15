@@ -31,11 +31,7 @@
 // custom
 #include "wrapperTypes.h"
 
-XnUInt32 DepthGenerator_XRes_wrapped(xn::DepthGenerator const & self);
-
-XnUInt32 DepthGenerator_YRes_wrapped(xn::DepthGenerator const & self);
-
-BP::tuple DepthGenerator_Res_wrapped(xn::DepthGenerator const & self);
+xn::DepthMetaData* DepthGenerator_GetMetaData_wrapped(xn::DepthGenerator const & self);
 
 BP::tuple DepthGenerator_GetGrayscale16DepthMapTuple_wrapped(xn::DepthGenerator const & self);
 
