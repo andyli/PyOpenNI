@@ -21,14 +21,20 @@
  * ***** END GPL LICENSE BLOCK ***** */
 
 
-#include "ProductionNodeWrapper.h"
-
-#include "wrapperExceptions.h"
+#ifndef GESTURE_GENERATOR_WRAPPER_H
+#define	GESTURE_GENERATOR_WRAPPER_H
 
 #include <XnCppWrapper.h>
 #include <string>
 
-XnBool ProductionNode_IsCapabilitySupported_wrapped(xn::ProductionNode& self, std::string capabilityName) {
-    //FIXME: throw warning here if not valid
-    return self.IsCapabilitySupported(capabilityName.c_str());
-}
+void GestureGenerator_Create_wrapped(xn::GestureGenerator& self, xn::Context& context);
+
+void GestureGenerator_AddGesture_wrapped(xn::GestureGenerator& self, std::string gesture);
+
+void GestureGenerator_RemoveGesture_wrapped(xn::GestureGenerator& self, std::string gesture);
+
+XnBool GestureGenerator_IsGestureProgressSupported_wrapped(xn::GestureGenerator& self, std::string gesture);
+
+XnBool GestureGenerator_IsGestureAvailable_wrapped(xn::GestureGenerator& self, std::string gesture);
+
+#endif	/* GESTURE_GENERATOR_WRAPPER_H */

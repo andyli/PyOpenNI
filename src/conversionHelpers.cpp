@@ -36,6 +36,14 @@ BP::list convertPair(XnUInt32XYPair const & pair) {
     return convertPair(pair.X, pair.Y);
 }
 
+BP::list convertVec3D(XnVector3D const & vector) {
+    BP::list ret;
+    ret.append(vector.X);
+    ret.append(vector.Y);
+    ret.append(vector.Z);
+    return ret;
+}
+
 void convert(
         BP::tuple& targetTuple,
         XnRGB24Pixel const* sourceMap,

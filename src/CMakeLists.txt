@@ -58,6 +58,8 @@ set (SOURCES
     ImageGeneratorWrapper.h
     DepthGeneratorWrapper.cpp
     DepthGeneratorWrapper.h
+    GestureGeneratorWrapper.cpp
+    GestureGeneratorWrapper.h
     ContextWrapper.cpp
     ContextWrapper.h
     OpenNIException.cpp

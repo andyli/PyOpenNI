@@ -25,7 +25,8 @@
 #define	PRODUCTION_NODE_WRAPPER_H
 
 #include <XnCppWrapper.h>
+#include <string>
 
-//Currently empty
+XnBool ProductionNode_IsCapabilitySupported_wrapped(xn::ProductionNode& self, std::string capabilityName);
 
 #endif	/* PRODUCTION_NODE_WRAPPER_H */

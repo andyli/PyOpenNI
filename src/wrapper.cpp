@@ -36,6 +36,7 @@
 #include "MapGeneratorWrapper.h"
 #include "ImageGeneratorWrapper.h"
 #include "DepthGeneratorWrapper.h"
+#include "GestureGeneratorWrapper.h"
 #include "VersionWrapper.h"
 #include "OutputMetaDataWrapper.h"
 #include "MapMetaDataWrapper.h"
@@ -207,7 +208,8 @@ BOOST_PYTHON_MODULE(openni) {
 
     class_< xn::ProductionNode > ("ProductionNode")
             .add_property("valid", &xn::ProductionNode::IsValid)
-            ;
+            .def("is_capability_supported", &ProductionNode_IsCapabilitySupported_wrapped)
+            ;//TODO: add optional params and capability names
 
 
     ////////////////////////////////////////////////////////////////////////////
@@ -296,6 +298,23 @@ BOOST_PYTHON_MODULE(openni) {
             &DepthGenerator_GetGrayscale8DepthMapRaw_wrapped)
 
             .add_property("metadata", make_function(&DepthGenerator_GetMetaData_wrapped, return_value_policy<manage_new_object>()))
+    
+            ;
+    
+    
+    ////////////////////////////////////////////////////////////////////////////
+    // class GestureGenerator
+
+    class_< xn::GestureGenerator,
+            bases<xn::Generator> >("GestureGenerator")
+
+            // methods
+
+            .def("create", &GestureGenerator_Create_wrapped)
+            .def("add_gesture", &GestureGenerator_AddGesture_wrapped)
+            .def("remove_gesture", &GestureGenerator_RemoveGesture_wrapped)
+            .def("is_gesture_available", &GestureGenerator_IsGestureAvailable_wrapped)
+            .def("is_gesture_progress_supported", &GestureGenerator_IsGestureProgressSupported_wrapped)
     
             ;
 
