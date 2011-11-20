@@ -26,19 +26,30 @@ See the [github page](https://github.com/jmendeth/PyOpenNI) if you want to submi
 ```python
 from openni import *
 
+print "Initializing..."
 ctx = Context()
 ctx.init()
 gest = GestureGenerator()
 gest.create(ctx)
-    
-def gesture_detected(gesture, id, endPoint):
-    print "Detected gesture %s!" % gesture
 
-for gesture in gest.get_supported_gestures():
-    gest.add_gesture(gesture)
-gest.register_gesture_callbacks(gesture_detected)
+print "Registering listeners..."
+gest.add_gesture("Wave")
+gest.add_gesture("Click")
 
-input_raw("Press ENTER to quit.")
+def gesture_detected(src, gesture, id, endPoint):
+    print "Detected gesture:", gesture
+
+def gesture_progress(src, gesture, point, progress):
+    pass
+
+gest.register_gesture_callbacks(gesture_detected, gesture_progress)
+print "Ready! Starting to detect gestures."
+ctx.start_generating_all()
+
+try:
+    print "Press Control-C to quit.\n"
+    while True: ctx.wait_any_update_all()
+except KeyboardInterrupt: print
 ```
 
 We tried to respect the C++ names and structure.  
