@@ -10,8 +10,9 @@
    This way, it autodetects needed libraries and warns you if they're not found.
  * Code cleanup and formatted according to [PEP 8](http://www.python.org/dev/peps/pep-0008) rules.
  * Directory structure simplified.
- * **New!** Errors are handled gracefully.
- * In progress: Re-write wrapper's core to make it more robust and avoid crashes.
+ * **New!** Errors are handled gracefully through the class `OpenNIError`.
+ * **New!** Re-wrote wrapper's core to make it more robust and avoid crashes.
+ * In progress: Support callbacks in Python.
 
 PyOpenNI is written with the [Boost.Python](http://www.boost.org/doc/libs/release/libs/python/doc/index.html) libraries. PyOpenNI is released under the [GNU GPL](http://www.gnu.org/copyleft/gpl.html) version 3.
 
