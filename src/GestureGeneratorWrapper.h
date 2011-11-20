@@ -25,6 +25,7 @@
 #define	GESTURE_GENERATOR_WRAPPER_H
 
 #include <XnCppWrapper.h>
+#include "wrapperTypes.h"
 #include <string>
 
 void GestureGenerator_Create_wrapped(xn::GestureGenerator& self, xn::Context& context);
@@ -36,5 +37,12 @@ void GestureGenerator_RemoveGesture_wrapped(xn::GestureGenerator& self, std::str
 XnBool GestureGenerator_IsGestureProgressSupported_wrapped(xn::GestureGenerator& self, std::string gesture);
 
 XnBool GestureGenerator_IsGestureAvailable_wrapped(xn::GestureGenerator& self, std::string gesture);
+
+void GestureGenerator_RegisterGestureCallbacks_wrapped(xn::GestureGenerator& self, BP::object& gesture_recognized, BP::object& gesture_progress);
+
+
+//Internal callback implementations
+void GestureRecognized_callback(xn::GestureGenerator &generator, const XnChar *strGesture, const XnPoint3D *pIDPosition, const XnPoint3D *pEndPosition, void *pCookie);
+void GestureProgress_callback(xn::GestureGenerator &generator, const XnChar *strGesture, const XnPoint3D *pPosition, XnFloat fProgress, void *pCookie);
 
 #endif	/* GESTURE_GENERATOR_WRAPPER_H */

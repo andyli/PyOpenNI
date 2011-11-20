@@ -26,6 +26,7 @@
 #include <XnCppWrapper.h>
 #include "conversionHelpers.h"
 #include "wrapperExceptions.h"
+#include "wrapperTypes.h"
 #include <string>
 
 void GestureGenerator_Create_wrapped(xn::GestureGenerator& self, xn::Context& context) {
@@ -54,4 +55,33 @@ XnBool GestureGenerator_IsGestureAvailable_wrapped(xn::GestureGenerator& self, s
     checkValid(self);
     
     return self.IsGestureAvailable(gesture.c_str());
+}
+
+void GestureGenerator_RegisterGestureCallbacks_wrapped(xn::GestureGenerator& self, BP::object& gesture_recognized, BP::object& gesture_progress) {
+    checkValid(self);
+    
+    XnCallbackHandle handle;//FIXME: return callback handle; also fix cookie
+    BP::object* cookie = new BP::object [2];
+    
+    cookie[0] = gesture_recognized;
+    cookie[1] = gesture_progress;
+    
+    check( self.RegisterGestureCallbacks(&GestureRecognized_callback, &GestureProgress_callback, cookie, handle) );
+    //return (XnUInt64)handle;
+}
+
+void GestureRecognized_callback(xn::GestureGenerator &generator, const XnChar *strGesture, const XnPoint3D *pIDPosition, const XnPoint3D *pEndPosition, void *pCookie) {
+    std::string gesture (strGesture);
+    BP::object& func = ((BP::object*)pCookie)[0];
+    
+    //Call the function
+    func(generator, gesture, convertVec3D(*pIDPosition), convertVec3D(*pEndPosition));
+}
+
+void GestureProgress_callback(xn::GestureGenerator &generator, const XnChar *strGesture, const XnPoint3D *pPosition, XnFloat fProgress, void *pCookie) {
+    std::string gesture (strGesture);
+    BP::object& func = ((BP::object*)pCookie)[1];
+    
+    //Call the function
+    func(generator, gesture, convertVec3D(*pPosition), fProgress);
 }

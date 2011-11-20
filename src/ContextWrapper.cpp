@@ -26,6 +26,7 @@
 #include "util/PythonOutputStream.h"
 
 #include <stddef.h>
+#include <XnCppWrapper.h>
 
 void Context_InitFromXmlFile_wrapped(xn::Context& self, const std::string& initializationFilename) {
 
@@ -86,8 +87,15 @@ void Context_WaitAnyUpdateAll_wrapped(xn::Context& self) {
     check( self.WaitAnyUpdateAll() );
 }
 
-xn::ProductionNode Context_FindExistingNode_wrapped(xn::Context& self, XnProductionNodeType type) {
-    xn::ProductionNode* node = NULL;
+xn::ProductionNode* Context_FindExistingNode_wrapped(xn::Context& self, XnProductionNodeType type) {
+    xn::ProductionNode* node = new xn::ProductionNode;
     check( self.FindExistingNode(type, *node) );
-    return *node;
+    return node;
+}
+
+void Context_StartGeneratingAll_wrapped(xn::Context& self) {
+    check( self.StartGeneratingAll() );
+}
+void Context_StopGeneratingAll_wrapped(xn::Context& self) {
+    check( self.StopGeneratingAll() );
 }

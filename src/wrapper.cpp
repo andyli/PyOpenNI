@@ -198,7 +198,9 @@ BOOST_PYTHON_MODULE(openni) {
             .def("shutdown", &Context_Shutdown_wrapped)
             .def("wait_any_update_all", &Context_WaitAnyUpdateAll_wrapped)
             .def("wait_and_update_all", &Context_WaitAndUpdateAll_wrapped)
-            .def("find_existing_node", &Context_FindExistingNode_wrapped)
+            .def("start_generating_all", &Context_StartGeneratingAll_wrapped)
+            .def("stop_generating_all", &Context_StopGeneratingAll_wrapped)
+            .def("find_existing_node", &Context_FindExistingNode_wrapped, return_value_policy<manage_new_object>())
 
             ;
 
@@ -315,6 +317,7 @@ BOOST_PYTHON_MODULE(openni) {
             .def("remove_gesture", &GestureGenerator_RemoveGesture_wrapped)
             .def("is_gesture_available", &GestureGenerator_IsGestureAvailable_wrapped)
             .def("is_gesture_progress_supported", &GestureGenerator_IsGestureProgressSupported_wrapped)
+            .def("register_gesture_callbacks", &GestureGenerator_RegisterGestureCallbacks_wrapped) //BETA
     
             ;
 
