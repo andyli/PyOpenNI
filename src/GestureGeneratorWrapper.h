@@ -38,7 +38,9 @@ XnBool GestureGenerator_IsGestureProgressSupported_wrapped(xn::GestureGenerator&
 
 XnBool GestureGenerator_IsGestureAvailable_wrapped(xn::GestureGenerator& self, std::string gesture);
 
-void GestureGenerator_RegisterGestureCallbacks_wrapped(xn::GestureGenerator& self, BP::object& gesture_recognized, BP::object& gesture_progress);
+XnCallbackHandle* GestureGenerator_RegisterGestureCallbacks_wrapped(xn::GestureGenerator& self, BP::object& gesture_recognized, BP::object& gesture_progress);
+
+void GestureGenerator_UnregisterGestureCallbacks_wrapped(xn::GestureGenerator& self, XnCallbackHandle* handle);
 
 
 //Internal callback implementations

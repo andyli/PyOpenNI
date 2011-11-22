@@ -57,19 +57,27 @@ XnBool GestureGenerator_IsGestureAvailable_wrapped(xn::GestureGenerator& self, s
     return self.IsGestureAvailable(gesture.c_str());
 }
 
-void GestureGenerator_RegisterGestureCallbacks_wrapped(xn::GestureGenerator& self, BP::object& gesture_recognized, BP::object& gesture_progress) {
+XnCallbackHandle* GestureGenerator_RegisterGestureCallbacks_wrapped(xn::GestureGenerator& self, BP::object& gesture_recognized, BP::object& gesture_progress) {
     checkValid(self);
     
-    XnCallbackHandle handle;//FIXME: return callback handle; also fix cookie
-    BP::object* cookie = new BP::object [2];
+    XnCallbackHandle* handle = new XnCallbackHandle;
+    BP::object* cookie = new BP::object [2];//FIXME: fix cookie
     
     cookie[0] = gesture_recognized;
     cookie[1] = gesture_progress;
     
-    check( self.RegisterGestureCallbacks(&GestureRecognized_callback, &GestureProgress_callback, cookie, handle) );
-    //return (XnUInt64)handle;
+    check( self.RegisterGestureCallbacks(&GestureRecognized_callback, &GestureProgress_callback, cookie, *handle) );
+    return handle;
 }
 
+void GestureGenerator_UnregisterGestureCallbacks_wrapped(xn::GestureGenerator& self, XnCallbackHandle* handle) {
+    checkValid(self);
+    
+    self.UnregisterGestureCallbacks(*handle);
+}
+
+
+/*Internal callback implementations*/
 void GestureRecognized_callback(xn::GestureGenerator &generator, const XnChar *strGesture, const XnPoint3D *pIDPosition, const XnPoint3D *pEndPosition, void *pCookie) {
     std::string gesture (strGesture);
     BP::object& func = ((BP::object*)pCookie)[0];

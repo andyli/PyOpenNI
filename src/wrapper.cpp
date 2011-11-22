@@ -141,8 +141,8 @@ BOOST_PYTHON_MODULE(openni) {
     
             .def("__cmp__", &compareVersions)
             .def("__str__", &Version__str__);
-
-
+    
+    
     ////////////////////////////////////////////////////////////////////////////
     // class OutputMetaData
 
@@ -317,8 +317,9 @@ BOOST_PYTHON_MODULE(openni) {
             .def("remove_gesture", &GestureGenerator_RemoveGesture_wrapped)
             .def("is_gesture_available", &GestureGenerator_IsGestureAvailable_wrapped)
             .def("is_gesture_progress_supported", &GestureGenerator_IsGestureProgressSupported_wrapped)
-            .def("register_gesture_callbacks", &GestureGenerator_RegisterGestureCallbacks_wrapped) //BETA
-    
+            .def("register_gesture_cb", &GestureGenerator_RegisterGestureCallbacks_wrapped, return_value_policy<return_opaque_pointer>())
+            .def("unregister_gesture_cb", &GestureGenerator_UnregisterGestureCallbacks_wrapped)
+
             ;
 
 
