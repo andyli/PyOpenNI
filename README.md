@@ -42,7 +42,7 @@ def gesture_detected(src, gesture, id, endPoint):
 def gesture_progress(src, gesture, point, progress):
     pass
 
-gest.register_gesture_callbacks(gesture_detected, gesture_progress)
+gest.register_gesture_cb(gesture_detected, gesture_progress)
 print "Ready! Starting to detect gestures."
 ctx.start_generating_all()
 
