@@ -28,6 +28,7 @@
 #include "wrapper.h"
 
 #include "wrapperExceptions.h"
+#include "wrapperDocstrings.h"
 
 #include "OpenNIException.h"
 #include "ContextWrapper.h"
@@ -63,6 +64,12 @@ std::string version() {
 BOOST_PYTHON_MODULE(openni) {
 
     using namespace boost::python;
+    
+    //Customize what will appear on the docstrings:
+    docstring_options local_docstring_options(true, true, false);
+      //Custom docstring -> ON
+      //Python signature -> ON
+      //C++ signature    -> OFF
 
     ////////////////////////////////////////////////////////////////////////////
     // global constants
@@ -189,17 +196,17 @@ BOOST_PYTHON_MODULE(openni) {
     ////////////////////////////////////////////////////////////////////////////
     // class Context
 
-    class_< xn::Context > ("Context")
+    class_< xn::Context > ("Context", Context_DOC)
 
             // methods
 
-            .def("init", &Context_Init_wrapped)
+            .def("init", &Context_Init_wrapped, Context_Init_DOC)
             .def("init_from_xml_file", &Context_InitFromXmlFile_wrapped)
-            .def("shutdown", &Context_Shutdown_wrapped)
-            .def("wait_any_update_all", &Context_WaitAnyUpdateAll_wrapped)
-            .def("wait_and_update_all", &Context_WaitAndUpdateAll_wrapped)
-            .def("start_generating_all", &Context_StartGeneratingAll_wrapped)
-            .def("stop_generating_all", &Context_StopGeneratingAll_wrapped)
+            .def("shutdown", &Context_Shutdown_wrapped, Context_Shutdown_DOC)
+            .def("wait_any_update_all", &Context_WaitAnyUpdateAll_wrapped, Context_WaitAnyUpdateAll_DOC)
+            .def("wait_and_update_all", &Context_WaitAndUpdateAll_wrapped, Context_WaitAndUpdateAll_DOC)
+            .def("start_generating_all", &Context_StartGeneratingAll_wrapped, Context_StartGeneratingAll_DOC)
+            .def("stop_generating_all", &Context_StopGeneratingAll_wrapped, Context_StopGeneratingAll_DOC)
             .def("find_existing_node", &Context_FindExistingNode_wrapped, return_value_policy<manage_new_object>())
 
             ;

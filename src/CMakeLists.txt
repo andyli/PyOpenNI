@@ -42,6 +42,7 @@ set (SOURCES
     wrapperTypes.h
     wrapperExceptions.cpp
     wrapperExceptions.h
+    wrapperDocstrings.h
     VersionWrapper.cpp
     VersionWrapper.h
     OutputMetaDataWrapper.cpp
