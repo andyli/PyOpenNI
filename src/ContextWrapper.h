@@ -39,6 +39,8 @@ void Context_InitFromXmlFile_wrapped(xn::Context& self, const std::string& initi
 
 void Context_WaitAnyUpdateAll_wrapped(xn::Context& self);
 void Context_WaitAndUpdateAll_wrapped(xn::Context& self);
+void Context_WaitNoneUpdateAll_wrapped(xn::Context& self);
+void Context_WaitOneUpdateAll_wrapped(xn::Context& self, xn::ProductionNode& node);
 
 void Context_StartGeneratingAll_wrapped(xn::Context& self);
 void Context_StopGeneratingAll_wrapped(xn::Context& self);

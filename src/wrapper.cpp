@@ -205,6 +205,8 @@ BOOST_PYTHON_MODULE(openni) {
             .def("shutdown", &Context_Shutdown_wrapped, Context_Shutdown_DOC)
             .def("wait_any_update_all", &Context_WaitAnyUpdateAll_wrapped, Context_WaitAnyUpdateAll_DOC)
             .def("wait_and_update_all", &Context_WaitAndUpdateAll_wrapped, Context_WaitAndUpdateAll_DOC)
+            .def("wait_one_update_all", &Context_WaitOneUpdateAll_wrapped)
+            .def("wait_none_update_all", &Context_WaitNoneUpdateAll_wrapped)
             .def("start_generating_all", &Context_StartGeneratingAll_wrapped, Context_StartGeneratingAll_DOC)
             .def("stop_generating_all", &Context_StopGeneratingAll_wrapped, Context_StopGeneratingAll_DOC)
             .def("find_existing_node", &Context_FindExistingNode_wrapped, return_value_policy<manage_new_object>())
