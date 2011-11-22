@@ -12,7 +12,7 @@
  * Directory structure simplified.
  * **New!** Errors are handled gracefully through the class `OpenNIError`.
  * **New!** Re-wrote wrapper's core to make it more robust and avoid crashes.
- * In progress: Support callbacks in Python.
+ * **New!** Callbacks are now completely supported!
 
 PyOpenNI is written with the [Boost.Python](http://www.boost.org/doc/libs/release/libs/python/doc/index.html) libraries. PyOpenNI is released under the [GNU GPL](http://www.gnu.org/copyleft/gpl.html) version 3.
 
@@ -39,8 +39,7 @@ gest.add_gesture("Click")
 def gesture_detected(src, gesture, id, endPoint):
     print "Detected gesture:", gesture
 
-def gesture_progress(src, gesture, point, progress):
-    pass
+def gesture_progress(src, gesture, point, progress): pass
 
 gest.register_gesture_cb(gesture_detected, gesture_progress)
 print "Ready! Starting to detect gestures."
