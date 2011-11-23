@@ -46,6 +46,12 @@ const char* Context_WaitAnyUpdateAll_DOC =
 const char* Context_WaitAndUpdateAll_DOC =
     "Updates all generators nodes in the context,\n"
     "waiting for all to have new data.";
+const char* Context_WaitNoneUpdateAll_DOC =
+    "Updates all generator nodes in the context, without any waiting.\n"
+    "If a node has new data, it will be updated.";
+const char* Context_WaitOneUpdateAll_DOC =
+    "Updates all generators nodes in the context,\n"
+    "waiting for a specific one to have new data.";
 
 
 #endif	/* WRAPPER_DOCSTRINGS_H */
