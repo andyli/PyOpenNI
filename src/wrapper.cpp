@@ -217,9 +217,9 @@ BOOST_PYTHON_MODULE(openni) {
     ////////////////////////////////////////////////////////////////////////////
     // class ProductionNode
 
-    class_< xn::ProductionNode > ("ProductionNode")
-            .add_property("valid", &xn::ProductionNode::IsValid)
-            .def("is_capability_supported", &ProductionNode_IsCapabilitySupported_wrapped)
+    class_< xn::ProductionNode > ("ProductionNode", ProductionNode_DOC)
+            .add_property("valid", &xn::ProductionNode::IsValid, ProductionNode_valid_DOC)
+            .def("is_capability_supported", &ProductionNode_IsCapabilitySupported_wrapped, ProductionNode_IsCapabilitySupported_DOC)
             ;//TODO: add optional params and capability names
 
 
@@ -227,16 +227,16 @@ BOOST_PYTHON_MODULE(openni) {
     // class Generator
 
     class_< xn::Generator,
-            bases<xn::ProductionNode> > ("Generator", no_init)
+            bases<xn::ProductionNode> > ("Generator", Generator_DOC, no_init)
     
             //methods
-            .def("start_generating", &Generator_StartGenerating_wrapped)
-            .def("stop_generating", &Generator_StopGenerating_wrapped)
-            .def("wait_and_update_data", &Generator_WaitAndUpdateData_wrapped)
-    
+            .def("start_generating", &Generator_StartGenerating_wrapped, Generator_StartGenerating_DOC)
+            .def("stop_generating", &Generator_StopGenerating_wrapped, Generator_StopGenerating_DOC)
+            .def("wait_and_update_data", &Generator_WaitAndUpdateData_wrapped, Generator_WaitAndUpdateData_DOC)
+
             //properties
-            .add_property("data_new", &Generator_IsDataNew_wrapped)
-            .add_property("generating", &Generator_IsGenerating_wrapped, &Generator_SetGenerating)
+            .add_property("data_new", &Generator_IsDataNew_wrapped, Generator_data_new_DOC)
+            .add_property("generating", &Generator_IsGenerating_wrapped, &Generator_SetGenerating, Generator_generating_DOC)
     
             ;
 

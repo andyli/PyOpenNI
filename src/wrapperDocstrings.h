@@ -54,4 +54,40 @@ const char* Context_WaitOneUpdateAll_DOC =
     "waiting for a specific one to have new data.";
 
 
+//ProductionNode class documentation
+const char* ProductionNode_DOC =
+    "Base class for all production nodes.";
+
+const char* ProductionNode_IsCapabilitySupported_DOC =
+    "Checks if a production node supports a specific capability.";
+const char* ProductionNode_valid_DOC =
+    "True if this node is a valid node, False otherwise.\n\n"
+    "An invalid node will raise a RuntimeError when trying to use\n"
+    "any of its functions.";
+
+
+//Generator class documentation
+const char* Generator_DOC =
+    "Base class for all generator nodes.\n"
+    "(Nodes that generate new data.)";
+
+const char* Generator_WaitAndUpdateData_DOC =
+    "Updates the data to the latest available one.\n"
+    "If needed, the call will block until new data is available.";
+const char* Generator_StartGenerating_DOC =
+    "Starts generation of the output.\n"
+    "This will also cause all dependencies to start generating.";
+const char* Generator_StopGenerating_DOC =
+    "Stops generation of the output.";
+const char* Generator_generating_DOC =
+    "Boolean set to True if this node is generating\n"
+    "or to False if it isn't.\n\n"
+    "Note that you can also set this property to True or False to\n"
+    "start and stop generating, respectively.";
+const char* Generator_data_new_DOC =
+    "Returns True if the current data is new, False otherwise.\n\n"
+    "Meaning, did the data change on the last call to wait_and_update_data(),\n"
+    "Context.wait_and_update_all() or Context.wait_one_update_all(...)?";
+
+
 #endif	/* WRAPPER_DOCSTRINGS_H */
