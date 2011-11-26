@@ -2,7 +2,7 @@
 
 ## Introduction ##
 
-**PyOpenNI** is a project providing bindings for the [OpenNI](http://openni.org) computer vision library on Python. It is a fork of [onipy](http://code.google.com/p/onipy) but adds many improvements to it:
+**PyOpenNI** is a project providing bindings for the [OpenNI](http://openni.org) computer vision library on Python. It is based on [onipy](http://code.google.com/p/onipy) but adds many improvements to it:
 
  * Implemented more features.
  * Removed unnecessary `OpenNI` prefixes.
@@ -13,6 +13,7 @@
  * **New!** Errors are handled gracefully through the class `OpenNIError`.
  * **New!** Re-wrote wrapper's core to make it more robust and avoid crashes.
  * **New!** Callbacks are now completely supported!
+ * **New!** Exposed features are now documented in Python.
 
 PyOpenNI is written with the [Boost.Python](http://www.boost.org/doc/libs/release/libs/python/doc/index.html) libraries. PyOpenNI is released under the [GNU GPL](http://www.gnu.org/copyleft/gpl.html) version 3.
 
