@@ -208,7 +208,7 @@ BOOST_PYTHON_MODULE(openni) {
     // class PoseDetectionCapability
     
     class_< xn::PoseDetectionCapability,
-            bases<xn::Capability> > ("PoseDetectionCapability")
+            bases<xn::Capability> > ("PoseDetectionCapability", no_init)
             
             ;
 
@@ -217,7 +217,7 @@ BOOST_PYTHON_MODULE(openni) {
     // class SkeletonCapability
     
     class_< xn::SkeletonCapability,
-            bases<xn::Capability> > ("SkeletonCapability")
+            bases<xn::Capability> > ("SkeletonCapability", no_init)
             
             ;
 
