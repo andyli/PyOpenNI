@@ -49,6 +49,12 @@ set (SOURCES
     OutputMetaDataWrapper.h
     MapMetaDataWrapper.cpp
     MapMetaDataWrapper.h
+    CapabilityWrapper.cpp
+    CapabilityWrapper.h
+    PoseDetectionCapabilityWrapper.cpp
+    PoseDetectionCapabilityWrapper.h
+    SkeletonCapabilityWrapper.cpp
+    SkeletonCapabilityWrapper.h
     ProductionNodeWrapper.cpp
     ProductionNodeWrapper.h
     GeneratorWrapper.cpp

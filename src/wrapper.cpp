@@ -32,6 +32,11 @@
 
 #include "OpenNIException.h"
 #include "ContextWrapper.h"
+#include "OutputMetaDataWrapper.h"
+#include "MapMetaDataWrapper.h"
+#include "CapabilityWrapper.h"
+#include "PoseDetectionCapabilityWrapper.h"
+#include "SkeletonCapabilityWrapper.h"
 #include "ProductionNodeWrapper.h"
 #include "GeneratorWrapper.h"
 #include "MapGeneratorWrapper.h"
@@ -39,8 +44,6 @@
 #include "DepthGeneratorWrapper.h"
 #include "GestureGeneratorWrapper.h"
 #include "VersionWrapper.h"
-#include "OutputMetaDataWrapper.h"
-#include "MapMetaDataWrapper.h"
 
 // OpenNI
 #include <XnOpenNI.h>
@@ -126,7 +129,7 @@ BOOST_PYTHON_MODULE(openni) {
     // exception class OpenNIException
 
     class_<OpenNIException> generalExceptionClass("OpenNIError",
-            boost::python::init<XnStatus > ());
+            boost::python::init<XnStatus>());
 
     //properties
     generalExceptionClass.add_property("message", &OpenNIException::getMessage)
@@ -189,7 +192,35 @@ BOOST_PYTHON_MODULE(openni) {
     class_< xn::DepthMetaData,
             bases<xn::MapMetaData>, boost::noncopyable> ("DepthMetaData", no_init)
             ;
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // class Capability
     
+    class_< xn::Capability > ("Capability", no_init)
+            
+            ;
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // class PoseDetectionCapability
+    
+    class_< xn::PoseDetectionCapability,
+            bases<xn::Capability> > ("PoseDetectionCapability")
+            
+            ;
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // class SkeletonCapability
+    
+    class_< xn::SkeletonCapability,
+            bases<xn::Capability> > ("SkeletonCapability")
+            
+            ;
+
 
 
 
