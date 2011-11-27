@@ -21,7 +21,7 @@
  * ***** END GPL LICENSE BLOCK ***** */
 
 
-#include <openni/XnCppWrapper.h>
+#include <XnCppWrapper.h>
 
 #include "DepthGeneratorWrapper.h"
 #include "wrapperExceptions.h"

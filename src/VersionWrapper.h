@@ -27,7 +27,7 @@
 #include <string>
 
 #include <XnStatus.h>
-#include <openni/XnTypes.h>
+#include <XnTypes.h>
 
 XnInt32 compareVersions(XnVersion& self, XnVersion& other);
 
