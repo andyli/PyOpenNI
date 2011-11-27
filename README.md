@@ -23,35 +23,25 @@ See the [github page](https://github.com/jmendeth/PyOpenNI) if you want to submi
 
 ## Using the bindings ##
 
-**An example script that uses the bindings:**
+To import the module:
+
+```python
+import openni
+```
+
+and, if you prefer, you can also
 
 ```python
 from openni import *
-
-print "Initializing..."
-ctx = Context()
-ctx.init()
-gest = GestureGenerator()
-gest.create(ctx)
-
-print "Registering listeners..."
-gest.add_gesture("Wave")
-gest.add_gesture("Click")
-
-def gesture_detected(src, gesture, id, endPoint):
-    print "Detected gesture:", gesture
-
-def gesture_progress(src, gesture, point, progress): pass
-
-gest.register_gesture_cb(gesture_detected, gesture_progress)
-print "Ready! Starting to detect gestures."
-ctx.start_generating_all()
-
-try:
-    print "Press Control-C to quit.\n"
-    while True: ctx.wait_any_update_all()
-except KeyboardInterrupt: print
 ```
 
-We tried to respect the C++ names and structure.  
-See the documentation (stored at `doc/`) for more details.
+so you don't have to type this annonying `openni.` before the class names.  
+To get started, I suggest you to see the samples at the `examples/` folder.
+To look at the documentation of PyOpenNI:
+
+```python
+help(openni)              #Help about the whole module
+help(openni.Context)      #Help about a specific class
+help(openni.Context.init) #Help about a specific function
+```
+
