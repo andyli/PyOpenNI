@@ -36,3 +36,13 @@ XnUInt16 UserGenerator_CountUsers(xn::UserGenerator const & self) {
     
     return self.GetNumberOfUsers();
 }
+
+xn::SkeletonCapability UserGenerator_GetSkeletonCap_wrapped(xn::UserGenerator& self) {
+    checkValid(self);
+    
+    if (!self.IsCapabilitySupported(XN_CAPABILITY_SKELETON)) {
+        return NULL;
+    }
+    
+    return self.GetSkeletonCap();
+}

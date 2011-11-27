@@ -31,4 +31,6 @@ void UserGenerator_Create_wrapped(xn::UserGenerator& self, xn::Context& ctx);
 
 XnUInt16 UserGenerator_CountUsers(xn::UserGenerator const & self);
 
+xn::SkeletonCapability UserGenerator_GetSkeletonCap_wrapped(xn::UserGenerator& self);
+
 #endif	/* USER_GENERATOR_WRAPPER_H */

@@ -110,6 +110,7 @@ BOOST_PYTHON_MODULE(openni) {
             .value("NODE_TYPE_SCRIPT", XN_NODE_TYPE_SCRIPT)
             .export_values()
             ;
+
     enum_< XnPixelFormat > ("PixelFormat")
             .value("PIXEL_FORMAT_GRAYSCALE_16_BIT", XN_PIXEL_FORMAT_GRAYSCALE_16_BIT)
             .value("PIXEL_FORMAT_GRAYSCALE_8_BIT", XN_PIXEL_FORMAT_GRAYSCALE_8_BIT)
@@ -118,6 +119,71 @@ BOOST_PYTHON_MODULE(openni) {
             .value("PIXEL_FORMAT_YUV422", XN_PIXEL_FORMAT_YUV422)
             .export_values()
             ;
+
+    enum_< XnSkeletonJoint > ("SkeletonJoint")
+            .value("SKEL_HEAD", XN_SKEL_HEAD)
+            .value("SKEL_NECK", XN_SKEL_NECK)
+            .value("SKEL_TORSO", XN_SKEL_TORSO)
+            .value("SKEL_WAIST", XN_SKEL_WAIST)
+            .value("SKEL_LEFT_COLLAR", XN_SKEL_LEFT_COLLAR)
+            .value("SKEL_LEFT_SHOULDER", XN_SKEL_LEFT_SHOULDER)
+            .value("SKEL_LEFT_ELBOW", XN_SKEL_LEFT_ELBOW)
+            .value("SKEL_LEFT_WRIST", XN_SKEL_LEFT_WRIST)
+            .value("SKEL_LEFT_HAND", XN_SKEL_LEFT_HAND)
+            .value("SKEL_LEFT_FINGERTIP", XN_SKEL_LEFT_FINGERTIP)
+            .value("SKEL_RIGHT_COLLAR", XN_SKEL_RIGHT_COLLAR)
+            .value("SKEL_RIGHT_SHOULDER", XN_SKEL_RIGHT_SHOULDER)
+            .value("SKEL_RIGHT_ELBOW", XN_SKEL_RIGHT_ELBOW)
+            .value("SKEL_RIGHT_WRIST", XN_SKEL_RIGHT_WRIST)
+            .value("SKEL_RIGHT_HAND", XN_SKEL_RIGHT_HAND)
+            .value("SKEL_RIGHT_FINGERTIP", XN_SKEL_RIGHT_FINGERTIP)
+            .value("SKEL_LEFT_HIP", XN_SKEL_LEFT_HIP)
+            .value("SKEL_LEFT_KNEE", XN_SKEL_LEFT_KNEE)
+            .value("SKEL_LEFT_ANKLE", XN_SKEL_LEFT_ANKLE)
+            .value("SKEL_LEFT_FOOT", XN_SKEL_LEFT_FOOT)
+            .value("SKEL_RIGHT_HIP", XN_SKEL_RIGHT_HIP)
+            .value("SKEL_RIGHT_KNEE", XN_SKEL_RIGHT_KNEE)
+            .value("SKEL_RIGHT_ANKLE", XN_SKEL_RIGHT_ANKLE)
+            .value("SKEL_RIGHT_FOOT", XN_SKEL_RIGHT_FOOT)
+            .export_values()
+            ;
+    
+    ////////////////////////////////////////////////////////////////////////////
+    // capability names
+    
+    scope().attr("CAPABILITY_EXTENDED_SERIALIZATION") = XN_CAPABILITY_EXTENDED_SERIALIZATION;
+    scope().attr("CAPABILITY_MIRROR") = XN_CAPABILITY_MIRROR;
+    scope().attr("CAPABILITY_ALTERNATIVE_VIEW_POINT") = XN_CAPABILITY_ALTERNATIVE_VIEW_POINT;
+    scope().attr("CAPABILITY_CROPPING") = XN_CAPABILITY_CROPPING;
+    scope().attr("CAPABILITY_USER_POSITION") = XN_CAPABILITY_USER_POSITION;
+    scope().attr("CAPABILITY_SKELETON") = XN_CAPABILITY_SKELETON;
+    scope().attr("CAPABILITY_POSE_DETECTION") = XN_CAPABILITY_POSE_DETECTION;
+    scope().attr("CAPABILITY_LOCK_AWARE") = XN_CAPABILITY_LOCK_AWARE;
+    scope().attr("CAPABILITY_ERROR_STATE") = XN_CAPABILITY_ERROR_STATE;
+    scope().attr("CAPABILITY_FRAME_SYNC") = XN_CAPABILITY_FRAME_SYNC;
+    scope().attr("CAPABILITY_DEVICE_IDENTIFICATION") = XN_CAPABILITY_DEVICE_IDENTIFICATION;
+    scope().attr("CAPABILITY_BRIGHTNESS") = XN_CAPABILITY_BRIGHTNESS;
+    scope().attr("CAPABILITY_CONTRAST") = XN_CAPABILITY_CONTRAST;
+    scope().attr("CAPABILITY_HUE") = XN_CAPABILITY_HUE;
+    scope().attr("CAPABILITY_SATURATION") = XN_CAPABILITY_SATURATION;
+    scope().attr("CAPABILITY_SHARPNESS") = XN_CAPABILITY_SHARPNESS;
+    scope().attr("CAPABILITY_GAMMA") = XN_CAPABILITY_GAMMA;
+    scope().attr("CAPABILITY_COLOR_TEMPERATURE") = XN_CAPABILITY_COLOR_TEMPERATURE;
+    scope().attr("CAPABILITY_BACKLIGHT_COMPENSATION") = XN_CAPABILITY_BACKLIGHT_COMPENSATION;
+    scope().attr("CAPABILITY_GAIN") = XN_CAPABILITY_GAIN;
+    scope().attr("CAPABILITY_PAN") = XN_CAPABILITY_PAN;
+    scope().attr("CAPABILITY_TILT") = XN_CAPABILITY_TILT;
+    scope().attr("CAPABILITY_ROLL") = XN_CAPABILITY_ROLL;
+    scope().attr("CAPABILITY_ZOOM") = XN_CAPABILITY_ZOOM;
+    scope().attr("CAPABILITY_EXPOSURE") = XN_CAPABILITY_EXPOSURE;
+    scope().attr("CAPABILITY_IRIS") = XN_CAPABILITY_IRIS;
+    scope().attr("CAPABILITY_FOCUS") = XN_CAPABILITY_FOCUS;
+    scope().attr("CAPABILITY_LOW_LIGHT_COMPENSATION") = XN_CAPABILITY_LOW_LIGHT_COMPENSATION;
+    scope().attr("CAPABILITY_ANTI_FLICKER") = XN_CAPABILITY_ANTI_FLICKER;
+    scope().attr("CAPABILITY_HAND_TOUCHING_FOV_EDGE") = XN_CAPABILITY_HAND_TOUCHING_FOV_EDGE;
+    scope().attr("CAPABILITY_ANTI_FILCKER") = XN_CAPABILITY_ANTI_FILCKER;
+    
+    
 
 
     ////////////////////////////////////////////////////////////////////////////
@@ -372,11 +438,15 @@ BOOST_PYTHON_MODULE(openni) {
     class_< xn::UserGenerator,
             bases<xn::Generator> >("UserGenerator")
 
+            // capabilities
+    
+            .add_property("skeleton_cap", &UserGenerator_GetSkeletonCap_wrapped)
+    
             // methods
 
             .def("create", &UserGenerator_Create_wrapped)
             .def("count_users", &UserGenerator_CountUsers)
-
+            
             ;
 
 
