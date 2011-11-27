@@ -71,6 +71,8 @@ set (SOURCES
     DepthGeneratorWrapper.h
     GestureGeneratorWrapper.cpp
     GestureGeneratorWrapper.h
+    UserGeneratorWrapper.cpp
+    UserGeneratorWrapper.h
     ContextWrapper.cpp
     ContextWrapper.h
     OpenNIException.cpp

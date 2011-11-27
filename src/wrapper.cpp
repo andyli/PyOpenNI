@@ -45,6 +45,7 @@
 #include "ImageGeneratorWrapper.h"
 #include "DepthGeneratorWrapper.h"
 #include "GestureGeneratorWrapper.h"
+#include "UserGeneratorWrapper.h"
 #include "VersionWrapper.h"
 
 // OpenNI
@@ -361,6 +362,19 @@ BOOST_PYTHON_MODULE(openni) {
             .def("is_gesture_progress_supported", &GestureGenerator_IsGestureProgressSupported_wrapped)
             .def("register_gesture_cb", &GestureGenerator_RegisterGestureCallbacks_wrapped, return_value_policy<return_opaque_pointer>())
             .def("unregister_gesture_cb", &GestureGenerator_UnregisterGestureCallbacks_wrapped)
+
+            ;
+    
+    
+    ////////////////////////////////////////////////////////////////////////////
+    // class UserGenerator
+
+    class_< xn::UserGenerator,
+            bases<xn::Generator> >("UserGenerator")
+
+            // methods
+
+            //TODO
 
             ;
 
