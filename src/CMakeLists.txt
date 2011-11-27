@@ -49,6 +49,10 @@ set (SOURCES
     OutputMetaDataWrapper.h
     MapMetaDataWrapper.cpp
     MapMetaDataWrapper.h
+    ImageMetaDataWrapper.cpp
+    ImageMetaDataWrapper.h
+    DepthMetaDataWrapper.cpp
+    DepthMetaDataWrapper.h
     CapabilityWrapper.cpp
     CapabilityWrapper.h
     PoseDetectionCapabilityWrapper.cpp
@@ -89,6 +93,3 @@ set_target_properties (PyOpenNI PROPERTIES PREFIX "")
 set_target_properties (PyOpenNI PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${LIBRARY_RESULT_DIR})
 set_target_properties (PyOpenNI PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${ARCHIVE_RESULT_DIR})
 set_target_properties (PyOpenNI PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${RUNTIME_RESULT_DIR})
-
-#FIXME: change library output filename
-#TODO: refractor source files

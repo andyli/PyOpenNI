@@ -34,6 +34,8 @@
 #include "ContextWrapper.h"
 #include "OutputMetaDataWrapper.h"
 #include "MapMetaDataWrapper.h"
+#include "DepthMetaDataWrapper.h"
+#include "ImageMetaDataWrapper.h"
 #include "CapabilityWrapper.h"
 #include "PoseDetectionCapabilityWrapper.h"
 #include "SkeletonCapabilityWrapper.h"
@@ -183,7 +185,7 @@ BOOST_PYTHON_MODULE(openni) {
 
     class_< xn::ImageMetaData,
             bases<xn::MapMetaData>, boost::noncopyable > ("ImageMetaData", no_init)
-            ;//TODO: make files for imagemetadata and depthmetadata
+            ;
 
 
     ////////////////////////////////////////////////////////////////////////////
