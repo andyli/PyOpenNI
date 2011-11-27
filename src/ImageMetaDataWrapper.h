@@ -25,8 +25,6 @@
 #define	IMAGE_META_DATA_WRAPPER_H
 
 #include <XnCppWrapper.h>
-
-#include <XnCppWrapper.h>
 #include "wrapperTypes.h"
 
 //Currently empty

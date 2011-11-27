@@ -25,8 +25,6 @@
 #define	SKELETON_CAPABILITY_WRAPPER_H
 
 #include <XnCppWrapper.h>
-
-#include <XnCppWrapper.h>
 #include "wrapperTypes.h"
 
 //Currently empty
