@@ -374,7 +374,8 @@ BOOST_PYTHON_MODULE(openni) {
 
             // methods
 
-            //TODO
+            .def("create", &UserGenerator_Create_wrapped)
+            .def("count_users", &UserGenerator_CountUsers)
 
             ;
 

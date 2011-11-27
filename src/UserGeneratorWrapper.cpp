@@ -27,4 +27,12 @@
 #include "wrapperTypes.h"
 #include "wrapperExceptions.h"
 
-//Currently empty
+void UserGenerator_Create_wrapped(xn::UserGenerator& self, xn::Context& ctx) {
+    check( self.Create(ctx, NULL, NULL) );
+}
+
+XnUInt16 UserGenerator_CountUsers(xn::UserGenerator const & self) {
+    checkValid(self);
+    
+    return self.GetNumberOfUsers();
+}
