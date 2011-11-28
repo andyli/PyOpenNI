@@ -37,7 +37,7 @@ from openni import *
 
 so you don't have to type this annonying `openni.` before the class names.  
 To get started, I suggest you to see the samples at the `examples/` folder.
-To look at the documentation of PyOpenNI:
+And, to look at the documentation of PyOpenNI:
 
 ```python
 help(openni)              #Help about the whole module
