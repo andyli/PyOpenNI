@@ -28,6 +28,49 @@
 #include "wrapperTypes.h"
 #include "wrapperExceptions.h"
 
-XnBool SkeletonCapability_IsJointActive_wrapped(xn::SkeletonCapability self, XnSkeletonJoint joint) {
+/** Managing active joints and profiles **/
+XnBool SkeletonCapability_IsJointActive_wrapped(xn::SkeletonCapability& self, XnSkeletonJoint joint) {
     return self.IsJointActive(joint);
+}
+void SkeletonCapability_SetJointActive_wrapped(xn::SkeletonCapability& self, XnSkeletonJoint joint, XnBool active) {
+    check( self.SetJointActive(joint, active) );
+}
+void SkeletonCapability_SetSkeletonProfile_wrapped(xn::SkeletonCapability& self, XnSkeletonProfile profile) {
+    check( self.SetSkeletonProfile(profile) );
+}
+
+/** User tracking and calibrating methods **/
+void SkeletonCapability_StartTracking_wrapped(xn::SkeletonCapability& self, XnUserID user) {
+    check( self.StartTracking(user) );
+}
+void SkeletonCapability_StopTracking_wrapped(xn::SkeletonCapability& self, XnUserID user) {
+    check( self.StopTracking(user) );
+}
+void SkeletonCapability_Reset_wrapped(xn::SkeletonCapability& self, XnUserID user) {
+    check( self.Reset(user) );
+}
+void SkeletonCapability_RequestCalibration_wrapped(xn::SkeletonCapability& self, XnUserID user, XnBool force) {
+    check( self.RequestCalibration(user, force) );//TODO: add optional params here
+}
+void SkeletonCapability_AbortCalibration_wrapped(xn::SkeletonCapability& self, XnUserID user) {
+    check( self.AbortCalibration(user) );
+}
+
+/** Calibration data methods **/
+void SkeletonCapability_SaveCalibrationData_wrapped(xn::SkeletonCapability& self, XnUserID user, XnUInt32 slot) {
+    check( self.SaveCalibrationData(user, slot) );
+}
+void SkeletonCapability_ClearCalibrationData_wrapped(xn::SkeletonCapability& self, XnUInt32 slot) {
+    check( self.ClearCalibrationData(slot) );
+}
+void SkeletonCapability_LoadCalibrationData_wrapped(xn::SkeletonCapability& self, XnUserID user, XnUInt32 slot) {
+    check( self.LoadCalibrationData(user, slot) );
+}
+void SkeletonCapability_IsCalibrationData_wrapped(xn::SkeletonCapability& self, XnUInt32 slot) {
+    check( self.IsCalibrationData(slot) );
+}
+
+/** Other properties and methods **/
+void SkeletonCapability_SetSmoothing_wrapped(xn::SkeletonCapability& self, XnFloat smoothing) {
+    check( self.SetSmoothing(smoothing) );
 }

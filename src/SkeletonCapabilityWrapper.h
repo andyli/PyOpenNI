@@ -27,6 +27,26 @@
 #include <XnCppWrapper.h>
 #include "wrapperTypes.h"
 
-XnBool SkeletonCapability_IsJointActive_wrapped(xn::SkeletonCapability self, XnSkeletonJoint joint);
+/** Managing active joints and profiles **/
+XnBool SkeletonCapability_IsJointActive_wrapped(xn::SkeletonCapability& self, XnSkeletonJoint joint);
+void SkeletonCapability_SetJointActive_wrapped(xn::SkeletonCapability& self, XnSkeletonJoint joint, XnBool active);
+void SkeletonCapability_SetSkeletonProfile_wrapped(xn::SkeletonCapability& self, XnSkeletonProfile profile);
+
+/** User tracking and calibrating methods **/
+void SkeletonCapability_StartTracking_wrapped(xn::SkeletonCapability& self, XnUserID user);
+void SkeletonCapability_StopTracking_wrapped(xn::SkeletonCapability& self, XnUserID user);
+void SkeletonCapability_Reset_wrapped(xn::SkeletonCapability& self, XnUserID user);
+void SkeletonCapability_RequestCalibration_wrapped(xn::SkeletonCapability& self, XnUserID user, XnBool force);
+void SkeletonCapability_AbortCalibration_wrapped(xn::SkeletonCapability& self, XnUserID user);
+
+/** Calibration data methods **/
+void SkeletonCapability_SaveCalibrationData_wrapped(xn::SkeletonCapability& self, XnUserID user, XnUInt32 slot);
+void SkeletonCapability_ClearCalibrationData_wrapped(xn::SkeletonCapability& self, XnUInt32 slot);
+void SkeletonCapability_LoadCalibrationData_wrapped(xn::SkeletonCapability& self, XnUserID user, XnUInt32 slot);
+void SkeletonCapability_IsCalibrationData_wrapped(xn::SkeletonCapability& self, XnUInt32 slot);
+
+/** Other properties and methods **/
+void SkeletonCapability_SetSmoothing_wrapped(xn::SkeletonCapability& self, XnFloat smoothing);
+
 
 #endif	/* SKELETON_CAPABILITY_WRAPPER_H */
