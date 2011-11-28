@@ -32,3 +32,9 @@ XnBool ProductionNode_IsCapabilitySupported_wrapped(xn::ProductionNode& self, st
     //FIXME: throw warning here if not valid
     return self.IsCapabilitySupported(capabilityName.c_str());
 }
+
+std::string ProductionNode_GetName_wrapped(xn::ProductionNode& self) {
+    checkValid(self);
+    
+    return std::string(self.GetName());
+}

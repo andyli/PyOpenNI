@@ -24,7 +24,10 @@
 #include "SkeletonCapabilityWrapper.h"
 
 #include <XnCppWrapper.h>
+#include <XnTypes.h>
 #include "wrapperTypes.h"
 #include "wrapperExceptions.h"
 
-//Currently empty
+XnBool SkeletonCapability_IsJointActive_wrapped(xn::SkeletonCapability self, XnSkeletonJoint joint) {
+    return self.IsJointActive(joint);
+}

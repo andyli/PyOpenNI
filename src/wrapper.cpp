@@ -287,7 +287,13 @@ BOOST_PYTHON_MODULE(openni) {
     
     class_< xn::SkeletonCapability,
             bases<xn::Capability> > ("SkeletonCapability", no_init)
-            
+
+            .def("is_tracking", &xn::SkeletonCapability::IsTracking)
+            .def("is_calibrated", &xn::SkeletonCapability::IsCalibrated)
+            .def("is_calibrating", &xn::SkeletonCapability::IsCalibrating)
+            .def("is_joint_active", &SkeletonCapability_IsJointActive_wrapped)
+            .def("is_joint_available", &xn::SkeletonCapability::IsJointAvailable)
+
             ;
 
 
@@ -319,8 +325,10 @@ BOOST_PYTHON_MODULE(openni) {
 
     class_< xn::ProductionNode > ("ProductionNode", ProductionNode_DOC)
             .add_property("valid", &xn::ProductionNode::IsValid, ProductionNode_valid_DOC)
+            .add_property("name", &ProductionNode_GetName_wrapped)
+
             .def("is_capability_supported", &ProductionNode_IsCapabilitySupported_wrapped, ProductionNode_IsCapabilitySupported_DOC)
-            ;//TODO: add optional params and capability names
+            ;//TODO: add optional params
 
 
     ////////////////////////////////////////////////////////////////////////////
@@ -328,7 +336,7 @@ BOOST_PYTHON_MODULE(openni) {
 
     class_< xn::Generator,
             bases<xn::ProductionNode> > ("Generator", Generator_DOC, no_init)
-    
+
             //methods
             .def("start_generating", &Generator_StartGenerating_wrapped, Generator_StartGenerating_DOC)
             .def("stop_generating", &Generator_StopGenerating_wrapped, Generator_StopGenerating_DOC)
@@ -337,7 +345,7 @@ BOOST_PYTHON_MODULE(openni) {
             //properties
             .add_property("data_new", &Generator_IsDataNew_wrapped, Generator_data_new_DOC)
             .add_property("generating", &Generator_IsGenerating_wrapped, &Generator_SetGenerating, Generator_generating_DOC)
-    
+
             ;
 
     
