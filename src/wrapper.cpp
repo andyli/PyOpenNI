@@ -36,6 +36,7 @@
 #include "MapMetaDataWrapper.h"
 #include "DepthMetaDataWrapper.h"
 #include "ImageMetaDataWrapper.h"
+#include "SkeletonJointWrapper.h"
 #include "CapabilityWrapper.h"
 #include "PoseDetectionCapabilityWrapper.h"
 #include "SkeletonCapabilityWrapper.h"
@@ -275,52 +276,85 @@ BOOST_PYTHON_MODULE(openni) {
 
 
     ////////////////////////////////////////////////////////////////////////////
+    // class SkeletonJointOrientation
+
+    class_< XnSkeletonJointOrientation > ("SkeletonJointOrientation")
+            .add_property("confidence", &XnSkeletonJointOrientation::fConfidence, &XnSkeletonJointOrientation::fConfidence)
+            .add_property("matrix", &XnSkeletonJointOrientation_GetMatrix, &XnSkeletonJointOrientation_SetMatrix)
+            ;
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // class SkeletonJointPosition
+
+    class_< XnSkeletonJointPosition > ("SkeletonJointPosition")
+            .add_property("confidence", &XnSkeletonJointPosition::fConfidence, &XnSkeletonJointPosition::fConfidence)
+            .add_property("point", &XnSkeletonJointPosition_GetPoint, &XnSkeletonJointPosition_SetPoint)
+            ;
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // class SkeletonJointTransform
+
+    class_< XnSkeletonJointTransformation > ("SkeletonJointTransform")
+            .add_property("orientation", &XnSkeletonJointTransformation::orientation, &XnSkeletonJointTransformation::orientation)
+            .add_property("position", &XnSkeletonJointTransformation::position, &XnSkeletonJointTransformation::position)
+            ;
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////
     // class Capability
-    
+
     class_< xn::Capability > ("Capability", no_init)
-            
+
             ;
 
 
     ////////////////////////////////////////////////////////////////////////////
     // class PoseDetectionCapability
-    
+
     class_< xn::PoseDetectionCapability,
             bases<xn::Capability> > ("PoseDetectionCapability", no_init)
-            
+
             ;
 
 
     ////////////////////////////////////////////////////////////////////////////
     // class SkeletonCapability
-    
+
     class_< xn::SkeletonCapability,
             bases<xn::Capability> > ("SkeletonCapability", no_init)
 
             .add_property("calibration_needs_pose", &xn::SkeletonCapability::NeedPoseForCalibration)
-    
+
             .def("is_tracking", &xn::SkeletonCapability::IsTracking)
             .def("is_calibrated", &xn::SkeletonCapability::IsCalibrated)
             .def("is_calibrating", &xn::SkeletonCapability::IsCalibrating)
             .def("is_joint_available", &xn::SkeletonCapability::IsJointAvailable)
             .def("is_profile_available", &xn::SkeletonCapability::IsProfileAvailable)
-    
+
             .def("is_joint_active", &SkeletonCapability_IsJointActive_wrapped)
             .def("set_joint_active", &SkeletonCapability_SetJointActive_wrapped)
             .def("set_profile", &SkeletonCapability_SetSkeletonProfile_wrapped)
-    
+
             .def("reset", &SkeletonCapability_Reset_wrapped)
             .def("start_tracking", &SkeletonCapability_StartTracking_wrapped)
             .def("stop_tracking", &SkeletonCapability_StopTracking_wrapped)
             .def("request_calibration", &SkeletonCapability_RequestCalibration_wrapped)
             .def("abort_calibration", &SkeletonCapability_AbortCalibration_wrapped)
-    
+
             .def("load_cdata", &SkeletonCapability_LoadCalibrationData_wrapped)
             .def("save_cdata", &SkeletonCapability_SaveCalibrationData_wrapped)
             .def("clear_cdata", &SkeletonCapability_ClearCalibrationData_wrapped)
             .def("has_cdata", &SkeletonCapability_IsCalibrationData_wrapped)
-    
+
             .def("set_smoothing", &SkeletonCapability_SetSmoothing_wrapped)
+
+            .def("get_joint", &SkeletonCapability_GetJoint_wrapped)
+            .def("get_joint_orientation", &SkeletonCapability_GetJointOrientation_wrapped)
+            .def("get_joint_position", &SkeletonCapability_GetJointPosition_wrapped)
 
             ;
 

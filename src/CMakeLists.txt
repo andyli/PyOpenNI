@@ -53,6 +53,8 @@ set (SOURCES
     ImageMetaDataWrapper.h
     DepthMetaDataWrapper.cpp
     DepthMetaDataWrapper.h
+    SkeletonJointWrapper.cpp
+    SkeletonJointWrapper.h
     CapabilityWrapper.cpp
     CapabilityWrapper.h
     PoseDetectionCapabilityWrapper.cpp

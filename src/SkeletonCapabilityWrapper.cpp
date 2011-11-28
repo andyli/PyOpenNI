@@ -74,3 +74,20 @@ void SkeletonCapability_IsCalibrationData_wrapped(xn::SkeletonCapability& self, 
 void SkeletonCapability_SetSmoothing_wrapped(xn::SkeletonCapability& self, XnFloat smoothing) {
     check( self.SetSmoothing(smoothing) );
 }
+
+/** Getting individual joints orientation/position **/
+XnSkeletonJointOrientation SkeletonCapability_GetJointOrientation_wrapped(xn::SkeletonCapability& self, XnUserID user, XnSkeletonJoint joint) {
+    XnSkeletonJointOrientation ret;
+    check( self.GetSkeletonJointOrientation(user, joint, ret) );
+    return ret;
+}
+XnSkeletonJointPosition SkeletonCapability_GetJointPosition_wrapped(xn::SkeletonCapability& self, XnUserID user, XnSkeletonJoint joint) {
+    XnSkeletonJointPosition ret;
+    check( self.GetSkeletonJointPosition(user, joint, ret) );
+    return ret;
+}
+XnSkeletonJointTransformation SkeletonCapability_GetJoint_wrapped(xn::SkeletonCapability& self, XnUserID user, XnSkeletonJoint joint) {
+    XnSkeletonJointTransformation ret;
+    check( self.GetSkeletonJoint(user, joint, ret) );
+    return ret;
+}

@@ -44,6 +44,21 @@ BP::list convertVec3D(XnVector3D const & vector) {
     return ret;
 }
 
+XnUInt32XYPair convertToPair(BP::list orig) {
+    XnUInt32XYPair ret;
+    ret.X = BP::extract<XnUInt32>(orig[0]);
+    ret.Y = BP::extract<XnUInt32>(orig[1]);
+    return ret;
+}
+
+XnVector3D convertToVec3D(BP::list orig) {
+    XnVector3D ret;
+    ret.X = BP::extract<XnFloat>(orig[0]);
+    ret.Y = BP::extract<XnFloat>(orig[1]);
+    ret.Z = BP::extract<XnFloat>(orig[2]);
+    return ret;
+}
+
 void convert(
         BP::tuple& targetTuple,
         XnRGB24Pixel const* sourceMap,
@@ -192,3 +207,28 @@ void convertToBGR24Raw(
     } // for rows
 
 } // convertToBGR24Raw
+
+BP::list convertMatrix(XnMatrix3X3& matrix) {
+    BP::list ret;
+    for (int y = 0; y < 3; y++) {
+        BP::list row;
+        for (int x = 0; x < 3; x++) {
+            int i = y*3 + x;
+            row.append(matrix.elements[i]);
+        }
+        ret.append(row);
+    }
+    return ret;
+}
+XnMatrix3X3 convertToMatrix(BP::list orig) {
+    XnMatrix3X3 ret;
+    for (int y = 0; y < 3; y++) {
+        BP::list row = BP::list(orig[y]);
+        for (int x = 0; x < 3; x++) {
+            XnFloat item = BP::extract<XnFloat>(row[x]);
+            int i = y*3 + x;
+            ret.elements[i] = item;
+        }
+    }
+    return ret;
+}
