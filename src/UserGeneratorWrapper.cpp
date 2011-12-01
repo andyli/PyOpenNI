@@ -26,6 +26,7 @@
 #include <XnCppWrapper.h>
 #include "wrapperTypes.h"
 #include "wrapperExceptions.h"
+#include "conversionHelpers.h"
 
 void UserGenerator_Create_wrapped(xn::UserGenerator& self, xn::Context& ctx) {
     check( self.Create(ctx, NULL, NULL) );
@@ -45,4 +46,47 @@ xn::SkeletonCapability UserGenerator_GetSkeletonCap_wrapped(xn::UserGenerator& s
     }
     
     return self.GetSkeletonCap();
+}
+
+BP::list UserGenerator_GetCoM_wrapped(xn::UserGenerator& self, XnUserID user) {
+    checkValid(self);
+    
+    XnPoint3D ret;
+    check( self.GetCoM(user,ret) );
+    return convertVec3D(ret);
+}
+
+XnCallbackHandle UserGenerator_RegisterUserCallbacks_wrapped(xn::UserGenerator& self, BP::object newUser, BP::object lostUser) {
+    checkValid(self);
+    
+    XnCallbackHandle handle; //TODO: test this
+    
+    BP::object* cookie = new BP::object [2];//FIXME: fix cookie
+    
+    cookie[0] = newUser;
+    cookie[1] = lostUser;
+    
+    check( self.RegisterUserCallbacks(&NewUser_callback, &LostUser_callback, cookie, handle) );
+    
+    return handle;
+}
+
+void UserGenerator_UnregisterUserCallbacks_wrapped(xn::UserGenerator& self, XnCallbackHandle handle) {
+    checkValid(self);
+    
+    self.UnregisterUserCallbacks(handle);
+}
+
+/** Internal callback implementations **/
+void NewUser_callback(xn::UserGenerator& src, XnUserID user, void* cookie) {
+    BP::object& func = ((BP::object*)cookie)[0];
+    
+    //Call the function
+    func(src, user);
+}
+void LostUser_callback(xn::UserGenerator& src, XnUserID user, void* cookie) {
+    BP::object& func = ((BP::object*)cookie)[1];
+    
+    //Call the function
+    func(src, user);
 }

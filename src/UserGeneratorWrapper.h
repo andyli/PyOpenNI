@@ -33,4 +33,13 @@ XnUInt16 UserGenerator_CountUsers(xn::UserGenerator const & self);
 
 xn::SkeletonCapability UserGenerator_GetSkeletonCap_wrapped(xn::UserGenerator& self);
 
+BP::list UserGenerator_GetCoM_wrapped(xn::UserGenerator& self, XnUserID user);
+
+XnCallbackHandle UserGenerator_RegisterUserCallbacks_wrapped(xn::UserGenerator& self, BP::object newUser, BP::object lostUser);
+void UserGenerator_UnregisterUserCallbacks_wrapped(xn::UserGenerator& self, XnCallbackHandle handle);
+
+/** Internal callback implementations **/
+void NewUser_callback(xn::UserGenerator& src, XnUserID user, void* cookie);
+void LostUser_callback(xn::UserGenerator& src, XnUserID user, void* cookie);
+
 #endif	/* USER_GENERATOR_WRAPPER_H */

@@ -516,6 +516,9 @@ BOOST_PYTHON_MODULE(openni) {
 
             .def("create", &UserGenerator_Create_wrapped)
             .def("count_users", &UserGenerator_CountUsers)
+            .def("get_com", &UserGenerator_GetCoM_wrapped)
+            .def("register_user_cb", &UserGenerator_RegisterUserCallbacks_wrapped, return_value_policy<return_opaque_pointer>())
+            .def("unregister_user_cb", &UserGenerator_UnregisterUserCallbacks_wrapped)
             
             ;
 
