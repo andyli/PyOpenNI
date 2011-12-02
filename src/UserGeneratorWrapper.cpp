@@ -48,6 +48,16 @@ xn::SkeletonCapability UserGenerator_GetSkeletonCap_wrapped(xn::UserGenerator& s
     return self.GetSkeletonCap();
 }
 
+xn::PoseDetectionCapability UserGenerator_GetPoseDetectionCap_wrapped(xn::UserGenerator& self) {
+    checkValid(self);
+    
+    if (!self.IsCapabilitySupported(XN_CAPABILITY_POSE_DETECTION)) {
+        return NULL;
+    }
+    
+    return self.GetPoseDetectionCap();
+}
+
 BP::list UserGenerator_GetCoM_wrapped(xn::UserGenerator& self, XnUserID user) {
     checkValid(self);
     

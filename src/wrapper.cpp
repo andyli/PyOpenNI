@@ -318,6 +318,8 @@ BOOST_PYTHON_MODULE(openni) {
     class_< xn::PoseDetectionCapability,
             bases<xn::Capability> > ("PoseDetectionCapability", no_init)
 
+            .def("count_poses", &xn::PoseDetectionCapability::GetNumberOfPoses)
+
             ;
 
 
@@ -511,6 +513,7 @@ BOOST_PYTHON_MODULE(openni) {
             // capabilities
     
             .add_property("skeleton_cap", &UserGenerator_GetSkeletonCap_wrapped)
+            .add_property("pose_detection_cap", &UserGenerator_GetPoseDetectionCap_wrapped)
     
             // methods
 
