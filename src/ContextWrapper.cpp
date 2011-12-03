@@ -95,10 +95,10 @@ void Context_WaitOneUpdateAll_wrapped(xn::Context& self, xn::ProductionNode& nod
     check( self.WaitOneUpdateAll(node) );
 }
 
-xn::ProductionNode Context_FindExistingNode_wrapped(xn::Context& self, XnProductionNodeType type) {
-    xn::ProductionNode node;
-    check( self.FindExistingNode(type, node) );
-    return node;
+BP::object Context_FindExistingNode_wrapped(xn::Context& self, XnProductionNodeType type) {
+    XnNodeHandle ret;
+    xnFindExistingRefNodeByType(self.GetUnderlyingObject(), type, &ret);
+    return wrapNode(ret);
 }
 
 void Context_StartGeneratingAll_wrapped(xn::Context& self) {

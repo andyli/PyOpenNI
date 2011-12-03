@@ -40,6 +40,7 @@ set (SOURCES
     wrapper.cpp
     wrapper.h
     wrapperTypes.h
+    wrapperTypes.cpp
     wrapperExceptions.cpp
     wrapperExceptions.h
     wrapperDocstrings.h

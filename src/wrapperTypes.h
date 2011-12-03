@@ -32,4 +32,8 @@ namespace BP = boost::python;
 #include <XnOpenNI.h>
 #include <XnCppWrapper.h>
 
+BP::object wrapNode(XnNodeHandle node);
+
+XnBool isInstanceOf(XnProductionNodeType base, XnProductionNodeType deriv);
+
 #endif    // WRAPPER_TYPES_H
