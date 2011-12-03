@@ -96,7 +96,7 @@ void Context_WaitOneUpdateAll_wrapped(xn::Context& self, xn::ProductionNode& nod
 }
 
 BP::object Context_FindExistingNode_wrapped(xn::Context& self, XnProductionNodeType type) {
-    XnNodeHandle ret;
+    XnNodeHandle ret = NULL;
     xnFindExistingRefNodeByType(self.GetUnderlyingObject(), type, &ret);
     return wrapNode(ret);
 }
