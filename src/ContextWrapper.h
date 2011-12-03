@@ -45,7 +45,7 @@ void Context_WaitOneUpdateAll_wrapped(xn::Context& self, xn::ProductionNode& nod
 void Context_StartGeneratingAll_wrapped(xn::Context& self);
 void Context_StopGeneratingAll_wrapped(xn::Context& self);
 
-xn::ProductionNode* Context_FindExistingNode_wrapped(xn::Context& self, XnProductionNodeType type);
+xn::ProductionNode Context_FindExistingNode_wrapped(xn::Context& self, XnProductionNodeType type);
 
 void Context_Shutdown_wrapped(xn::Context& self);
 

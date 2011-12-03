@@ -38,8 +38,8 @@ std::string Version__str__(XnVersion& self) {
     return std::string(ret);
 }
 
-XnVersion* GetVersion_wrapped() {
-    XnVersion * ret = new XnVersion;
-    check( xnGetVersion(ret) );
+XnVersion GetVersion_wrapped() {
+    XnVersion ret;
+    check( xnGetVersion(&ret) );
     return ret;
 }

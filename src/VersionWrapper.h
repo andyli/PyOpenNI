@@ -33,6 +33,6 @@ XnInt32 compareVersions(XnVersion& self, XnVersion& other);
 
 std::string Version__str__(XnVersion& self);
 
-XnVersion* GetVersion_wrapped();
+XnVersion GetVersion_wrapped();
 
 #endif	/* VERSION_WRAPPER_H */

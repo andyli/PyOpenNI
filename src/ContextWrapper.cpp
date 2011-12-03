@@ -95,9 +95,9 @@ void Context_WaitOneUpdateAll_wrapped(xn::Context& self, xn::ProductionNode& nod
     check( self.WaitOneUpdateAll(node) );
 }
 
-xn::ProductionNode* Context_FindExistingNode_wrapped(xn::Context& self, XnProductionNodeType type) {
-    xn::ProductionNode* node = new xn::ProductionNode;
-    check( self.FindExistingNode(type, *node) );
+xn::ProductionNode Context_FindExistingNode_wrapped(xn::Context& self, XnProductionNodeType type) {
+    xn::ProductionNode node;
+    check( self.FindExistingNode(type, node) );
     return node;
 }
 

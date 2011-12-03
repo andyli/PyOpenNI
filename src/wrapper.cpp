@@ -200,7 +200,7 @@ BOOST_PYTHON_MODULE(openni) {
     // global functions
 
     def("bindings_version", version);
-    def("version", &GetVersion_wrapped, return_value_policy<manage_new_object>());
+    def("version", &GetVersion_wrapped);
 
 
 
@@ -379,7 +379,7 @@ BOOST_PYTHON_MODULE(openni) {
             .def("wait_none_update_all", &Context_WaitNoneUpdateAll_wrapped, Context_WaitNoneUpdateAll_DOC)
             .def("start_generating_all", &Context_StartGeneratingAll_wrapped, Context_StartGeneratingAll_DOC)
             .def("stop_generating_all", &Context_StopGeneratingAll_wrapped, Context_StopGeneratingAll_DOC)
-            .def("find_existing_node", &Context_FindExistingNode_wrapped, return_value_policy<manage_new_object>())
+            .def("find_existing_node", &Context_FindExistingNode_wrapped)
 
             ;
 
