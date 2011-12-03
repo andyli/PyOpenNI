@@ -27,4 +27,6 @@
 #include "wrapperTypes.h"
 #include "wrapperExceptions.h"
 
-//Currently empty
+XnDepthPixel DepthMetaData_ZRes(xn::DepthMetaData& self) {
+    return self.ZRes();
+}

@@ -251,9 +251,9 @@ BOOST_PYTHON_MODULE(openni) {
             .add_property("pixel_format", &xn::MapMetaData::PixelFormat)
             .add_property("fps", &MapMetaData_FPS_wrapped)
             
-            .add_property("res", make_function(&MapMetaData_Res))
-            .add_property("offset", make_function(&MapMetaData_Offset))
-            .add_property("full_res", make_function(&MapMetaData_FullRes))
+            .add_property("res", &MapMetaData_Res)
+            .add_property("offset", &MapMetaData_Offset)
+            .add_property("full_res", &MapMetaData_FullRes)
             ;
 
 
@@ -270,6 +270,9 @@ BOOST_PYTHON_MODULE(openni) {
 
     class_< xn::DepthMetaData,
             bases<xn::MapMetaData>, boost::noncopyable> ("DepthMetaData", no_init)
+    
+            .add_property("z_res", &DepthMetaData_ZRes )
+    
             ;
 
 
@@ -319,6 +322,13 @@ BOOST_PYTHON_MODULE(openni) {
             bases<xn::Capability> > ("PoseDetectionCapability", no_init)
 
             .def("count_poses", &xn::PoseDetectionCapability::GetNumberOfPoses)
+            .def("start_detection", &PoseDetectionCapability_StartPoseDetection_wrapped)
+            .def("stop_detection", &PoseDetectionCapability_StopPoseDetection_wrapped)
+    
+            .def("register_pose_detected_cb", &PoseDetectionCapability_RegisterPoseDetectedCallback, return_value_policy<return_opaque_pointer>())
+            .def("unregister_pose_detected_cb", &PoseDetectionCapability_UnregisterPoseDetectedCallback)
+            .def("register_out_of_pose_cb", &PoseDetectionCapability_RegisterOutOfPoseCallback, return_value_policy<return_opaque_pointer>())
+            .def("unregister_out_of_pose_cb", &PoseDetectionCapability_UnregisterOutOfPoseCallback)
 
             ;
 

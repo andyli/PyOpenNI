@@ -29,8 +29,6 @@
 
 #include "wrapperExceptions.h"
 
-#include <iostream>
-
 // One of the core methods of PyOpenNI:
 // It tries to find the exposed class that best matches the given node.
 BP::object wrapNode(XnNodeHandle node) {
@@ -41,8 +39,6 @@ BP::object wrapNode(XnNodeHandle node) {
     XnNodeInfo* info = xnGetNodeInfo(node);
     const XnProductionNodeDescription* desc = xnNodeInfoGetDescription(info);
     XnProductionNodeType original = desc->Type;
-    
-    std::cout << "Type is " << original << std::endl;
     
     if (isInstanceOf(original, XN_NODE_TYPE_PRODUCTION_NODE)) {
         if (isInstanceOf(original, XN_NODE_TYPE_GENERATOR)) {
@@ -66,6 +62,7 @@ BP::object wrapNode(XnNodeHandle node) {
         return BP::object(xn::ProductionNode(node));
     }
     
+    //This should never happen
     PyErr_SetString(PyExc_TypeError, "Couldn't find appropiate type to wrap node.");
     throw BP::error_already_set();
 }

@@ -27,4 +27,46 @@
 #include "wrapperTypes.h"
 #include "wrapperExceptions.h"
 
-//Currently empty
+void PoseDetectionCapability_StartPoseDetection_wrapped(xn::PoseDetectionCapability& self, std::string pose, XnUserID user) {
+    check( self.StartPoseDetection(pose.c_str(), user) );
+}
+
+void PoseDetectionCapability_StopPoseDetection_wrapped(xn::PoseDetectionCapability& self, XnUserID user) {
+    check( self.StopPoseDetection(user) );
+}
+
+XnCallbackHandle PoseDetectionCapability_RegisterPoseDetectedCallback(xn::PoseDetectionCapability& self, BP::object callback) {
+    XnCallbackHandle handle;
+    
+    BP::object* cookie = new BP::object;
+    *cookie = callback;
+    
+    check( self.RegisterToPoseDetected(&PoseDetectionCapability_PoseDetection_cb, cookie, handle) );
+    
+    return handle;
+}
+void PoseDetectionCapability_UnregisterPoseDetectedCallback(xn::PoseDetectionCapability& self, XnCallbackHandle handle) {
+    self.UnregisterFromPoseDetected(handle);
+}
+
+XnCallbackHandle PoseDetectionCapability_RegisterOutOfPoseCallback(xn::PoseDetectionCapability& self, BP::object callback) {
+    XnCallbackHandle handle;
+    
+    BP::object* cookie = new BP::object;
+    *cookie = callback;
+    
+    check( self.RegisterToOutOfPose(&PoseDetectionCapability_PoseDetection_cb, cookie, handle) );
+    
+    return handle;
+}
+void PoseDetectionCapability_UnregisterOutOfPoseCallback(xn::PoseDetectionCapability& self, XnCallbackHandle handle) {
+    self.UnregisterFromOutOfPose(handle);
+}
+
+
+/** Internal callback implementations **/
+void PoseDetectionCapability_PoseDetection_cb(xn::PoseDetectionCapability& src, const XnChar* pose, XnUserID user, void* cookie) {
+    BP::object& func = *((BP::object*)cookie);
+    
+    func(src, std::string(pose), user);
+}

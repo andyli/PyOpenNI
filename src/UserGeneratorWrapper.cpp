@@ -69,9 +69,9 @@ BP::list UserGenerator_GetCoM_wrapped(xn::UserGenerator& self, XnUserID user) {
 XnCallbackHandle UserGenerator_RegisterUserCallbacks_wrapped(xn::UserGenerator& self, BP::object newUser, BP::object lostUser) {
     checkValid(self);
     
-    XnCallbackHandle handle; //TODO: test this
+    XnCallbackHandle handle;
     
-    BP::object* cookie = new BP::object [2];//FIXME: fix cookie
+    BP::object* cookie = new BP::object [2]; //FIXME: fix cookie
     
     cookie[0] = newUser;
     cookie[1] = lostUser;

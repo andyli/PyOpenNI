@@ -27,6 +27,6 @@
 #include <XnCppWrapper.h>
 #include "wrapperTypes.h"
 
-//Currently empty
+XnDepthPixel DepthMetaData_ZRes(xn::DepthMetaData& self);
 
 #endif	/* DEPTH_META_DATA_WRAPPER_H */

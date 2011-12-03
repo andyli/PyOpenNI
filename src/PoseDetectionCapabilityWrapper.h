@@ -27,6 +27,18 @@
 #include <XnCppWrapper.h>
 #include "wrapperTypes.h"
 
-//Currently empty
+void PoseDetectionCapability_StartPoseDetection_wrapped(xn::PoseDetectionCapability& self, std::string pose, XnUserID user);
+
+void PoseDetectionCapability_StopPoseDetection_wrapped(xn::PoseDetectionCapability& self, XnUserID user);
+
+XnCallbackHandle PoseDetectionCapability_RegisterPoseDetectedCallback(xn::PoseDetectionCapability& self, BP::object callback);
+void PoseDetectionCapability_UnregisterPoseDetectedCallback(xn::PoseDetectionCapability& self, XnCallbackHandle handle);
+
+XnCallbackHandle PoseDetectionCapability_RegisterOutOfPoseCallback(xn::PoseDetectionCapability& self, BP::object callback);
+void PoseDetectionCapability_UnregisterOutOfPoseCallback(xn::PoseDetectionCapability& self, XnCallbackHandle handle);
+
+
+/** Internal callback implementations **/
+void PoseDetectionCapability_PoseDetection_cb(xn::PoseDetectionCapability& src, const XnChar* pose, XnUserID user, void* cookie);
 
 #endif	/* POSE_DETECTION_CAPABILITY_WRAPPER_H */
