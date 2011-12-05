@@ -23,6 +23,7 @@
 
 
 # Find the needed libraries
+find_package (PythonInterp REQUIRED)
 find_package (PythonLibs REQUIRED)
 include_directories(${PYTHON_INCLUDE_DIRS})
 set(LIBS ${LIBS} ${PYTHON_LIBRARIES})
@@ -34,6 +35,20 @@ set(LIBS ${LIBS} ${OPENNI_LIBRARIES})
 find_package (Boost REQUIRED COMPONENTS python)
 include_directories(${Boost_INCLUDE_DIRS})
 set(LIBS ${LIBS} ${Boost_LIBRARIES})
+
+
+# Set custom compiler flags for Python
+execute_process (COMMAND ${PYTHON_EXECUTABLE} "compilerFlags.py"
+                 WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/cmake
+                 RESULT_VARIABLE PYFLAGS_RESULT
+                 OUTPUT_VARIABLE PYFLAGS)
+if (NOT (${PYFLAGS_RESULT} EQUAL 0))
+    message (WARNING "Oops! Could not found compiler flags. Continuing anyway.")
+else (NOT (${PYFLAGS_RESULT} EQUAL 0))
+    add_definitions (${PYFLAGS})
+    message (STATUS "Detected CXX compiler flags for Python")
+endif (NOT (${PYFLAGS_RESULT} EQUAL 0))
+
 
 
 set (SOURCES

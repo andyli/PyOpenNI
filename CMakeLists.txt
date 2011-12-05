@@ -51,6 +51,7 @@ set(Boost_ADDITIONAL_VERSIONS "1.47" "1.47.0" "1.47.1" "1.48" "1.48.0")
 
 project (PyOpenNI)
 
+
 # Build the library
 add_subdirectory (src)
 
