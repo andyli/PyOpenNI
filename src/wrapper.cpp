@@ -158,6 +158,22 @@ BOOST_PYTHON_MODULE(openni) {
             .export_values()
             ;
     
+    enum_< XnCalibrationStatus > ("CalibrationStatus")
+            .value("CALIBRATION_STATUS_OK", XN_CALIBRATION_STATUS_OK)
+            .value("CALIBRATION_STATUS_NO_USER", XN_CALIBRATION_STATUS_NO_USER)
+            .value("CALIBRATION_STATUS_ARM", XN_CALIBRATION_STATUS_ARM)
+            .value("CALIBRATION_STATUS_LEG", XN_CALIBRATION_STATUS_LEG)
+            .value("CALIBRATION_STATUS_HEAD", XN_CALIBRATION_STATUS_HEAD)
+            .value("CALIBRATION_STATUS_TORSO", XN_CALIBRATION_STATUS_TORSO)
+            .value("CALIBRATION_STATUS_TOP_FOV", XN_CALIBRATION_STATUS_TOP_FOV)
+            .value("CALIBRATION_STATUS_SIDE_FOV", XN_CALIBRATION_STATUS_SIDE_FOV)
+            .value("CALIBRATION_STATUS_POSE", XN_CALIBRATION_STATUS_POSE)
+            //.value("CALIBRATION_STATUS_MANUAL_ABORT", XN_CALIBRATION_STATUS_MANUAL_ABORT)
+            //.value("CALIBRATION_STATUS_MANUAL_RESET", XN_CALIBRATION_STATUS_MANUAL_RESET)
+            //.value("CALIBRATION_STATUS_TIMEOUT_FAIL", XN_CALIBRATION_STATUS_TIMEOUT_FAIL)
+            .export_values()
+            ;
+    
     ////////////////////////////////////////////////////////////////////////////
     // capability names
     
@@ -367,7 +383,15 @@ BOOST_PYTHON_MODULE(openni) {
             .def("get_joint", &SkeletonCapability_GetJoint_wrapped)
             .def("get_joint_orientation", &SkeletonCapability_GetJointOrientation_wrapped)
             .def("get_joint_position", &SkeletonCapability_GetJointPosition_wrapped)
+    
+            .def("register_c_start_cb", &SkeletonCapability_RegisterCalibrationStart, return_value_policy<return_opaque_pointer>())
+            .def("register_c_complete_cb", &SkeletonCapability_RegisterCalibrationComplete, return_value_policy<return_opaque_pointer>())
+            .def("register_c_in_progress_cb", &SkeletonCapability_RegisterCalibrationInProgress, return_value_policy<return_opaque_pointer>())
 
+            .def("unregister_c_start_cb", &SkeletonCapability_UnregisterCalibrationStart)
+            .def("unregister_c_complete_cb", &SkeletonCapability_UnregisterCalibrationComplete)
+            .def("unregister_c_in_progress_cb", &SkeletonCapability_UnregisterCalibrationInProgress)
+    
             ;
 
 

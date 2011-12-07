@@ -75,6 +75,51 @@ void SkeletonCapability_SetSmoothing_wrapped(xn::SkeletonCapability& self, XnFlo
     check( self.SetSmoothing(smoothing) );
 }
 
+/** Callbacks **/
+
+XnCallbackHandle SkeletonCapability_RegisterCalibrationStart(xn::SkeletonCapability& self, BP::object& callback) {
+    XnCallbackHandle handle;
+    
+    BP::object* cookie = new BP::object;
+    *cookie = callback;
+    
+    check( self.RegisterToCalibrationStart(&SkeletonCapability_CalibrationStart_cb, cookie, handle) );
+    
+    return handle;
+}
+void SkeletonCapability_UnregisterCalibrationStart(xn::SkeletonCapability& self, XnCallbackHandle handle) {
+    check( self.UnregisterFromCalibrationStart(handle) );
+}
+
+XnCallbackHandle SkeletonCapability_RegisterCalibrationComplete(xn::SkeletonCapability& self, BP::object& callback) {
+    XnCallbackHandle handle;
+    
+    BP::object* cookie = new BP::object;
+    *cookie = callback;
+    
+    check( self.RegisterToCalibrationComplete(&SkeletonCapability_CalibrationStatus_cb, cookie, handle) );
+    
+    return handle;
+}
+void SkeletonCapability_UnregisterCalibrationComplete(xn::SkeletonCapability& self, XnCallbackHandle handle) {
+    self.UnregisterFromCalibrationComplete(handle);
+}
+
+XnCallbackHandle SkeletonCapability_RegisterCalibrationInProgress(xn::SkeletonCapability& self, BP::object& callback) {
+    XnCallbackHandle handle;
+    
+    BP::object* cookie = new BP::object;
+    *cookie = callback;
+    
+    check( self.RegisterToCalibrationInProgress(&SkeletonCapability_CalibrationStatus_cb, cookie, handle) );
+    
+    return handle;
+}
+void SkeletonCapability_UnregisterCalibrationInProgress(xn::SkeletonCapability& self, XnCallbackHandle handle) {
+    self.UnregisterFromCalibrationInProgress(handle);
+}
+
+
 /** Getting individual joints orientation/position **/
 XnSkeletonJointOrientation SkeletonCapability_GetJointOrientation_wrapped(xn::SkeletonCapability& self, XnUserID user, XnSkeletonJoint joint) {
     XnSkeletonJointOrientation ret;
@@ -90,4 +135,19 @@ XnSkeletonJointTransformation SkeletonCapability_GetJoint_wrapped(xn::SkeletonCa
     XnSkeletonJointTransformation ret;
     check( self.GetSkeletonJoint(user, joint, ret) );
     return ret;
+}
+
+/** Internal callback implementations **/
+
+void SkeletonCapability_CalibrationStart_cb(xn::SkeletonCapability &src, XnUserID user, void *cookie) {
+    BP::object& func = *((BP::object*)cookie);
+    
+    func(src, user);
+}
+
+//This is used for both CalibrationInProgress and CalibrationCompleted
+void SkeletonCapability_CalibrationStatus_cb(xn::SkeletonCapability &src, XnUserID user, XnCalibrationStatus status, void *cookie) {
+    BP::object& func = *((BP::object*)cookie);
+    
+    func(src, user, status);
 }

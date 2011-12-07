@@ -48,9 +48,28 @@ void SkeletonCapability_IsCalibrationData_wrapped(xn::SkeletonCapability& self, 
 /** Other properties and methods **/
 void SkeletonCapability_SetSmoothing_wrapped(xn::SkeletonCapability& self, XnFloat smoothing);
 
+/** Callbacks **/
+
+XnCallbackHandle SkeletonCapability_RegisterCalibrationStart(xn::SkeletonCapability& self, BP::object& callback);
+void SkeletonCapability_UnregisterCalibrationStart(xn::SkeletonCapability& self, XnCallbackHandle handle);
+
+XnCallbackHandle SkeletonCapability_RegisterCalibrationComplete(xn::SkeletonCapability& self, BP::object& callback);
+void SkeletonCapability_UnregisterCalibrationComplete(xn::SkeletonCapability& self, XnCallbackHandle handle);
+
+XnCallbackHandle SkeletonCapability_RegisterCalibrationInProgress(xn::SkeletonCapability& self, BP::object& callback);
+void SkeletonCapability_UnregisterCalibrationInProgress(xn::SkeletonCapability& self, XnCallbackHandle handle);
+
+
 /** Getting individual joints orientation/position **/
 XnSkeletonJointOrientation SkeletonCapability_GetJointOrientation_wrapped(xn::SkeletonCapability& self, XnUserID user, XnSkeletonJoint joint);
 XnSkeletonJointPosition SkeletonCapability_GetJointPosition_wrapped(xn::SkeletonCapability& self, XnUserID user, XnSkeletonJoint joint);
 XnSkeletonJointTransformation SkeletonCapability_GetJoint_wrapped(xn::SkeletonCapability& self, XnUserID user, XnSkeletonJoint joint);
+
+/** Internal callback implementations **/
+
+void SkeletonCapability_CalibrationStart_cb(xn::SkeletonCapability &src, XnUserID user, void *cookie);
+
+//This is used for both CalibrationInProgress and CalibrationCompleted
+void SkeletonCapability_CalibrationStatus_cb(xn::SkeletonCapability &src, XnUserID user, XnCalibrationStatus status, void *cookie);
 
 #endif	/* SKELETON_CAPABILITY_WRAPPER_H */
