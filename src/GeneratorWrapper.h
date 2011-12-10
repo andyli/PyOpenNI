@@ -36,4 +36,7 @@ void Generator_SetGenerating(xn::Generator& self, XnBool value);
 
 XnBool Generator_IsDataNew_wrapped(xn::Generator& self);
 
+XnUInt64 Generator_GetTimestamp_wrapped(xn::Generator& self);
+XnUInt32 Generator_GetFrameID_wrapped(xn::Generator& self);
+
 #endif	/* GENERATOR_WRAPPER_H */

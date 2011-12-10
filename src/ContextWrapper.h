@@ -49,4 +49,6 @@ BP::object Context_FindExistingNode_wrapped(xn::Context& self, XnProductionNodeT
 
 void Context_Shutdown_wrapped(xn::Context& self);
 
+XnBool Context_IsValid(xn::Context& self);
+
 #endif    // CONTEXT_WRAPPER_H

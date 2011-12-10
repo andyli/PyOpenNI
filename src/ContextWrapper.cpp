@@ -107,3 +107,7 @@ void Context_StartGeneratingAll_wrapped(xn::Context& self) {
 void Context_StopGeneratingAll_wrapped(xn::Context& self) {
     check( self.StopGeneratingAll() );
 }
+
+XnBool Context_IsValid(xn::Context& self) {
+    return (self.GetUnderlyingObject() != NULL);
+}

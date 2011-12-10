@@ -70,3 +70,14 @@ XnBool Generator_IsDataNew_wrapped(xn::Generator& self) {
     
     return self.IsDataNew();
 }
+
+XnUInt64 Generator_GetTimestamp_wrapped(xn::Generator& self) {
+    checkValid(self);
+    
+    return self.GetTimestamp();
+}
+XnUInt32 Generator_GetFrameID_wrapped(xn::Generator& self) {
+    checkValid(self);
+    
+    return self.GetFrameID();
+}

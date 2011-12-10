@@ -31,4 +31,6 @@ XnBool ProductionNode_IsCapabilitySupported_wrapped(xn::ProductionNode& self, st
 
 std::string ProductionNode_GetName_wrapped(xn::ProductionNode& self);
 
+xn::Context ProductionNode_GetContext_wrapped(xn::ProductionNode& self);
+
 #endif	/* PRODUCTION_NODE_WRAPPER_H */

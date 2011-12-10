@@ -38,3 +38,11 @@ std::string ProductionNode_GetName_wrapped(xn::ProductionNode& self) {
     
     return std::string(self.GetName());
 }
+
+xn::Context ProductionNode_GetContext_wrapped(xn::ProductionNode& self) {
+    checkValid(self);
+    
+    xn::Context ret;
+    self.GetContext(ret);
+    return ret;
+}

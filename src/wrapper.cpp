@@ -383,7 +383,7 @@ BOOST_PYTHON_MODULE(openni) {
             .def("get_joint", &SkeletonCapability_GetJoint_wrapped)
             .def("get_joint_orientation", &SkeletonCapability_GetJointOrientation_wrapped)
             .def("get_joint_position", &SkeletonCapability_GetJointPosition_wrapped)
-    
+
             .def("register_c_start_cb", &SkeletonCapability_RegisterCalibrationStart, return_value_policy<return_opaque_pointer>())
             .def("register_c_complete_cb", &SkeletonCapability_RegisterCalibrationComplete, return_value_policy<return_opaque_pointer>())
             .def("register_c_in_progress_cb", &SkeletonCapability_RegisterCalibrationInProgress, return_value_policy<return_opaque_pointer>())
@@ -391,7 +391,7 @@ BOOST_PYTHON_MODULE(openni) {
             .def("unregister_c_start_cb", &SkeletonCapability_UnregisterCalibrationStart)
             .def("unregister_c_complete_cb", &SkeletonCapability_UnregisterCalibrationComplete)
             .def("unregister_c_in_progress_cb", &SkeletonCapability_UnregisterCalibrationInProgress)
-    
+
             ;
 
 
@@ -415,6 +415,8 @@ BOOST_PYTHON_MODULE(openni) {
             .def("stop_generating_all", &Context_StopGeneratingAll_wrapped, Context_StopGeneratingAll_DOC)
             .def("find_existing_node", &Context_FindExistingNode_wrapped)
 
+            .add_property("valid", &Context_IsValid)
+
             ;
 
 
@@ -426,6 +428,9 @@ BOOST_PYTHON_MODULE(openni) {
             .add_property("name", &ProductionNode_GetName_wrapped)
 
             .def("is_capability_supported", &ProductionNode_IsCapabilitySupported_wrapped, ProductionNode_IsCapabilitySupported_DOC)
+
+            .add_property("context", &ProductionNode_GetContext_wrapped)
+
             ;//TODO: add optional params
 
 
@@ -444,19 +449,21 @@ BOOST_PYTHON_MODULE(openni) {
             .add_property("data_new", &Generator_IsDataNew_wrapped, Generator_data_new_DOC)
             .add_property("generating", &Generator_IsGenerating_wrapped, &Generator_SetGenerating, Generator_generating_DOC)
 
+            .add_property("timestamp", &Generator_GetTimestamp_wrapped)
+            .add_property("frame_id", &Generator_GetFrameID_wrapped)
             ;
 
-    
+
     ////////////////////////////////////////////////////////////////////////////
     // class MapGenerator
 
     class_< xn::MapGenerator,
             bases<xn::Generator> > ("MapGenerator", no_init)
-    
+
             //.def("get_x_resolution", &MapGeneratorWrapper::XRes)
             //.def("get_y_resolution", &MapGeneratorWrapper::YRes)
             //.def("get_resolution", &MapGeneratorWrapper::Res)
-    
+
             ;
 
 
@@ -469,7 +476,7 @@ BOOST_PYTHON_MODULE(openni) {
             // methods
 
             .def("create", &ImageGenerator_Create_wrapped)
-    
+
             .add_property("metadata", make_function(&ImageGenerator_GetMetaData_wrapped, return_value_policy<manage_new_object>()))
 
             .def(
@@ -513,15 +520,15 @@ BOOST_PYTHON_MODULE(openni) {
 
             .def("get_raw_depth_map_8",
             &DepthGenerator_GetGrayscale8DepthMapRaw_wrapped)
-    
+
             .def("to_real_world", &DepthGenerator_ToRealWorld)
             .def("to_projective", &DepthGenerator_ToProjective)
 
             .add_property("metadata", make_function(&DepthGenerator_GetMetaData_wrapped, return_value_policy<manage_new_object>()))
-    
+
             ;
-    
-    
+
+
     ////////////////////////////////////////////////////////////////////////////
     // class GestureGenerator
 
@@ -539,8 +546,8 @@ BOOST_PYTHON_MODULE(openni) {
             .def("unregister_gesture_cb", &GestureGenerator_UnregisterGestureCallbacks_wrapped)
 
             ;
-    
-    
+
+
     ////////////////////////////////////////////////////////////////////////////
     // class UserGenerator
 
@@ -548,11 +555,11 @@ BOOST_PYTHON_MODULE(openni) {
             bases<xn::Generator> >("UserGenerator")
 
             // capabilities
-    
+
             .add_property("skeleton_cap", &UserGenerator_GetSkeletonCap_wrapped)
             .add_property("pose_detection_cap", &UserGenerator_GetPoseDetectionCap_wrapped)
             .add_property("users", &UserGenerator_GetUsers_wrapped)
-    
+
             // methods
 
             .def("create", &UserGenerator_Create_wrapped)
@@ -560,7 +567,7 @@ BOOST_PYTHON_MODULE(openni) {
             .def("get_com", &UserGenerator_GetCoM_wrapped)
             .def("register_user_cb", &UserGenerator_RegisterUserCallbacks_wrapped, return_value_policy<return_opaque_pointer>())
             .def("unregister_user_cb", &UserGenerator_UnregisterUserCallbacks_wrapped)
-            
+
             ;
 
 
