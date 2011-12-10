@@ -40,19 +40,17 @@ XnUInt16 UserGenerator_CountUsers(xn::UserGenerator const & self) {
 }
 
 BP::list UserGenerator_GetUsers_wrapped(xn::UserGenerator& self) {
-    XnUInt16 len = self.GetNumberOfUsers();
-    //if there are 0 users, return an empty list
-    if (len == 0) {
-        return BP::list();
-    }
-    std::vector<XnUserID> result (len);
-    
-    check( self.GetUsers((XnUserID*)result.data(), len) );
-    
+    XnUInt16 users = self.GetNumberOfUsers();
     BP::list ret;
-    for (int i = 0; i < len; i++) {
-        XnUserID item = result.at(i);
-        ret.append(item);
+
+    if (users > 0) {
+        std::vector<XnUserID> result (users);
+    
+        check( self.GetUsers((XnUserID*)result.data(), users) );
+    
+        for (int i = 0; i < users; i++) {
+            ret.append(result.at(i));
+        }
     }
     return ret;
 }
