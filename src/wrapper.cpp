@@ -513,6 +513,9 @@ BOOST_PYTHON_MODULE(openni) {
 
             .def("get_raw_depth_map_8",
             &DepthGenerator_GetGrayscale8DepthMapRaw_wrapped)
+    
+            .def("to_real_world", &DepthGenerator_ToRealWorld)
+            .def("to_projective", &DepthGenerator_ToProjective)
 
             .add_property("metadata", make_function(&DepthGenerator_GetMetaData_wrapped, return_value_policy<manage_new_object>()))
     
@@ -548,6 +551,7 @@ BOOST_PYTHON_MODULE(openni) {
     
             .add_property("skeleton_cap", &UserGenerator_GetSkeletonCap_wrapped)
             .add_property("pose_detection_cap", &UserGenerator_GetPoseDetectionCap_wrapped)
+            .add_property("users", &UserGenerator_GetUsers_wrapped)
     
             // methods
 

@@ -23,6 +23,7 @@
 
 #include "UserGeneratorWrapper.h"
 
+#include <vector>
 #include <XnCppWrapper.h>
 #include "wrapperTypes.h"
 #include "wrapperExceptions.h"
@@ -36,6 +37,24 @@ XnUInt16 UserGenerator_CountUsers(xn::UserGenerator const & self) {
     checkValid(self);
     
     return self.GetNumberOfUsers();
+}
+
+BP::list UserGenerator_GetUsers_wrapped(xn::UserGenerator& self) {
+    XnUInt16 len = self.GetNumberOfUsers();
+    //if there are 0 users, return an empty list
+    if (len == 0) {
+        return BP::list();
+    }
+    std::vector<XnUserID> result (len);
+    
+    check( self.GetUsers((XnUserID*)result.data(), len) );
+    
+    BP::list ret;
+    for (int i = 0; i < len; i++) {
+        XnUserID item = result.at(i);
+        ret.append(item);
+    }
+    return ret;
 }
 
 xn::SkeletonCapability UserGenerator_GetSkeletonCap_wrapped(xn::UserGenerator& self) {

@@ -41,4 +41,8 @@ std::string DepthGenerator_GetGrayscale8DepthMapRaw_wrapped(xn::DepthGenerator c
 
 void DepthGenerator_Create_wrapped(xn::DepthGenerator& self, xn::Context& ctx);
 
+//WARNING: these methods convert a SINGLE point
+BP::list DepthGenerator_ToRealWorld(xn::DepthGenerator& self, BP::list point);
+BP::list DepthGenerator_ToProjective(xn::DepthGenerator& self, BP::list point);
+
 #endif    // DEPTH_GENERATOR_WRAPPER_H

@@ -101,3 +101,25 @@ std::string DepthGenerator_GetGrayscale8DepthMapRaw_wrapped(xn::DepthGenerator c
 void DepthGenerator_Create_wrapped(xn::DepthGenerator& self, xn::Context& ctx) {
     check( self.Create(ctx, NULL, NULL) );
 }
+
+//WARNING: these methods convert a SINGLE point
+BP::list DepthGenerator_ToRealWorld(xn::DepthGenerator& self, BP::list point) {
+    XnPoint3D projective [1];
+    projective[0] = convertToVec3D(point);
+    
+    XnPoint3D realWorld [1];
+    
+    check( self.ConvertProjectiveToRealWorld(1, projective, realWorld) );
+    
+    return convertVec3D(realWorld[0]);
+}
+BP::list DepthGenerator_ToProjective(xn::DepthGenerator& self, BP::list point) {
+    XnPoint3D realWorld [1];
+    realWorld[0] = convertToVec3D(point);
+    
+    XnPoint3D projective [1];
+    
+    check( self.ConvertProjectiveToRealWorld(1, projective, realWorld) );
+    
+    return convertVec3D(projective[0]);
+}

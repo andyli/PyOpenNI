@@ -30,6 +30,7 @@
 void UserGenerator_Create_wrapped(xn::UserGenerator& self, xn::Context& ctx);
 
 XnUInt16 UserGenerator_CountUsers(xn::UserGenerator const & self);
+BP::list UserGenerator_GetUsers_wrapped(xn::UserGenerator& self);
 
 xn::SkeletonCapability UserGenerator_GetSkeletonCap_wrapped(xn::UserGenerator& self);
 xn::PoseDetectionCapability UserGenerator_GetPoseDetectionCap_wrapped(xn::UserGenerator& self);
