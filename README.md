@@ -1,11 +1,11 @@
-# PyOpenNI #
+# PyOpenNI <br/>_More than a wrapper_</small> #
 
 ## Introduction ##
 
-**PyOpenNI** is a project providing bindings for the [OpenNI](http://openni.org) computer vision library on Python. It is based on [onipy](http://code.google.com/p/onipy) but adds many improvements to it:
+**PyOpenNI** is a project integrating the [OpenNI](http://openni.org) computer vision library on Python. It is based on [onipy](http://code.google.com/p/onipy) but adds many improvements to it:
 
  * Implemented more features.
-   - The first capabilities are now exposed!
+   - Some capabilities are now exposed!
    - Polymorphism on production nodes is handled correctly.
  * Removed unnecessary `OpenNI` prefixes.
  * Uses [CMake](http://cmake.org), the popular cross-platform buildsystem, to configure & compile the bindings.  
