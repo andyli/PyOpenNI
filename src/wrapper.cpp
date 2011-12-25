@@ -215,37 +215,43 @@ BOOST_PYTHON_MODULE(openni) {
     ////////////////////////////////////////////////////////////////////////////
     // global functions
 
-    def("bindings_version", version);
-    def("version", &GetVersion_wrapped);
+    def("bindings_version", version, "The bindings (PyOpenNI) version.");
+    def("version", &GetVersion_wrapped, "The OpenNI version.");
 
 
 
     ////////////////////////////////////////////////////////////////////////////
     // exception class OpenNIException
 
-    class_<OpenNIException> generalExceptionClass("OpenNIError",
+    class_<OpenNIException> generalExceptionClass("OpenNIError", OpenNIError_DOC,
             boost::python::init<XnStatus>());
 
     //properties
-    generalExceptionClass.add_property("message", &OpenNIException::getMessage)
-            .add_property("status", &OpenNIException::getStatus)
-            .add_property("status_name", &OpenNIException::getStatusName)
-            .add_property("status_string", &OpenNIException::getStatusString)
-            .def("__str__", &OpenNIException__str__);
+    generalExceptionClass
+            .add_property("status", &OpenNIException::getStatus, OpenNIError_status_DOC)
+            .add_property("status_name", &OpenNIException::getStatusName, OpenNIError_status_name_DOC)
+            .add_property("status_string", &OpenNIException::getStatusString, OpenNIError_status_string_DOC)
+            .def("__str__", &OpenNIException__str__, OpenNIError__str__DOC);
 
-    register_exception_translator<OpenNIException > (&translateGeneralException);
+    register_exception_translator<OpenNIException> (&translateGeneralException);
 
 
     ////////////////////////////////////////////////////////////////////////////
     // class Version
-    class_< XnVersion > ("Version")
-            .add_property("major", &XnVersion::nMajor, &XnVersion::nMajor)
-            .add_property("minor", &XnVersion::nMinor, &XnVersion::nMinor)
-            .add_property("maintenance", &XnVersion::nMaintenance, &XnVersion::nMaintenance)
-            .add_property("build", &XnVersion::nBuild, &XnVersion::nBuild)
+    class_< XnVersion > ("Version", "Represents a version.")
+            .add_property("major", &XnVersion::nMajor, &XnVersion::nMajor,
+                    "The major version number.")
+            .add_property("minor", &XnVersion::nMinor, &XnVersion::nMinor,
+                    "The minor version number.")
+            .add_property("maintenance", &XnVersion::nMaintenance, &XnVersion::nMaintenance,
+                    "The maintenance version.")
+            .add_property("build", &XnVersion::nBuild, &XnVersion::nBuild,
+                    "The build version number.")
     
-            .def("__cmp__", &compareVersions)
-            .def("__str__", &Version__str__);
+            .def("__cmp__", &compareVersions,
+                    "Compares this version with an other version.")
+            .def("__str__", &Version__str__,
+                    "Returns a string representation of this version.");
     
     
     ////////////////////////////////////////////////////////////////////////////
@@ -415,7 +421,7 @@ BOOST_PYTHON_MODULE(openni) {
             .def("stop_generating_all", &Context_StopGeneratingAll_wrapped, Context_StopGeneratingAll_DOC)
             .def("find_existing_node", &Context_FindExistingNode_wrapped)
 
-            .add_property("valid", &Context_IsValid)
+            .add_property("valid", &Context_IsValid, Context_valid_DOC)
 
             ;
 
@@ -425,11 +431,11 @@ BOOST_PYTHON_MODULE(openni) {
 
     class_< xn::ProductionNode > ("ProductionNode", ProductionNode_DOC)
             .add_property("valid", &xn::ProductionNode::IsValid, ProductionNode_valid_DOC)
-            .add_property("name", &ProductionNode_GetName_wrapped)
+            .add_property("name", &ProductionNode_GetName_wrapped, ProductionNode_name_DOC)
 
             .def("is_capability_supported", &ProductionNode_IsCapabilitySupported_wrapped, ProductionNode_IsCapabilitySupported_DOC)
 
-            .add_property("context", &ProductionNode_GetContext_wrapped)
+            .add_property("context", &ProductionNode_GetContext_wrapped, ProductionNode_context_DOC)
 
             ;//TODO: add optional params
 
@@ -449,8 +455,8 @@ BOOST_PYTHON_MODULE(openni) {
             .add_property("data_new", &Generator_IsDataNew_wrapped, Generator_data_new_DOC)
             .add_property("generating", &Generator_IsGenerating_wrapped, &Generator_SetGenerating, Generator_generating_DOC)
 
-            .add_property("timestamp", &Generator_GetTimestamp_wrapped)
-            .add_property("frame_id", &Generator_GetFrameID_wrapped)
+            .add_property("timestamp", &Generator_GetTimestamp_wrapped, Generator_timestamp_DOC)
+            .add_property("frame_id", &Generator_GetFrameID_wrapped, Generator_frame_id_DOC)
             ;
 
 

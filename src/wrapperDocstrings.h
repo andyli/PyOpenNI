@@ -24,10 +24,15 @@
 #ifndef WRAPPER_DOCSTRINGS_H
 #define	WRAPPER_DOCSTRINGS_H
 
+//72 ////////////////////////////////////////////////////////////////////////
+
 //Context class documentation
 const char* Context_DOC =
     "Represents an OpenNI context object.";
 
+const char* Context_valid_DOC =
+    "True if this is a valid Context (has been initialized),\n"
+    "False otherwise.";
 const char* Context_Init_DOC =
     "Initializates the OpenNI library.\n\n"
     "OpenNI *must* be initializated before any of its features can be used.";
@@ -64,6 +69,10 @@ const char* ProductionNode_valid_DOC =
     "True if this node is a valid node, False otherwise.\n\n"
     "An invalid node will raise a RuntimeError when trying to use\n"
     "any of its functions.";
+const char* ProductionNode_name_DOC =
+    "The instance name of this production node.";
+const char* ProductionNode_context_DOC =
+    "Gets the OpenNI context associated with this production node.";
 
 
 //Generator class documentation
@@ -88,6 +97,27 @@ const char* Generator_data_new_DOC =
     "Returns True if the current data is new, False otherwise.\n\n"
     "Meaning, did the data change on the last call to wait_and_update_data(),\n"
     "Context.wait_and_update_all() or Context.wait_one_update_all(...)?";
+const char* Generator_timestamp_DOC =
+    "The timestamp of current data, in microseconds.";
+const char* Generator_frame_id_DOC =
+    "The frame ID of current data.";
+
+
+
+const char* OpenNIError_DOC =
+    "Represents an error in OpenNI.\n"
+    "This is thrown by OpenNI when an error occurs.\n\n"
+    "You can use this class to get the name of an error code,\n"
+    "as well as convert it to a meaningful error string.";
+const char* OpenNIError_status_name_DOC =
+    "The name of the Xiron Status enumerator, as a string.";
+const char* OpenNIError_status_string_DOC =
+    "Converts the Xiron Status enumerator into a meaningful error string.";
+const char* OpenNIError_status_DOC =
+    "The Xiron Status enumerator (error code) of this error.";
+const char* OpenNIError__str__DOC =
+    "Gets a string representing this error.\n\n"
+    "Currently, this just returns the status_string property.";
 
 
 #endif	/* WRAPPER_DOCSTRINGS_H */
