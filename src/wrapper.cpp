@@ -550,6 +550,11 @@ BOOST_PYTHON_MODULE(openni) {
             .def("is_gesture_progress_supported", &GestureGenerator_IsGestureProgressSupported_wrapped)
             .def("register_gesture_cb", &GestureGenerator_RegisterGestureCallbacks_wrapped, return_value_policy<return_opaque_pointer>())
             .def("unregister_gesture_cb", &GestureGenerator_UnregisterGestureCallbacks_wrapped)
+            .def("count_available_gestures", &xn::GestureGenerator::GetNumberOfAvailableGestures)
+
+            //properties
+
+            .add_property("available_gestures", &GestureGenerator_GetAvailableGestures)
 
             ;
 

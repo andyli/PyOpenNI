@@ -24,10 +24,12 @@
 #include "GestureGeneratorWrapper.h"
 
 #include <XnCppWrapper.h>
+#include <XnPrdNode.h>
 #include "conversionHelpers.h"
 #include "wrapperExceptions.h"
 #include "wrapperTypes.h"
 #include <string>
+#include <vector>
 
 void GestureGenerator_Create_wrapped(xn::GestureGenerator& self, xn::Context& context) {
     check( self.Create(context, NULL, NULL) );
@@ -74,6 +76,22 @@ void GestureGenerator_UnregisterGestureCallbacks_wrapped(xn::GestureGenerator& s
     checkValid(self);
     
     self.UnregisterGestureCallbacks(*handle);
+}
+
+BP::list GestureGenerator_GetAvailableGestures(xn::GestureGenerator& self) {
+    XnUInt16 gestures = self.GetNumberOfAvailableGestures();
+    BP::list ret;
+
+    if (gestures > 0) {
+        std::vector<XnChar*> result (gestures);
+    
+        check( self.EnumerateGestures(*((XnChar**)(result.data())), gestures) );
+    
+        for (XnUInt16 i = 0; i < gestures; i++) {
+            ret.append(std::string(result.at(i)));
+        }
+    }
+    return ret;
 }
 
 

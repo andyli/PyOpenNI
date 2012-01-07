@@ -42,6 +42,8 @@ XnCallbackHandle* GestureGenerator_RegisterGestureCallbacks_wrapped(xn::GestureG
 
 void GestureGenerator_UnregisterGestureCallbacks_wrapped(xn::GestureGenerator& self, XnCallbackHandle* handle);
 
+BP::list GestureGenerator_GetAvailableGestures(xn::GestureGenerator& self);
+
 
 //Internal callback implementations
 void GestureRecognized_callback(xn::GestureGenerator &generator, const XnChar *strGesture, const XnPoint3D *pIDPosition, const XnPoint3D *pEndPosition, void *pCookie);

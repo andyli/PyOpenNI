@@ -48,7 +48,7 @@ BP::list UserGenerator_GetUsers_wrapped(xn::UserGenerator& self) {
     
         check( self.GetUsers((XnUserID*)result.data(), users) );
     
-        for (int i = 0; i < users; i++) {
+        for (XnUInt16 i = 0; i < users; i++) {
             ret.append(result.at(i));
         }
     }
