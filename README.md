@@ -1,8 +1,9 @@
-# PyOpenNI <br/>_More than a wrapper_</small> #
+# PyOpenNI #
 
 ## Introduction ##
 
-**PyOpenNI** is a project integrating the [OpenNI](http://openni.org) computer vision library on Python. It is based on [onipy](http://code.google.com/p/onipy) but adds many improvements to it:
+**PyOpenNI** is a project integrating the [OpenNI](http://openni.org) computer vision library on Python.
+It is based on [onipy](http://code.google.com/p/onipy) but adds many improvements to it:
 
  * Implemented more features.
    - Some capabilities are now exposed!
