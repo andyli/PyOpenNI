@@ -2,7 +2,7 @@
 
 ## Introduction ##
 
-**PyOpenNI** is a project integrating the [OpenNI](http://openni.org) computer vision library on Python.
+**PyOpenNI** is a project integrating the [OpenNI](http://openni.org) computer vision library on Python.  
 It is based on [onipy](http://code.google.com/p/onipy) but adds many improvements to it:
 
  * Implemented more features.
