@@ -23,6 +23,30 @@ PyOpenNI is written with the [Boost.Python](http://www.boost.org/doc/libs/releas
 **Note:** Currently, not all features are being exposed to Python. We are working to add more, but if you want to accelerate this process you're encouraged to collaborate. [Contact me](mailto:jmendeth@gmail.com) if you wish to help develop PyOpenNI.
 See the [github page](https://github.com/jmendeth/PyOpenNI) if you want to submit a **bug** or a **feature request**. Thanks!
 
+## Quick install ##
+
+Things you'll need:
+
+ - [GIT](http://git-scm.org) to download
+ - [OpenNI](http://openni.org) (obviously)
+ - [CMake](http://cmake.org)
+ - A compiler for your platform (GCC, XCode, VS, ...)
+
+Then, assuming Git and CMake are installed and in your PATH:
+
+```bash
+git clone https://github.com/jmendeth/PyOpenNI.git
+mkdir PyOpenNI-build
+cd PyOpenNI-build
+cmake ../PyOpenNI
+# Build with your compiler
+```
+
+That's it! The finished module is at `lib/openni.<ext>`; just copy it to your Python modules' directory.
+
+Instructions for specific platforms can be found on [the wiki](https://github.com/jmendeth/PyOpenNI/wiki/_pages).  
+Still in trouble? [Ask for support](https://github.com/jmendeth/PyOpenNI/issues/new).
+
 ## Using the bindings ##
 
 To import the module:
