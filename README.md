@@ -30,7 +30,7 @@ Things you'll need:
  - [GIT](http://git-scm.org) to download
  - [OpenNI](http://openni.org) (obviously)
  - [CMake](http://cmake.org)
- - A compiler for your platform (GCC, XCode, VS, ...)
+ - A compiler for your platform (GCC, XCode, VS, MinGW, ...)
 
 Then, assuming Git and CMake are installed and in your PATH:
 
