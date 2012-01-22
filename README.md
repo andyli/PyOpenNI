@@ -45,7 +45,7 @@ cmake ../PyOpenNI
 That's it! The finished module is at `lib/openni.<ext>`; just copy it to your Python modules' directory.
 
 Instructions for specific platforms can be found on [the wiki](https://github.com/jmendeth/PyOpenNI/wiki/_pages).  
-Still in trouble? [Ask for support](https://github.com/jmendeth/PyOpenNI/issues/new).
+Still in trouble? [Ask for support](https://github.com/jmendeth/PyOpenNI/issues/new) or [contact me directly](mailto:jmendeth@gmail.com).
 
 ## Using the bindings ##
 
