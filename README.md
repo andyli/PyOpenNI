@@ -30,7 +30,7 @@ Things you'll need:
  - [GIT](http://git-scm.org) to download
  - [OpenNI](http://openni.org) (obviously)
  - [CMake](http://cmake.org)
- - A compiler for your platform (GCC, XCode, VS, MinGW, ...)
+ - A compiler for your platform (G++, XCode, VS, MinGW, ...)
 
 Then, assuming Git and CMake are installed and in your PATH:
 
@@ -45,7 +45,7 @@ cmake ../PyOpenNI
 That's it! The finished module is at `lib/openni.<ext>`; just copy it to your Python modules' directory.
 
 Instructions for specific platforms can be found on [the wiki](https://github.com/jmendeth/PyOpenNI/wiki/_pages).  
-Still in trouble? [Ask for support](https://github.com/jmendeth/PyOpenNI/issues/new) or [contact me directly](mailto:jmendeth@gmail.com).
+Still in trouble? [Signup](https://github.com/signup/free) on Github (it's free!) and [ask for support](https://github.com/jmendeth/PyOpenNI/issues/new).
 
 ## Using the bindings ##
 
