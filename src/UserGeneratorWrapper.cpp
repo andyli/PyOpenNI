@@ -40,6 +40,8 @@ XnUInt16 UserGenerator_CountUsers(xn::UserGenerator const & self) {
 }
 
 BP::list UserGenerator_GetUsers_wrapped(xn::UserGenerator& self) {
+    checkValid(self);
+
     XnUInt16 users = self.GetNumberOfUsers();
     BP::list ret;
 

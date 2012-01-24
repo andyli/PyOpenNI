@@ -64,29 +64,31 @@ XnCallbackHandle* GestureGenerator_RegisterGestureCallbacks_wrapped(xn::GestureG
     
     XnCallbackHandle* handle = new XnCallbackHandle;
     BP::object* cookie = new BP::object [2];//FIXME: fix cookie
-    
+
     cookie[0] = gesture_recognized;
     cookie[1] = gesture_progress;
-    
+
     check( self.RegisterGestureCallbacks(&GestureRecognized_callback, &GestureProgress_callback, cookie, *handle) );
     return handle;
 }
 
 void GestureGenerator_UnregisterGestureCallbacks_wrapped(xn::GestureGenerator& self, XnCallbackHandle* handle) {
     checkValid(self);
-    
+
     self.UnregisterGestureCallbacks(*handle);
 }
 
 BP::list GestureGenerator_GetAvailableGestures(xn::GestureGenerator& self) {
+    checkValid(self);
+
     XnUInt16 gestures = self.GetNumberOfAvailableGestures();
     BP::list ret;
 
     if (gestures > 0) {
         std::vector<XnChar*> result (gestures);
-    
+
         check( self.EnumerateGestures(*((XnChar**)(result.data())), gestures) );
-    
+
         for (XnUInt16 i = 0; i < gestures; i++) {
             ret.append(std::string(result.at(i)));
         }
@@ -99,7 +101,7 @@ BP::list GestureGenerator_GetAvailableGestures(xn::GestureGenerator& self) {
 void GestureRecognized_callback(xn::GestureGenerator &generator, const XnChar *strGesture, const XnPoint3D *pIDPosition, const XnPoint3D *pEndPosition, void *pCookie) {
     std::string gesture (strGesture);
     BP::object& func = ((BP::object*)pCookie)[0];
-    
+
     //Call the function
     func(generator, gesture, convertVec3D(*pIDPosition), convertVec3D(*pEndPosition));
 }
@@ -107,7 +109,7 @@ void GestureRecognized_callback(xn::GestureGenerator &generator, const XnChar *s
 void GestureProgress_callback(xn::GestureGenerator &generator, const XnChar *strGesture, const XnPoint3D *pPosition, XnFloat fProgress, void *pCookie) {
     std::string gesture (strGesture);
     BP::object& func = ((BP::object*)pCookie)[1];
-    
+
     //Call the function
     func(generator, gesture, convertVec3D(*pPosition), fProgress);
 }
