@@ -1,8 +1,9 @@
-# PyOpenNI <br/>_More than a wrapper_</small> #
+# PyOpenNI #
 
 ## Introduction ##
 
-**PyOpenNI** is a project integrating the [OpenNI](http://openni.org) computer vision library on Python. It is based on [onipy](http://code.google.com/p/onipy) but adds many improvements to it:
+**PyOpenNI** is a project integrating the [OpenNI](http://openni.org) computer vision library on Python.  
+It is based on [onipy](http://code.google.com/p/onipy) but adds many improvements to it:
 
  * Implemented more features.
    - Some capabilities are now exposed!
@@ -12,15 +13,39 @@
    This way, it autodetects needed libraries and warns you if they're not found.
  * Code cleanup and formatted according to [PEP 8](http://www.python.org/dev/peps/pep-0008) rules.
  * Directory structure simplified.
- * **New!** Errors are handled gracefully through the class `OpenNIError`.
- * **New!** Re-wrote wrapper's core to make it more robust and avoid crashes.
- * **New!** Callbacks are now completely supported!
- * **New!** Some exposed features are now documented in Python.
+ * Errors are handled gracefully through the class `OpenNIError`.
+ * Re-wrote wrapper's core to make it more robust and avoid crashes.
+ * Callbacks are now completely supported!
+ * Some exposed features are now documented in Python.
 
 PyOpenNI is written with the [Boost.Python](http://www.boost.org/doc/libs/release/libs/python/doc/index.html) libraries. PyOpenNI is released under the [GNU LGPL](http://www.gnu.org/licenses/lgpl.html) version 3.
 
 **Note:** Currently, not all features are being exposed to Python. We are working to add more, but if you want to accelerate this process you're encouraged to collaborate. [Contact me](mailto:jmendeth@gmail.com) if you wish to help develop PyOpenNI.
 See the [github page](https://github.com/jmendeth/PyOpenNI) if you want to submit a **bug** or a **feature request**. Thanks!
+
+## Quick install ##
+
+Things you'll need:
+
+ - [GIT](http://git-scm.org) to download
+ - [OpenNI](http://openni.org) (obviously)
+ - [CMake](http://cmake.org)
+ - A compiler for your platform (G++, XCode, VS, MinGW, ...)
+
+Then, assuming Git and CMake are installed and in your PATH:
+
+```bash
+git clone https://github.com/jmendeth/PyOpenNI.git
+mkdir PyOpenNI-build
+cd PyOpenNI-build
+cmake ../PyOpenNI
+# Build with your compiler
+```
+
+That's it! The finished module is at `lib/openni.<ext>`; just copy it to your Python modules' directory.
+
+Instructions for specific platforms can be found on [the wiki](https://github.com/jmendeth/PyOpenNI/wiki/_pages).  
+Still in trouble? [Signup](https://github.com/signup/free) on Github (it's free!) and [ask for support](https://github.com/jmendeth/PyOpenNI/issues/new).
 
 ## Using the bindings ##
 
