@@ -25,13 +25,12 @@
 # Check that we aren't building in-source
 if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
     message(FATAL_ERROR
-        "We don't allow building in the original (source) directory!\n"
+        "We don't allow building in the original (source) directory!"
         "Please, remove the CMakeCache.txt and repeat from a dedicate directory, e.g:\n"
-        "\n"
-        " rm CMakeCache.txt\n"
-        " mkdir ../onipy-build\n"
-        " cd ../onipy-build\n"
-        " cmake ../onipy-2.0   #or whatever it is!"
+        " rm CMakeCache.txt"
+        " mkdir ../PyOpenNI-build"
+        " cd ../PyOpenNI-build"
+        " cmake ../PyOpenNI   #or whatever it is!"
     )
 endif()
 
