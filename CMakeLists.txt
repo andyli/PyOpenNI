@@ -45,7 +45,7 @@ set(RUNTIME_RESULT_DIR ${CMAKE_BINARY_DIR}/bin/)
 set(MODULE_NAME "openni")
 set(BUILD_SHARED_LIBS True)
 
-set(Boost_ADDITIONAL_VERSIONS "1.47" "1.47.0" "1.47.1" "1.48" "1.48.0")
+set(Boost_ADDITIONAL_VERSIONS "1.47" "1.47.0" "1.47.1" "1.48" "1.48.0" "1.49.0.beta.1" "1.49.0")
 
 
 project (PyOpenNI)
