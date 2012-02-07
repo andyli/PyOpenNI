@@ -28,9 +28,9 @@ See the [github page](https://github.com/jmendeth/PyOpenNI) if you want to submi
 Things you'll need:
 
  - [GIT](http://git-scm.org) to download
- - [OpenNI](http://openni.org) (obviously)
+ - [OpenNI](http://openni.org) and [Python](http://python.org) (obviously)
  - [CMake](http://cmake.org)
- - A compiler for your platform (G++, XCode, VS, MinGW, ...)
+ - A compiler for your platform (GCC, XCode, VS, MinGW, ...)
 
 Then, assuming Git and CMake are installed and in your PATH:
 
