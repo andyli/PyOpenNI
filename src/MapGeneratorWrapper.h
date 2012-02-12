@@ -32,4 +32,6 @@ void MapGenerator_SetRes(xn::MapGenerator& self, BP::list res);
 XnUInt32 MapGenerator_GetFPS(xn::MapGenerator& self);
 void MapGenerator_SetFPS(xn::MapGenerator& self, XnUInt32 fps);
 
+void MapGenerator_SetResolutionPreset(xn::MapGenerator& self, XnResolution res);
+
 #endif	/* MAP_GENERATOR_WRAPPER_H */
