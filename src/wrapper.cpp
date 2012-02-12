@@ -48,6 +48,7 @@
 #include "GestureGeneratorWrapper.h"
 #include "UserGeneratorWrapper.h"
 #include "VersionWrapper.h"
+#include "conversionHelpers.h"
 
 // OpenNI
 #include <XnOpenNI.h>
@@ -63,6 +64,10 @@ std::string version() {
     return OPENNI_WRAPPER_VERSION_STRING + DEBUG_TAG;
 
 } // version
+
+BP::list py_xnResolutionGetRes(XnResolution res) {
+    return convertPair(xnResolutionGetXRes(res), xnResolutionGetYRes(res));
+}
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -109,8 +114,7 @@ BOOST_PYTHON_MODULE(openni) {
             .value("NODE_TYPE_FIRST_EXTENSION", XN_NODE_TYPE_FIRST_EXTENSION)
             .value("NODE_TYPE_PRODUCTION_NODE", XN_NODE_TYPE_PRODUCTION_NODE)
             .value("NODE_TYPE_SCRIPT", XN_NODE_TYPE_SCRIPT)
-            .export_values()
-            ;
+            .export_values();
 
     enum_< XnPixelFormat > ("PixelFormat")
             .value("PIXEL_FORMAT_GRAYSCALE_16_BIT", XN_PIXEL_FORMAT_GRAYSCALE_16_BIT)
@@ -118,8 +122,7 @@ BOOST_PYTHON_MODULE(openni) {
             .value("PIXEL_FORMAT_MJPEG", XN_PIXEL_FORMAT_MJPEG)
             .value("PIXEL_FORMAT_RGB24", XN_PIXEL_FORMAT_RGB24)
             .value("PIXEL_FORMAT_YUV422", XN_PIXEL_FORMAT_YUV422)
-            .export_values()
-            ;
+            .export_values();
 
     enum_< XnSkeletonJoint > ("SkeletonJoint")
             .value("SKEL_HEAD", XN_SKEL_HEAD)
@@ -146,8 +149,7 @@ BOOST_PYTHON_MODULE(openni) {
             .value("SKEL_RIGHT_KNEE", XN_SKEL_RIGHT_KNEE)
             .value("SKEL_RIGHT_ANKLE", XN_SKEL_RIGHT_ANKLE)
             .value("SKEL_RIGHT_FOOT", XN_SKEL_RIGHT_FOOT)
-            .export_values()
-            ;
+            .export_values();
 
     enum_< XnSkeletonProfile > ("SkeletonProfile")
             .value("SKEL_PROFILE_NONE", XN_SKEL_PROFILE_NONE)
@@ -155,8 +157,7 @@ BOOST_PYTHON_MODULE(openni) {
             .value("SKEL_PROFILE_UPPER", XN_SKEL_PROFILE_UPPER)
             .value("SKEL_PROFILE_LOWER", XN_SKEL_PROFILE_LOWER)
             .value("SKEL_PROFILE_HEAD_HANDS", XN_SKEL_PROFILE_HEAD_HANDS)
-            .export_values()
-            ;
+            .export_values();
     
     enum_< XnCalibrationStatus > ("CalibrationStatus")
             .value("CALIBRATION_STATUS_OK", XN_CALIBRATION_STATUS_OK)
@@ -168,12 +169,32 @@ BOOST_PYTHON_MODULE(openni) {
             .value("CALIBRATION_STATUS_TOP_FOV", XN_CALIBRATION_STATUS_TOP_FOV)
             .value("CALIBRATION_STATUS_SIDE_FOV", XN_CALIBRATION_STATUS_SIDE_FOV)
             .value("CALIBRATION_STATUS_POSE", XN_CALIBRATION_STATUS_POSE)
-            //.value("CALIBRATION_STATUS_MANUAL_ABORT", XN_CALIBRATION_STATUS_MANUAL_ABORT)
-            //.value("CALIBRATION_STATUS_MANUAL_RESET", XN_CALIBRATION_STATUS_MANUAL_RESET)
-            //.value("CALIBRATION_STATUS_TIMEOUT_FAIL", XN_CALIBRATION_STATUS_TIMEOUT_FAIL)
-            .export_values()
-            ;
-    
+            .value("CALIBRATION_STATUS_MANUAL_ABORT", XN_CALIBRATION_STATUS_MANUAL_ABORT)
+            .value("CALIBRATION_STATUS_MANUAL_RESET", XN_CALIBRATION_STATUS_MANUAL_RESET)
+            .value("CALIBRATION_STATUS_TIMEOUT_FAIL", XN_CALIBRATION_STATUS_TIMEOUT_FAIL)
+            .export_values();
+
+    enum_< XnResolution > ("DefResolution")
+            .value("RES_CUSTOM", XN_RES_CUSTOM)
+            .value("RES_QQVGA", XN_RES_QQVGA)
+            .value("RES_CGA", XN_RES_CGA)
+            .value("RES_QVGA", XN_RES_QVGA)
+            .value("RES_VGA", XN_RES_VGA)
+            .value("RES_SVGA", XN_RES_SVGA)
+            .value("RES_XGA", XN_RES_XGA)
+            .value("RES_720P", XN_RES_720P)
+            .value("RES_SXGA", XN_RES_SXGA)
+            .value("RES_UXGA", XN_RES_UXGA)
+            .value("RES_1080P", XN_RES_1080P)
+            .value("RES_QCIF", XN_RES_QCIF)
+            .value("RES_240P", XN_RES_240P)
+            .value("RES_CIF", XN_RES_CIF)
+            .value("RES_WVGA", XN_RES_WVGA)
+            .value("RES_480P", XN_RES_480P)
+            .value("RES_576P", XN_RES_576P)
+            .value("RES_DV", XN_RES_DV)
+            .export_values();
+
     ////////////////////////////////////////////////////////////////////////////
     // capability names
     
@@ -217,6 +238,13 @@ BOOST_PYTHON_MODULE(openni) {
 
     def("bindings_version", version, "The bindings (PyOpenNI) version.");
     def("version", &GetVersion_wrapped, "The OpenNI version.");
+    
+    def("get_preset_xres", &xnResolutionGetXRes);
+    def("get_preset_yres", &xnResolutionGetYRes);
+    def("get_preset_res", &py_xnResolutionGetRes);
+    def("get_preset_from_name", &xnResolutionGetFromName);
+    def("get_preset_from_res", &xnResolutionGetFromXYRes);
+    def("get_preset_name", &xnResolutionGetName);
 
 
 
@@ -466,9 +494,10 @@ BOOST_PYTHON_MODULE(openni) {
     class_< xn::MapGenerator,
             bases<xn::Generator> > ("MapGenerator", no_init)
 
-            //.def("get_x_resolution", &MapGeneratorWrapper::XRes)
-            //.def("get_y_resolution", &MapGeneratorWrapper::YRes)
-            //.def("get_resolution", &MapGeneratorWrapper::Res)
+            .add_property("res", &MapGenerator_GetRes, &MapGenerator_SetRes)
+            .add_property("fps", &MapGenerator_GetFPS, &MapGenerator_SetFPS)
+
+            .def("set_resolution_preset", &MapGenerator_SetResolutionPreset)
 
             ;
 

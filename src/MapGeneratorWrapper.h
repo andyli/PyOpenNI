@@ -24,6 +24,12 @@
 #ifndef MAP_GENERATOR_WRAPPER_H
 #define	MAP_GENERATOR_WRAPPER_H
 
-//Currently empty
+#include "wrapperTypes.h"
+
+BP::list MapGenerator_GetRes(xn::MapGenerator& self);
+void MapGenerator_SetRes(xn::MapGenerator& self, BP::list res);
+
+XnUInt32 MapGenerator_GetFPS(xn::MapGenerator& self);
+void MapGenerator_SetFPS(xn::MapGenerator& self, XnUInt32 fps);
 
 #endif	/* MAP_GENERATOR_WRAPPER_H */

@@ -44,6 +44,7 @@ const std::string DEBUG_TAG = "";
 
 // return a string that specifies the version of this module
 std::string version();
+BP::list py_xnResolutionGetRes(XnResolution res);
 
 
 #endif    // WRAPPER_H
