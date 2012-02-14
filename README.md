@@ -20,7 +20,7 @@ It is based on [onipy](http://code.google.com/p/onipy) but adds many improvement
 
 PyOpenNI is written with the [Boost.Python](http://www.boost.org/doc/libs/release/libs/python/doc/index.html) libraries. PyOpenNI is released under the [GNU LGPL](http://www.gnu.org/licenses/lgpl.html) version 3.
 
-**Note:** Currently, not all features are being exposed to Python. We are working to add more, but if you want to accelerate this process you're encouraged to collaborate. [Contact me](mailto:jmendeth@gmail.com) if you wish to help develop PyOpenNI.
+**Note:** Currently, not all features are being exposed to Python (see the [status page](https://github.com/jmendeth/PyOpenNI/wiki/Current-features)). We are working to add more, but if you want to accelerate this process you're encouraged to collaborate. [Contact me](mailto:jmendeth@gmail.com) if you wish to help develop PyOpenNI.
 See the [github page](https://github.com/jmendeth/PyOpenNI) if you want to submit a **bug** or a **feature request**. Thanks!
 
 ## Quick install ##
@@ -47,7 +47,7 @@ That's it! The finished module is at `lib/openni.<ext>`; just copy it to your Py
 Instructions for specific platforms can be found on [the wiki](https://github.com/jmendeth/PyOpenNI/wiki/_pages).  
 Still in trouble? [Signup](https://github.com/signup/free) on Github (it's free!) and [ask for support](https://github.com/jmendeth/PyOpenNI/issues/new).
 
-## Using the bindings ##
+## Getting started ##
 
 To import the module:
 
