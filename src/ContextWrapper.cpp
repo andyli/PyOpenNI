@@ -20,6 +20,7 @@
  *
  * ***** END GPL LICENSE BLOCK ***** */
 
+#include <Python.h>
 
 #include "ContextWrapper.h"
 #include "wrapperExceptions.h"
