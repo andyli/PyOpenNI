@@ -117,3 +117,8 @@ set_target_properties (PyOpenNI PROPERTIES PREFIX "")
 set_target_properties (PyOpenNI PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${LIBRARY_RESULT_DIR})
 set_target_properties (PyOpenNI PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${ARCHIVE_RESULT_DIR})
 set_target_properties (PyOpenNI PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${RUNTIME_RESULT_DIR})
+
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    # OS X requires Python modules to have a .so extension but the default is .dylib
+    set(CMAKE_SHARED_LIBRARY_SUFFIX .so)
+endif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
