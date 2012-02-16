@@ -38,9 +38,8 @@ set(LIBS ${LIBS} ${Boost_LIBRARIES})
 
 
 # Set custom compiler flags for Python
+# Temporary FIX: OS X seems to have problems with these custom compiler flags.
 if (NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    # OS X seems to have problems with these custom compiler flags.
-    # Are they needed at all?
     execute_process (COMMAND ${PYTHON_EXECUTABLE} "compilerFlags.py"
                      WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/cmake
                      RESULT_VARIABLE PYFLAGS_RESULT
@@ -51,6 +50,9 @@ if (NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         add_definitions (${PYFLAGS})
         message (STATUS "Detected CXX compiler flags for Python")
     endif (NOT (${PYFLAGS_RESULT} EQUAL 0))
+else (NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    message (WARNING "Mac OS X detected! Skipping Python compiler flags (see issue 6)."
+             "Developers, remove this fix when no more needed.")
 endif (NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 
@@ -118,7 +120,8 @@ set_target_properties (PyOpenNI PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${LIBRARY_RE
 set_target_properties (PyOpenNI PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${ARCHIVE_RESULT_DIR})
 set_target_properties (PyOpenNI PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${RUNTIME_RESULT_DIR})
 
+# OS X requires Python modules to have a .so extension but the default is .dylib
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    # OS X requires Python modules to have a .so extension but the default is .dylib
     set(CMAKE_SHARED_LIBRARY_SUFFIX .so)
 endif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+
