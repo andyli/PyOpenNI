@@ -38,16 +38,20 @@ set(LIBS ${LIBS} ${Boost_LIBRARIES})
 
 
 # Set custom compiler flags for Python
-execute_process (COMMAND ${PYTHON_EXECUTABLE} "compilerFlags.py"
-                 WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/cmake
-                 RESULT_VARIABLE PYFLAGS_RESULT
-                 OUTPUT_VARIABLE PYFLAGS)
-if (NOT (${PYFLAGS_RESULT} EQUAL 0))
-    message (WARNING "Oops! Could not found compiler flags. Continuing anyway.")
-else (NOT (${PYFLAGS_RESULT} EQUAL 0))
-    add_definitions (${PYFLAGS})
-    message (STATUS "Detected CXX compiler flags for Python")
-endif (NOT (${PYFLAGS_RESULT} EQUAL 0))
+if (NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    # OS X seems to have problems with these custom compiler flags.
+    # Are they needed at all?
+    execute_process (COMMAND ${PYTHON_EXECUTABLE} "compilerFlags.py"
+                     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/cmake
+                     RESULT_VARIABLE PYFLAGS_RESULT
+                     OUTPUT_VARIABLE PYFLAGS)
+    if (NOT (${PYFLAGS_RESULT} EQUAL 0))
+        message (WARNING "Oops! Could not find compiler flags. Continuing anyway.")
+    else (NOT (${PYFLAGS_RESULT} EQUAL 0))
+        add_definitions (${PYFLAGS})
+        message (STATUS "Detected CXX compiler flags for Python")
+    endif (NOT (${PYFLAGS_RESULT} EQUAL 0))
+endif (NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 
 
