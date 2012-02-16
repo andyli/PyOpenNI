@@ -20,6 +20,7 @@
  *
  * ***** END GPL LICENSE BLOCK ***** */
 
+#include <Python.h>
 
 // Boost
 #include <boost/python.hpp>
