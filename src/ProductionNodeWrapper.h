@@ -24,8 +24,7 @@
 #ifndef PRODUCTION_NODE_WRAPPER_H
 #define	PRODUCTION_NODE_WRAPPER_H
 
-#include <XnCppWrapper.h>
-#include <string>
+#include "wrapperTypes.h"
 
 XnBool ProductionNode_IsCapabilitySupported_wrapped(xn::ProductionNode& self, std::string capabilityName);
 

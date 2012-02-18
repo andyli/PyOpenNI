@@ -20,14 +20,11 @@
  *
  * ***** END GPL LICENSE BLOCK ***** */
 
-#include <Python.h>
-
 #include "ContextWrapper.h"
+
+#include "wrapperTypes.h"
 #include "wrapperExceptions.h"
 #include "util/PythonOutputStream.h"
-
-#include <stddef.h>
-#include <XnCppWrapper.h>
 
 void Context_InitFromXmlFile_wrapped(xn::Context& self, const std::string& initializationFilename) {
 

@@ -20,14 +20,11 @@
  *
  * ***** END GPL LICENSE BLOCK ***** */
 
-
-#include <bits/stringfwd.h>
-
 #include "ImageGeneratorWrapper.h"
+
+#include "wrapperTypes.h"
 #include "wrapperExceptions.h"
 #include "conversionHelpers.h"
-#include <XnCppWrapper.h>
-
 #include "util/PythonOutputStream.h"
 
 xn::ImageMetaData* ImageGenerator_GetMetaData_wrapped(xn::ImageGenerator const & self) {

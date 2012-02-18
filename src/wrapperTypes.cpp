@@ -22,12 +22,9 @@
 
 #include "wrapperTypes.h"
 
-#include <XnCppWrapper.h>
 #include <XnUtils.h>
 #include <XnPrdNode.h>
 #include <XnPrdNodeInfo.h>
-
-#include "wrapperExceptions.h"
 
 // One of the core methods of PyOpenNI:
 // It tries to find the exposed class that best matches the given node.

@@ -23,8 +23,6 @@
 
 #include "OpenNIException.h"
 
-#include <string>
-
 std::string OpenNIException::getMessage() const {
     return getStatusString();
 }

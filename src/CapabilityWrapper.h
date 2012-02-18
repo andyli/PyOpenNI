@@ -24,9 +24,6 @@
 #ifndef CAPABILITY_WRAPPER_H
 #define	CAPABILITY_WRAPPER_H
 
-#include <XnCppWrapper.h>
-
-#include <XnCppWrapper.h>
 #include "wrapperTypes.h"
 
 //Currently empty

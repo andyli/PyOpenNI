@@ -24,7 +24,7 @@
 #ifndef OUTPUT_META_DATA_WRAPPER_H
 #define	OUTPUT_META_DATA_WRAPPER_H
 
-#include <XnCppWrapper.h>
+#include "wrapperTypes.h"
 
 XnUInt64 OutputMetaData_Timestamp_wrapped(xn::OutputMetaData& self);
 XnUInt32 OutputMetaData_FrameID_wrapped(xn::OutputMetaData& self);

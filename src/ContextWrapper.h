@@ -24,14 +24,6 @@
 #ifndef CONTEXT_WRAPPER_H
 #define CONTEXT_WRAPPER_H
 
-// STL
-#include <string>
-
-// OpenNI
-#include <XnOpenNI.h>
-#include <XnCppWrapper.h>
-
-// custom
 #include "wrapperTypes.h"
 
 void Context_Init_wrapped(xn::Context& self);

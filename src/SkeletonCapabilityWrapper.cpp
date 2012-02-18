@@ -23,8 +23,6 @@
 
 #include "SkeletonCapabilityWrapper.h"
 
-#include <XnCppWrapper.h>
-#include <XnTypes.h>
 #include "wrapperTypes.h"
 #include "wrapperExceptions.h"
 

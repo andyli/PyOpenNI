@@ -23,7 +23,7 @@
 
 #include "OutputMetaDataWrapper.h"
 
-#include <XnCppWrapper.h>
+#include "wrapperTypes.h"
 
 XnUInt64 OutputMetaData_Timestamp_wrapped(xn::OutputMetaData& self) {
     return self.Timestamp();

@@ -24,11 +24,6 @@
 #ifndef IMAGE_GENERATOR_WRAPPER_H
 #define IMAGE_GENERATOR_WRAPPER_H
 
-// OpenNI
-#include <XnOpenNI.h>
-#include <XnCppWrapper.h>
-
-// custom
 #include "wrapperTypes.h"
 
 BP::tuple ImageGenerator_GetRGB24ImageMapTuple_wrapped(xn::ImageGenerator const & self);

@@ -21,12 +21,11 @@
  * ***** END GPL LICENSE BLOCK ***** */
 
 
-#include <XnCppWrapper.h>
-
 #include "DepthGeneratorWrapper.h"
+
+#include "wrapperTypes.h"
 #include "wrapperExceptions.h"
 #include "conversionHelpers.h"
-
 #include "util/PythonOutputStream.h"
 
 xn::DepthMetaData* DepthGenerator_GetMetaData_wrapped(xn::DepthGenerator const & self) {

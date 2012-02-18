@@ -24,7 +24,6 @@
 #ifndef POSE_DETECTION_CAPABILITY_WRAPPER_H
 #define	POSE_DETECTION_CAPABILITY_WRAPPER_H
 
-#include <XnCppWrapper.h>
 #include "wrapperTypes.h"
 
 void PoseDetectionCapability_StartPoseDetection_wrapped(xn::PoseDetectionCapability& self, std::string pose, XnUserID user);

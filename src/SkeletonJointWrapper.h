@@ -24,7 +24,6 @@
 #ifndef SKELETON_JOINT_WRAPPER_H
 #define	SKELETON_JOINT_WRAPPER_H
 
-#include <XnCppWrapper.h>
 #include "wrapperTypes.h"
 
 BP::list XnSkeletonJointOrientation_GetMatrix(XnSkeletonJointOrientation& self);

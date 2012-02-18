@@ -23,14 +23,10 @@
 
 #include "wrapperExceptions.h"
 
-#include <assert.h>
-#include <Python.h>
-#include <boost/python.hpp>
+#include "wrapperTypes.h"
 
+#include <Python.h> //Here, we need to use Python API directly
 #include <XnStatus.h>
-#include <XnCppWrapper.h>
-
-#include "OpenNIException.h"
 
 void translateGeneralException(OpenNIException const &e) {
     boost::python::object pythonExceptionInstance(e);

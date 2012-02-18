@@ -24,11 +24,6 @@
 #ifndef DEPTH_GENERATOR_WRAPPER_H
 #define DEPTH_GENERATOR_WRAPPER_H
 
-// OpenNI
-#include <XnOpenNI.h>
-#include <XnCppWrapper.h>
-
-// custom
 #include "wrapperTypes.h"
 
 xn::DepthMetaData* DepthGenerator_GetMetaData_wrapped(xn::DepthGenerator const & self);

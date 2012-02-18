@@ -24,9 +24,7 @@
 #ifndef GESTURE_GENERATOR_WRAPPER_H
 #define	GESTURE_GENERATOR_WRAPPER_H
 
-#include <XnCppWrapper.h>
 #include "wrapperTypes.h"
-#include <string>
 
 void GestureGenerator_Create_wrapped(xn::GestureGenerator& self, xn::Context& context);
 

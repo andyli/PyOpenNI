@@ -24,12 +24,9 @@
 #ifndef WRAPPER_EXCEPTIONS_H
 #define	WRAPPER_EXCEPTIONS_H
 
-#include <stddef.h>
-#include <Python.h>
+#include "wrapperTypes.h"
 
 #include "OpenNIException.h"
-#include <XnStatus.h>
-#include <XnCppWrapper.h>
 
 void translateGeneralException(OpenNIException const &e);
 

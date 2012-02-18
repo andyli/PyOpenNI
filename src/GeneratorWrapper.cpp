@@ -23,11 +23,8 @@
 
 #include "GeneratorWrapper.h"
 
-#include <string>
-#include <boost/python/detail/cv_category.hpp>
+#include "wrapperTypes.h"
 #include "wrapperExceptions.h"
-
-#include <XnCppWrapper.h>
 
 void Generator_StartGenerating_wrapped(xn::Generator& self) {
     checkValid(self);

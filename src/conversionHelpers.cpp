@@ -20,10 +20,7 @@
  *
  * ***** END GPL LICENSE BLOCK ***** */
 
-
 #include "conversionHelpers.h"
-
-#include <XnTypes.h>
 
 BP::list convertPair(XnUInt32 x, XnUInt32 y) {
     BP::list ret;

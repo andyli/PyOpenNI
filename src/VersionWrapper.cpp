@@ -23,10 +23,10 @@
 
 #include "VersionWrapper.h"
 
-#include <string>
-
-#include "XnUtils.h"
+#include "wrapperTypes.h"
 #include "wrapperExceptions.h"
+
+#include <XnUtils.h>
 
 XnInt32 compareVersions(XnVersion& self, XnVersion& other) {
     return xnVersionCompare(&self, &other);

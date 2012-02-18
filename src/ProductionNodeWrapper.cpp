@@ -23,10 +23,8 @@
 
 #include "ProductionNodeWrapper.h"
 
+#include "wrapperTypes.h"
 #include "wrapperExceptions.h"
-
-#include <XnCppWrapper.h>
-#include <string>
 
 XnBool ProductionNode_IsCapabilitySupported_wrapped(xn::ProductionNode& self, std::string capabilityName) {
     //FIXME: throw warning here if not valid

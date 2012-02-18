@@ -24,13 +24,18 @@
 #ifndef WRAPPER_TYPES_H
 #define WRAPPER_TYPES_H
 
-// Boost
+// Boost.Python
+#include "Python.h" //FIX for OS X
 #include <boost/python.hpp>
 namespace BP = boost::python;
 
 // OpenNI
 #include <XnOpenNI.h>
 #include <XnCppWrapper.h>
+
+//Frequently used utilities
+#include <string>
+#include <vector>
 
 BP::object wrapNode(XnNodeHandle node);
 

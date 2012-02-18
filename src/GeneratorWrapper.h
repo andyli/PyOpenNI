@@ -24,7 +24,7 @@
 #ifndef GENERATOR_WRAPPER_H
 #define	GENERATOR_WRAPPER_H
 
-#include <XnCppWrapper.h>
+#include "wrapperTypes.h"
 
 void Generator_StartGenerating_wrapped(xn::Generator& self);
 void Generator_StopGenerating_wrapped(xn::Generator& self);

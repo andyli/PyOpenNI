@@ -20,19 +20,15 @@
  *
  * ***** END GPL LICENSE BLOCK ***** */
 
-#include <Python.h>
-
-// Boost
-#include <boost/python.hpp>
-
-// custom
 #include "wrapper.h"
 
+#include "wrapperTypes.h"
 #include "wrapperExceptions.h"
 #include "wrapperDocstrings.h"
+#include "conversionHelpers.h"
 
-#include "OpenNIException.h"
 #include "ContextWrapper.h"
+#include "VersionWrapper.h"
 #include "OutputMetaDataWrapper.h"
 #include "MapMetaDataWrapper.h"
 #include "DepthMetaDataWrapper.h"
@@ -48,14 +44,6 @@
 #include "DepthGeneratorWrapper.h"
 #include "GestureGeneratorWrapper.h"
 #include "UserGeneratorWrapper.h"
-#include "VersionWrapper.h"
-#include "conversionHelpers.h"
-
-// OpenNI
-#include <XnOpenNI.h>
-#include <XnCppWrapper.h>
-#include <boost/python/detail/cv_category.hpp>
-
 
 ////////////////////////////////////////////////////////////////////////////////
 // version

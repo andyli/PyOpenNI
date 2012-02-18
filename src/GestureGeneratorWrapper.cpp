@@ -23,13 +23,9 @@
 
 #include "GestureGeneratorWrapper.h"
 
-#include <XnCppWrapper.h>
-#include <XnPrdNode.h>
-#include "conversionHelpers.h"
-#include "wrapperExceptions.h"
 #include "wrapperTypes.h"
-#include <string>
-#include <vector>
+#include "wrapperExceptions.h"
+#include "conversionHelpers.h"
 
 void GestureGenerator_Create_wrapped(xn::GestureGenerator& self, xn::Context& context) {
     check( self.Create(context, NULL, NULL) );

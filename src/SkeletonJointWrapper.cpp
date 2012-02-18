@@ -23,7 +23,6 @@
 
 #include "SkeletonJointWrapper.h"
 
-#include <XnCppWrapper.h>
 #include "wrapperTypes.h"
 #include "wrapperExceptions.h"
 #include "conversionHelpers.h"

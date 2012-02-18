@@ -23,8 +23,6 @@
 
 #include "ImageMetaDataWrapper.h"
 
-#include <XnCppWrapper.h>
 #include "wrapperTypes.h"
-#include "wrapperExceptions.h"
 
 //Currently empty

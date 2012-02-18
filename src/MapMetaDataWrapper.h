@@ -24,7 +24,6 @@
 #ifndef MAP_META_DATA_WRAPPER_H
 #define	MAP_META_DATA_WRAPPER_H
 
-#include <XnCppWrapper.h>
 #include "wrapperTypes.h"
 
 BP::list MapMetaData_Res(xn::MapMetaData& self);

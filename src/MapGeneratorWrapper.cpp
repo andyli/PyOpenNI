@@ -23,9 +23,9 @@
 
 #include "MapGeneratorWrapper.h"
 
-#include <string>
-#include "conversionHelpers.h"
+#include "wrapperTypes.h"
 #include "wrapperExceptions.h"
+#include "conversionHelpers.h"
 
 BP::list MapGenerator_GetRes(xn::MapGenerator& self) {
     XnMapOutputMode outmode;

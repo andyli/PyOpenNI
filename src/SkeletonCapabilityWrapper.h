@@ -24,7 +24,6 @@
 #ifndef SKELETON_CAPABILITY_WRAPPER_H
 #define	SKELETON_CAPABILITY_WRAPPER_H
 
-#include <XnCppWrapper.h>
 #include "wrapperTypes.h"
 
 /** Managing active joints and profiles **/

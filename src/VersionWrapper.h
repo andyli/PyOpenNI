@@ -24,10 +24,9 @@
 #ifndef VERSION_WRAPPER_H
 #define	VERSION_WRAPPER_H
 
-#include <string>
+#include "wrapperTypes.h"
 
 #include <XnStatus.h>
-#include <XnTypes.h>
 
 XnInt32 compareVersions(XnVersion& self, XnVersion& other);
 

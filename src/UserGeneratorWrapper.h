@@ -24,7 +24,6 @@
 #ifndef USER_GENERATOR_WRAPPER_H
 #define	USER_GENERATOR_WRAPPER_H
 
-#include <XnCppWrapper.h>
 #include "wrapperTypes.h"
 
 void UserGenerator_Create_wrapped(xn::UserGenerator& self, xn::Context& ctx);

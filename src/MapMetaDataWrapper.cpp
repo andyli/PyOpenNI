@@ -23,7 +23,7 @@
 
 #include "MapMetaDataWrapper.h"
 
-#include <XnCppWrapper.h>
+#include "wrapperTypes.h"
 #include "conversionHelpers.h"
 
 BP::list MapMetaData_Res(xn::MapMetaData& self) {
