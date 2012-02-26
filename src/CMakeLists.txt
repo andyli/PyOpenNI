@@ -44,12 +44,12 @@ if (NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
                      WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/cmake
                      RESULT_VARIABLE PYFLAGS_RESULT
                      OUTPUT_VARIABLE PYFLAGS)
-    if (NOT (${PYFLAGS_RESULT} EQUAL 0))
-        message (WARNING "Oops! Could not find compiler flags. Continuing anyway.")
-    else (NOT (${PYFLAGS_RESULT} EQUAL 0))
+    if (${PYFLAGS_RESULT} EQUAL 0)
         add_definitions (${PYFLAGS})
         message (STATUS "Detected CXX compiler flags for Python")
-    endif (NOT (${PYFLAGS_RESULT} EQUAL 0))
+    else (${PYFLAGS_RESULT} EQUAL 0)
+        message (WARNING "Oops! Could not find compiler flags. Continuing anyway.")
+    endif (${PYFLAGS_RESULT} EQUAL 0)
 else (NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     message (WARNING "Mac OS X detected! Skipping Python compiler flags (see issue 6)."
              "Developers, remove this fix when no more needed.")
