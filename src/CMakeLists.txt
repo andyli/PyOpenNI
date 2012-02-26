@@ -99,6 +99,9 @@ set (SOURCES
     UserGeneratorWrapper.h
     ContextWrapper.cpp
     ContextWrapper.h
+    AudioGeneratorWrapper.cpp
+    AudioGeneratorWrapper.h
+
     OpenNIException.cpp
     OpenNIException.h
     conversionHelpers.cpp

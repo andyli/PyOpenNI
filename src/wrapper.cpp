@@ -44,6 +44,7 @@
 #include "DepthGeneratorWrapper.h"
 #include "GestureGeneratorWrapper.h"
 #include "UserGeneratorWrapper.h"
+#include "AudioGeneratorWrapper.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // version
