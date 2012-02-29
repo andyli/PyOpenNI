@@ -602,4 +602,30 @@ BOOST_PYTHON_MODULE(openni) {
             ;
 
 
+    ////////////////////////////////////////////////////////////////////////////
+    // class SceneAnalyzer
+
+    class_< xn::SceneAnalyzer,
+            bases<xn::MapGenerator> >("SceneAnalyzer")
+
+            // methods
+
+            //.def("create", &SceneAnalyzer_Create_wrapped)
+
+            ;
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // class AudioGenerator
+
+    class_< xn::AudioGenerator,
+            bases<xn::Generator> >("AudioGenerator")
+
+            // methods
+
+            //.def("create", &AudioGenerator_Create_wrapped)
+
+            ;
+
+
 } // End Boost Python module OpenNIPythonWrapper
