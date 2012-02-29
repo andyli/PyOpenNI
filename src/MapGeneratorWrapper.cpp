@@ -28,12 +28,16 @@
 #include "conversionHelpers.h"
 
 BP::list MapGenerator_GetRes(xn::MapGenerator& self) {
+    checkValid(self);
+
     XnMapOutputMode outmode;
     check( self.GetMapOutputMode(outmode) );
 
     return convertPair(outmode.nXRes, outmode.nYRes);
 }
 void MapGenerator_SetRes(xn::MapGenerator& self, BP::list res) {
+    checkValid(self);
+
     XnMapOutputMode outmode;
     check( self.GetMapOutputMode(outmode) );
     XnUInt32XYPair resc = convertToPair(res);
@@ -43,12 +47,16 @@ void MapGenerator_SetRes(xn::MapGenerator& self, BP::list res) {
     check( self.SetMapOutputMode(outmode) );
 }
 XnUInt32 MapGenerator_GetFPS(xn::MapGenerator& self) {
+    checkValid(self);
+
     XnMapOutputMode outmode;
     check( self.GetMapOutputMode(outmode) );
 
     return outmode.nFPS;
 }
 void MapGenerator_SetFPS(xn::MapGenerator& self, XnUInt32 fps) {
+    checkValid(self);
+
     XnMapOutputMode outmode;
     check( self.GetMapOutputMode(outmode) );
 
@@ -56,6 +64,8 @@ void MapGenerator_SetFPS(xn::MapGenerator& self, XnUInt32 fps) {
     check( self.SetMapOutputMode(outmode) );
 }
 void MapGenerator_SetResolutionPreset(xn::MapGenerator& self, XnResolution res) {
+    checkValid(self);
+
     XnMapOutputMode outmode;
     check( self.GetMapOutputMode(outmode) );
 
