@@ -101,6 +101,8 @@ set (SOURCES
     ContextWrapper.h
     AudioGeneratorWrapper.cpp
     AudioGeneratorWrapper.h
+    SceneAnalyzerWrapper.cpp
+    SceneAnalyzerWrapper.h
 
     OpenNIException.cpp
     OpenNIException.h

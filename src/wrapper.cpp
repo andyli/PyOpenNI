@@ -45,6 +45,7 @@
 #include "GestureGeneratorWrapper.h"
 #include "UserGeneratorWrapper.h"
 #include "AudioGeneratorWrapper.h"
+#include "SceneAnalyzerWrapper.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // version
