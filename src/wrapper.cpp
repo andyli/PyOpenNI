@@ -628,4 +628,4 @@ BOOST_PYTHON_MODULE(openni) {
             ;
 
 
-} // End Boost Python module OpenNIPythonWrapper
+} // End Boost.Python module PyOpenNI
