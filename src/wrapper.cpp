@@ -503,27 +503,24 @@ BOOST_PYTHON_MODULE(openni) {
 
             .def("create", &ImageGenerator_Create_wrapped)
 
-            .add_property("metadata", make_function(&ImageGenerator_GetMetaData_wrapped, return_value_policy<manage_new_object>()))
+            .add_property("metadata",
+                    make_function(&ImageGenerator_GetMetaData_wrapped,
+                    return_value_policy<manage_new_object>()))
 
-            .def(
-            "get_tuple_image_map",
-            &ImageGenerator_GetRGB24ImageMapTuple_wrapped)
+            .def("get_tuple_image_map",
+                    &ImageGenerator_GetRGB24ImageMapTuple_wrapped)
 
-            .def(
-            "get_raw_image_map",
-            &ImageGenerator_GetRGB24ImageMapRaw_wrapped)
+            .def("get_raw_image_map",
+                    &ImageGenerator_GetRGB24ImageMapRaw_wrapped)
 
-            .def(
-            "get_synced_image_map",
-            &ImageGenerator_GetSyncedRGB24ImageMapRaw_wrapped)
+            .def("get_synced_image_map",
+                    &ImageGenerator_GetSyncedRGB24ImageMapRaw_wrapped)
 
-            .def(
-            "get_raw_image_map_bgr",
-            &ImageGenerator_GetBGR24ImageMapRaw_wrapped)
+            .def("get_raw_image_map_bgr",
+                    &ImageGenerator_GetBGR24ImageMapRaw_wrapped)
 
-            .def(
-            "get_synced_image_map_bgr",
-            &ImageGenerator_GetSyncedBGR24ImageMapRaw_wrapped)
+            .def("get_synced_image_map_bgr",
+                    &ImageGenerator_GetSyncedBGR24ImageMapRaw_wrapped)
 
             ;
 
@@ -539,18 +536,20 @@ BOOST_PYTHON_MODULE(openni) {
             .def("create", &DepthGenerator_Create_wrapped)
 
             .def("get_tuple_depth_map",
-            &DepthGenerator_GetGrayscale16DepthMapTuple_wrapped)
+                    &DepthGenerator_GetGrayscale16DepthMapTuple_wrapped)
 
             .def("get_raw_depth_map",
-            &DepthGenerator_GetGrayscale16DepthMapRaw_wrapped)
+                    &DepthGenerator_GetGrayscale16DepthMapRaw_wrapped)
 
             .def("get_raw_depth_map_8",
-            &DepthGenerator_GetGrayscale8DepthMapRaw_wrapped)
+                    &DepthGenerator_GetGrayscale8DepthMapRaw_wrapped)
 
             .def("to_real_world", &DepthGenerator_ToRealWorld)
             .def("to_projective", &DepthGenerator_ToProjective)
 
-            .add_property("metadata", make_function(&DepthGenerator_GetMetaData_wrapped, return_value_policy<manage_new_object>()))
+            .add_property("metadata",
+                    make_function(&DepthGenerator_GetMetaData_wrapped,
+                    return_value_policy<manage_new_object>()))
 
             ;
 
