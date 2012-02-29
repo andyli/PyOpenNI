@@ -46,6 +46,9 @@ BP::object wrapNode(XnNodeHandle node) {
                 if (isInstanceOf(original, XN_NODE_TYPE_IMAGE)) {
                     return BP::object(xn::ImageGenerator(node));
                 }
+                if (isInstanceOf(original, XN_NODE_TYPE_SCENE)) {
+                    return BP::object(xn::SceneAnalyzer(node));
+                }
                 return BP::object(xn::MapGenerator(node));
             }
             if (isInstanceOf(original, XN_NODE_TYPE_GESTURE)) {
@@ -53,6 +56,9 @@ BP::object wrapNode(XnNodeHandle node) {
             }
             if (isInstanceOf(original, XN_NODE_TYPE_USER)) {
                 return BP::object(xn::UserGenerator(node));
+            }
+            if (isInstanceOf(original, XN_NODE_TYPE_AUDIO)) {
+                return BP::object(xn::AudioGenerator(node));
             }
             return BP::object(xn::Generator(node));
         }
