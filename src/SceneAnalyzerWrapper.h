@@ -26,6 +26,6 @@
 
 #include "wrapperTypes.h"
 
-//Currently empty
+void SceneAnalyzer_Create_wrapped(xn::SceneAnalyzer& self, xn::Context& context);
 
 #endif	/* SCENE_ANALYZER_WRAPPER_H */

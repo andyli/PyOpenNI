@@ -27,5 +27,7 @@
 #include "wrapperExceptions.h"
 #include "conversionHelpers.h"
 
-//Currently empty
+void SceneAnalyzer_Create_wrapped(xn::SceneAnalyzer& self, xn::Context& context) {
+    check( self.Create(context, NULL, NULL) );
+}
 

@@ -26,6 +26,6 @@
 
 #include "wrapperTypes.h"
 
-//Currently empty
+void AudioGenerator_Create_wrapped(xn::AudioGenerator& self, xn::Context& context);
 
 #endif	/* AUDIO_GENERATOR_WRAPPER_H */

@@ -609,7 +609,7 @@ BOOST_PYTHON_MODULE(openni) {
 
             // methods
 
-            //.def("create", &SceneAnalyzer_Create_wrapped)
+            .def("create", &SceneAnalyzer_Create_wrapped)
 
             ;
 
@@ -622,7 +622,7 @@ BOOST_PYTHON_MODULE(openni) {
 
             // methods
 
-            //.def("create", &AudioGenerator_Create_wrapped)
+            .def("create", &AudioGenerator_Create_wrapped)
 
             ;
 

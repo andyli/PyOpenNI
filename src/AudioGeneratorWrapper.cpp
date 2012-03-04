@@ -26,5 +26,7 @@
 #include "wrapperTypes.h"
 #include "wrapperExceptions.h"
 
-//Currently empty
+void AudioGenerator_Create_wrapped(xn::AudioGenerator& self, xn::Context& context) {
+    check( self.Create(context, NULL, NULL) );
+}
 
