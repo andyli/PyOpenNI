@@ -103,6 +103,8 @@ set (SOURCES
     AudioGeneratorWrapper.h
     SceneAnalyzerWrapper.cpp
     SceneAnalyzerWrapper.h
+    DepthMapWrapper.cpp
+    DepthMapWrapper.h
 
     OpenNIException.cpp
     OpenNIException.h

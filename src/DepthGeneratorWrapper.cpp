@@ -27,15 +27,20 @@
 #include "wrapperExceptions.h"
 #include "conversionHelpers.h"
 #include "util/PythonOutputStream.h"
+#include "DepthMapWrapper.h"
+
+using namespace pyopenni;
 
 xn::DepthMetaData* DepthGenerator_GetMetaData_wrapped(xn::DepthGenerator const & self) {
     checkValid(self);
-    
+
     xn::DepthMetaData * ret = new xn::DepthMetaData;
     self.GetMetaData(*ret);
     return ret;
 }
 
+
+/**DEPRECATED, slow map functions**/
 BP::tuple DepthGenerator_GetGrayscale16DepthMapTuple_wrapped(xn::DepthGenerator const & self) {
     checkValid(self);
 
@@ -46,7 +51,7 @@ BP::tuple DepthGenerator_GetGrayscale16DepthMapTuple_wrapped(xn::DepthGenerator 
 
     xn::DepthMetaData metadata;
     self.GetMetaData(metadata);
-    
+
     XnDepthPixel const* depthMap = self.GetDepthMap();
 
     BP::tuple mapTuple;
@@ -55,7 +60,6 @@ BP::tuple DepthGenerator_GetGrayscale16DepthMapTuple_wrapped(xn::DepthGenerator 
     return mapTuple;
 
 }
-
 std::string DepthGenerator_GetGrayscale16DepthMapRaw_wrapped(xn::DepthGenerator const & self) {
     checkValid(self);
 
@@ -76,7 +80,6 @@ std::string DepthGenerator_GetGrayscale16DepthMapRaw_wrapped(xn::DepthGenerator 
     return rawData;
 
 }
-
 std::string DepthGenerator_GetGrayscale8DepthMapRaw_wrapped(xn::DepthGenerator const & self) {
     checkValid(self);
 
@@ -95,6 +98,20 @@ std::string DepthGenerator_GetGrayscale8DepthMapRaw_wrapped(xn::DepthGenerator c
 
     return rawDataGrayscale8;
 
+}
+
+/**The new, efficient way of getting the map**/
+DepthMap DepthGenerator_GetWrappedMap(xn::DepthGenerator& self) {
+    checkValid(self);
+    
+    xn::DepthMetaData metadata;
+    self.GetMetaData(metadata);
+    
+    XnUInt32XYPair size;
+    size.X = metadata.XRes();
+    size.Y = metadata.YRes();
+    
+    return DepthMap(self.GetDepthMap(), size);
 }
 
 void DepthGenerator_Create_wrapped(xn::DepthGenerator& self, xn::Context& ctx) {

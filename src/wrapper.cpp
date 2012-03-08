@@ -46,6 +46,9 @@
 #include "UserGeneratorWrapper.h"
 #include "AudioGeneratorWrapper.h"
 #include "SceneAnalyzerWrapper.h"
+#include "DepthMapWrapper.h"
+
+using namespace pyopenni;
 
 ////////////////////////////////////////////////////////////////////////////////
 // version
@@ -271,8 +274,27 @@ BOOST_PYTHON_MODULE(openni) {
                     "Compares this version with an other version.")
             .def("__str__", &Version__str__,
                     "Returns a string representation of this version.");
-    
-    
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // class Version
+    class_< DepthMap > ("DepthMap", "Stores a depth map.", no_init)
+            .add_property("size", &DepthMap::getSize,
+                    "The dimensions of this map in a\n"
+                    "[width, height] tuple.")
+            .add_property("width", &DepthMap::getWidth,
+                    "The width (in pixels) of this map.")
+            .add_property("height", &DepthMap::getHeight,
+                    "The height (in pixels) of this map.")
+
+            .def("__len__", &DepthMap::getLength,
+                    "Returns the number of pixels in this map.")
+            .def("__getitem__", &DepthMap::get_wrapped,
+                    "Returns the pixel at the specified location.\n"
+                    "It can be an X,Y tuple (i.e. my_map[x,y])\n"
+                    "or an absolute index (i.e. my_map[idx]).");
+
+
     ////////////////////////////////////////////////////////////////////////////
     // class OutputMetaData
 
@@ -534,6 +556,8 @@ BOOST_PYTHON_MODULE(openni) {
             // methods
 
             .def("create", &DepthGenerator_Create_wrapped)
+
+            .add_property("map", &DepthGenerator_GetWrappedMap)
 
             .def("get_tuple_depth_map",
                     &DepthGenerator_GetGrayscale16DepthMapTuple_wrapped)

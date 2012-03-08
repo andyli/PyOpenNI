@@ -25,14 +25,19 @@
 #define DEPTH_GENERATOR_WRAPPER_H
 
 #include "wrapperTypes.h"
+#include "DepthMapWrapper.h"
+
+using namespace pyopenni;
 
 xn::DepthMetaData* DepthGenerator_GetMetaData_wrapped(xn::DepthGenerator const & self);
 
+/**DEPRECATED, slow map functions**/
 BP::tuple DepthGenerator_GetGrayscale16DepthMapTuple_wrapped(xn::DepthGenerator const & self);
-
 std::string DepthGenerator_GetGrayscale16DepthMapRaw_wrapped(xn::DepthGenerator const & self);
-
 std::string DepthGenerator_GetGrayscale8DepthMapRaw_wrapped(xn::DepthGenerator const & self);
+
+/**The new, efficient way of getting the map**/
+DepthMap DepthGenerator_GetWrappedMap(xn::DepthGenerator& self);
 
 void DepthGenerator_Create_wrapped(xn::DepthGenerator& self, xn::Context& ctx);
 
