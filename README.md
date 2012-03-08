@@ -15,6 +15,7 @@ It is based on [onipy](http://code.google.com/p/onipy) but adds many improvement
  * Directory structure simplified.
  * Errors are handled gracefully through the class `OpenNIError`.
  * Re-wrote wrapper's core to make it more robust and avoid crashes.
+   - **New!** Access depth map efficiently! See [the commit](https://github.com/jmendeth/PyOpenNI/commit/038b3f63154785831ddd3dfd195d158c1eb9b6e6) for details.
  * Callbacks are now completely supported!
  * Some exposed features are now documented in Python.
 
