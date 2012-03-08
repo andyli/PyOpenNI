@@ -3,6 +3,11 @@
 ##  "Working with Depth, Color and Audio Maps"
 ## in the OpenNI user guide.
 
+## WARNING: This sample is deprecated and kept only
+## for historical reasons. It's recommended to use the
+## new way of calculating the index of a pixel;
+## see depth.py instead.
+
 """
 This creates a depth generator, checks if it can generate VGA maps in 30 FPS,
 configures it to that mode, and then reads frames from it, printing out the
