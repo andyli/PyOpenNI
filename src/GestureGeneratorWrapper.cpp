@@ -86,7 +86,8 @@ BP::list GestureGenerator_GetAvailableGestures(xn::GestureGenerator& self) {
         check( self.EnumerateGestures(*((XnChar**)(result.data())), gestures) );
 
         for (XnUInt16 i = 0; i < gestures; i++) {
-            ret.append(std::string(result.at(i)));
+            XnChar* name = result.at(i);
+            if (name != NULL) ret.append(std::string(name));
         }
     }
     return ret;
