@@ -64,7 +64,7 @@ void PoseDetectionCapability_UnregisterOutOfPoseCallback(xn::PoseDetectionCapabi
 
 
 /** Internal callback implementations **/
-void PoseDetectionCapability_PoseDetection_cb(xn::PoseDetectionCapability& src, const XnChar* pose, XnUserID user, void* cookie) {
+void XN_CALLBACK_TYPE PoseDetectionCapability_PoseDetection_cb(xn::PoseDetectionCapability& src, const XnChar* pose, XnUserID user, void* cookie) {
     BP::object& func = *((BP::object*)cookie);
     
     func(src, std::string(pose), user);

@@ -105,13 +105,13 @@ void UserGenerator_UnregisterUserCallbacks_wrapped(xn::UserGenerator& self, XnCa
 }
 
 /** Internal callback implementations **/
-void NewUser_callback(xn::UserGenerator& src, XnUserID user, void* cookie) {
+void XN_CALLBACK_TYPE NewUser_callback(xn::UserGenerator& src, XnUserID user, void* cookie) {
     BP::object& func = ((BP::object*)cookie)[0];
     
     //Call the function
     func(src, user);
 }
-void LostUser_callback(xn::UserGenerator& src, XnUserID user, void* cookie) {
+void XN_CALLBACK_TYPE LostUser_callback(xn::UserGenerator& src, XnUserID user, void* cookie) {
     BP::object& func = ((BP::object*)cookie)[1];
     
     //Call the function

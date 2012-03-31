@@ -94,8 +94,8 @@ BP::list GestureGenerator_GetAvailableGestures(xn::GestureGenerator& self) {
 }
 
 
-/*Internal callback implementations*/
-void GestureRecognized_callback(xn::GestureGenerator &generator, const XnChar *strGesture, const XnPoint3D *pIDPosition, const XnPoint3D *pEndPosition, void *pCookie) {
+/** Internal callback implementations **/
+void XN_CALLBACK_TYPE GestureRecognized_callback(xn::GestureGenerator &generator, const XnChar *strGesture, const XnPoint3D *pIDPosition, const XnPoint3D *pEndPosition, void *pCookie) {
     std::string gesture (strGesture);
     BP::object& func = ((BP::object*)pCookie)[0];
 
@@ -103,7 +103,7 @@ void GestureRecognized_callback(xn::GestureGenerator &generator, const XnChar *s
     func(generator, gesture, convertVec3D(*pIDPosition), convertVec3D(*pEndPosition));
 }
 
-void GestureProgress_callback(xn::GestureGenerator &generator, const XnChar *strGesture, const XnPoint3D *pPosition, XnFloat fProgress, void *pCookie) {
+void XN_CALLBACK_TYPE GestureProgress_callback(xn::GestureGenerator &generator, const XnChar *strGesture, const XnPoint3D *pPosition, XnFloat fProgress, void *pCookie) {
     std::string gesture (strGesture);
     BP::object& func = ((BP::object*)pCookie)[1];
 
