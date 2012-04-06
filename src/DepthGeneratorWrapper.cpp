@@ -114,6 +114,34 @@ DepthMap DepthGenerator_GetWrappedMap(xn::DepthGenerator& self) {
     return DepthMap(self.GetDepthMap(), size);
 }
 
+
+PointMap DepthGenerator_GetPointMap(xn::DepthGenerator& self) {
+    checkValid(self);
+    
+    xn::DepthMetaData metadata;
+    self.GetMetaData(metadata);
+    
+    XnUInt32XYPair size;
+    size.X = metadata.XRes();
+    size.Y = metadata.YRes();
+    
+    const XnDepthPixel* depthmap = self.GetDepthMap();
+    XnVector3D* point3ds = new XnVector3D[size.X * size.Y];
+    int _i = 0;
+    for (int y = 0 ; y < size.Y ; ++y){
+        for (int x = 0 ; x < size.X ; ++x) {
+            XnVector3D* p = &point3ds[_i];
+            p->X = x;
+            p->Y = y;
+            p->Z = depthmap[_i];
+            
+            ++_i;
+        }
+    }
+    
+    return PointMap(point3ds, size);
+}
+
 void DepthGenerator_Create_wrapped(xn::DepthGenerator& self, xn::Context& ctx) {
     check( self.Create(ctx, NULL, NULL) );
 }

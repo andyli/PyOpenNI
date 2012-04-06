@@ -47,6 +47,7 @@
 #include "AudioGeneratorWrapper.h"
 #include "SceneAnalyzerWrapper.h"
 #include "DepthMapWrapper.h"
+#include "PointMapWrapper.h"
 
 using namespace pyopenni;
 
@@ -291,6 +292,25 @@ BOOST_PYTHON_MODULE(openni) {
                     "Returns the number of pixels in this map.")
             .def("__getitem__", &DepthMap::get_wrapped,
                     "Returns the pixel at the specified location.\n"
+                    "It can be an X,Y tuple (i.e. my_map[x,y])\n"
+                    "or an absolute index (i.e. my_map[idx]).");
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // class PointMap
+    class_< PointMap > ("PointMap", "Stores a map of 3d points in real world coordinates.", no_init)
+            .add_property("size", &PointMap::getSize,
+                    "The dimensions of this map in a\n"
+                    "[width, height] tuple.")
+            .add_property("width", &PointMap::getWidth,
+                    "The width of this map.")
+            .add_property("height", &PointMap::getHeight,
+                    "The height of this map.")
+
+            .def("__len__", &PointMap::getLength,
+                    "Returns the number of points in this map.")
+            .def("__getitem__", &PointMap::get_wrapped,
+                    "Returns the point at the specified location.\n"
                     "It can be an X,Y tuple (i.e. my_map[x,y])\n"
                     "or an absolute index (i.e. my_map[idx]).");
 
@@ -558,6 +578,7 @@ BOOST_PYTHON_MODULE(openni) {
             .def("create", &DepthGenerator_Create_wrapped)
 
             .add_property("map", &DepthGenerator_GetWrappedMap)
+            .add_property("point_map", &DepthGenerator_GetPointMap)
 
             .def("get_tuple_depth_map",
                     &DepthGenerator_GetGrayscale16DepthMapTuple_wrapped)

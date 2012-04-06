@@ -105,6 +105,8 @@ set (SOURCES
     SceneAnalyzerWrapper.h
     DepthMapWrapper.cpp
     DepthMapWrapper.h
+    PointMapWrapper.cpp
+    PointMapWrapper.h
 
     OpenNIException.cpp
     OpenNIException.h
