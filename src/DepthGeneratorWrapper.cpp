@@ -139,6 +139,8 @@ PointMap DepthGenerator_GetPointMap(xn::DepthGenerator& self) {
         }
     }
     
+    self.ConvertProjectiveToRealWorld(size.X * size.Y, point3ds, point3ds);
+    
     return PointMap(point3ds, size);
 }
 
