@@ -32,6 +32,7 @@ XnUInt32XYPair convertToPair(BP::list orig);
 
 BP::list convertVec3D(XnVector3D const & vector);
 XnVector3D convertToVec3D(BP::list orig);
+XnVector3D convertToVec3D(BP::tuple orig);
 
 BP::list convertMatrix(XnMatrix3X3& matrix);
 XnMatrix3X3 convertToMatrix(BP::list orig);

@@ -277,7 +277,7 @@ BOOST_PYTHON_MODULE(openni) {
 
 
     ////////////////////////////////////////////////////////////////////////////
-    // class Version
+    // class DepthMap
     class_< DepthMap > ("DepthMap", "Stores a depth map.", no_init)
             .add_property("size", &DepthMap::getSize,
                     "The dimensions of this map in a\n"

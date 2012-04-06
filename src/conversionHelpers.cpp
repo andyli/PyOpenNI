@@ -56,6 +56,15 @@ XnVector3D convertToVec3D(BP::list orig) {
     return ret;
 }
 
+
+XnVector3D convertToVec3D(BP::tuple orig) {
+    XnVector3D ret;
+    ret.X = BP::extract<XnFloat>(orig[0]);
+    ret.Y = BP::extract<XnFloat>(orig[1]);
+    ret.Z = BP::extract<XnFloat>(orig[2]);
+    return ret;
+}
+
 void convert(
         BP::tuple& targetTuple,
         XnRGB24Pixel const* sourceMap,
