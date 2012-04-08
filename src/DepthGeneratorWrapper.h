@@ -28,6 +28,8 @@
 #include "DepthMapWrapper.h"
 #include "PointMapWrapper.h"
 
+#include <boost/shared_array.hpp>
+
 using namespace pyopenni;
 
 xn::DepthMetaData* DepthGenerator_GetMetaData_wrapped(xn::DepthGenerator const & self);

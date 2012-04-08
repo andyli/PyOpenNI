@@ -125,23 +125,25 @@ PointMap DepthGenerator_GetPointMap(xn::DepthGenerator& self) {
     size.X = metadata.XRes();
     size.Y = metadata.YRes();
     
+    PointMap pm(size);
+    
     const XnDepthPixel* depthmap = self.GetDepthMap();
-    XnVector3D* point3ds = new XnVector3D[size.X * size.Y];
+    boost::shared_array<XnVector3D> point3ds = pm.data;
     int _i = 0;
     for (int y = 0 ; y < size.Y ; ++y){
         for (int x = 0 ; x < size.X ; ++x) {
-            XnVector3D* p = &point3ds[_i];
-            p->X = x;
-            p->Y = y;
-            p->Z = depthmap[_i];
+            XnVector3D& p = point3ds[_i];
+            p.X = x;
+            p.Y = y;
+            p.Z = depthmap[_i];
             
             ++_i;
         }
     }
     
-    self.ConvertProjectiveToRealWorld(size.X * size.Y, point3ds, point3ds);
+    self.ConvertProjectiveToRealWorld(size.X * size.Y, point3ds.get(), point3ds.get());
     
-    return PointMap(point3ds, size);
+    return pm;
 }
 
 void DepthGenerator_Create_wrapped(xn::DepthGenerator& self, xn::Context& ctx) {

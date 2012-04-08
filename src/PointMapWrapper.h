@@ -27,17 +27,20 @@
 #include "wrapperTypes.h"
 #include "conversionHelpers.h"
 
+#include <boost/shared_array.hpp>
+
 namespace pyopenni {
 
     class PointMap {
         XnUInt32XYPair size;
-        const XnVector3D* data;
 
     private:
         void throwNotOnBounds();
     public:
-        PointMap(const XnVector3D* data, XnUInt32XYPair size) {
-            this->data = data;
+        boost::shared_array<XnVector3D> data;
+        
+        PointMap(XnUInt32XYPair size) {
+            this->data = boost::shared_array<XnVector3D>(new XnVector3D[size.X * size.Y]);
             this->size = size;
         }
 
