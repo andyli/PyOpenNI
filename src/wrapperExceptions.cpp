@@ -46,3 +46,8 @@ void checkValid(xn::NodeWrapper const & node) {
         throw boost::python::error_already_set();
     }
 }
+
+void throwValueError() {
+	PyErr_SetString(PyExc_TypeError, "Invalid index type.");
+	throw BP::error_already_set();
+}

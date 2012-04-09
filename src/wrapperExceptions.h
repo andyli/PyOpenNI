@@ -34,4 +34,6 @@ void check(XnStatus status);
 
 void checkValid(xn::NodeWrapper const & node);
 
+void throwValueError();
+
 #endif	/* WRAPPER_EXCEPTIONS_H */

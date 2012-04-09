@@ -26,6 +26,9 @@
 
 #include "wrapperTypes.h"
 #include "DepthMapWrapper.h"
+#include "PointMapWrapper.h"
+
+#include <boost/shared_array.hpp>
 
 using namespace pyopenni;
 
@@ -38,6 +41,8 @@ std::string DepthGenerator_GetGrayscale8DepthMapRaw_wrapped(xn::DepthGenerator c
 
 /**The new, efficient way of getting the map**/
 DepthMap DepthGenerator_GetWrappedMap(xn::DepthGenerator& self);
+
+PointMap DepthGenerator_GetPointMap(xn::DepthGenerator& self);
 
 void DepthGenerator_Create_wrapped(xn::DepthGenerator& self, xn::Context& ctx);
 

@@ -21,7 +21,7 @@
  * ***** END GPL LICENSE BLOCK ***** */
 
 
-#include "DepthMapWrapper.h"
+#include "PointMapWrapper.h"
 
 #include "wrapperTypes.h"
 #include "wrapperExceptions.h"
@@ -31,12 +31,12 @@
 
 namespace pyopenni {
 
-    void DepthMap::throwNotOnBounds() {
+    void PointMap::throwNotOnBounds() {
         PyErr_SetString(PyExc_ValueError, "The index is out of bounds!");
         throw BP::error_already_set();
     }
     
-    XnDepthPixel DepthMap::get_wrapped(BP::object loc) {
+    BP::list PointMap::get_wrapped(BP::object loc) {
         if (loc.is_none()) throwValueError();
         if (PyObject_IsInstance(loc.ptr(), (_object*)(&PyTuple_Type))) {
             //We have a tuple
@@ -49,7 +49,7 @@ namespace pyopenni {
             if (x<0 || y<0) throwNotOnBounds();
             if (x >= getWidth() || y >= getHeight()) throwNotOnBounds();
             
-            return data[y*getWidth() + x];
+            return convertVec3D(data[y*getWidth() + x]);
         }
         if (PyObject_IsInstance(loc.ptr(), (_object*)(&PyInt_Type))) {
             //We have a single number
@@ -59,7 +59,7 @@ namespace pyopenni {
             if (idx < 0) throwNotOnBounds();
             if (idx >= getLength()) throwNotOnBounds();
             
-            return data[idx];
+            return convertVec3D(data[idx]);
         }
         throwValueError();
     }
