@@ -118,24 +118,41 @@ void DepthGenerator_Create_wrapped(xn::DepthGenerator& self, xn::Context& ctx) {
     check( self.Create(ctx, NULL, NULL) );
 }
 
-//WARNING: these methods convert a SINGLE point
-BP::list DepthGenerator_ToRealWorld(xn::DepthGenerator& self, BP::list point) {
-    XnPoint3D projective [1];
-    projective[0] = convertToVec3D(point);
+BP::list DepthGenerator_ToRealWorld(xn::DepthGenerator& self, BP::list points) {
+    int num_of_points = len(points);
+    XnPoint3D* pts = new XnPoint3D[num_of_points];
     
-    XnPoint3D realWorld [1];
+    for (int i = 0 ; i < num_of_points ; ++i) {
+    	pts[i] = convertToVec3D((boost::python::list) points[i]);
+    }
     
-    check( self.ConvertProjectiveToRealWorld(1, projective, realWorld) );
+    check( self.ConvertProjectiveToRealWorld(num_of_points, pts, pts) );
     
-    return convertVec3D(realWorld[0]);
+    BP::list reals;
+    for (int i = 0 ; i < num_of_points ; ++i) {
+    	reals.append(convertVec3D(pts[i]));
+    }
+    
+    delete[] pts;
+    
+    return reals;
 }
-BP::list DepthGenerator_ToProjective(xn::DepthGenerator& self, BP::list point) {
-    XnPoint3D realWorld [1];
-    realWorld[0] = convertToVec3D(point);
+BP::list DepthGenerator_ToProjective(xn::DepthGenerator& self, BP::list points) {
+    int num_of_points = len(points);
+    XnPoint3D* pts = new XnPoint3D[num_of_points];
     
-    XnPoint3D projective [1];
+    for (int i = 0 ; i < num_of_points ; ++i) {
+    	pts[i] = convertToVec3D((boost::python::list) points[i]);
+    }
     
-    check( self.ConvertProjectiveToRealWorld(1, projective, realWorld) );
+    check( self.ConvertProjectiveToRealWorld(num_of_points, pts, pts) );
     
-    return convertVec3D(projective[0]);
+    BP::list pros;
+    for (int i = 0 ; i < num_of_points ; ++i) {
+    	pros.append(convertVec3D(pts[i]));
+    }
+    
+    delete[] pts;
+    
+    return pros;
 }
