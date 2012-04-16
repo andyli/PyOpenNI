@@ -30,3 +30,16 @@ void AudioGenerator_Create_wrapped(xn::AudioGenerator& self, xn::Context& contex
     check( self.Create(context, NULL, NULL) );
 }
 
+const XnUChar* AudioGenerator_GetAudioBuffer_wrapped(xn::AudioGenerator& self) {
+    checkValid(self);
+
+    return self.GetAudioBuffer();
+}
+
+xn::AudioMetaData* AudioGenerator_GetMetaData_wrapped(xn::AudioGenerator& self) {
+    checkValid(self);
+    
+    xn::AudioMetaData* ret = new xn::AudioMetaData;
+    self.GetMetaData(*ret);
+    return ret;
+}

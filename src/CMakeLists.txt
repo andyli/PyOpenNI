@@ -107,6 +107,8 @@ set (SOURCES
     DepthMapWrapper.h
     PointMapWrapper.cpp
     PointMapWrapper.h
+    AudioMetaDataWrapper.cpp
+    AudioMetaDataWrapper.h
 
     OpenNIException.cpp
     OpenNIException.h

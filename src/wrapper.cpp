@@ -48,6 +48,7 @@
 #include "SceneAnalyzerWrapper.h"
 #include "DepthMapWrapper.h"
 #include "PointMapWrapper.h"
+#include "AudioMetaDataWrapper.h"
 
 using namespace pyopenni;
 
@@ -355,6 +356,15 @@ BOOST_PYTHON_MODULE(openni) {
             bases<xn::MapMetaData>, boost::noncopyable> ("DepthMetaData", no_init)
     
             .add_property("z_res", &DepthMetaData_ZRes )
+    
+            ;
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // class AudioMetaData
+
+    class_< xn::AudioMetaData,
+            bases<xn::OutputMetaData>, boost::noncopyable> ("AudioMetaData", no_init)
     
             ;
 
@@ -669,6 +679,12 @@ BOOST_PYTHON_MODULE(openni) {
 
             .def("create", &AudioGenerator_Create_wrapped)
 
+            // properties
+            .add_property("buffer", &AudioGenerator_GetAudioBuffer_wrapped)
+
+            .add_property("metadata",
+                    make_function(&AudioGenerator_GetMetaData_wrapped,
+                    return_value_policy<manage_new_object>()))
             ;
 
 

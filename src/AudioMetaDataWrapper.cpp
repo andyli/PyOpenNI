@@ -21,15 +21,11 @@
  * ***** END GPL LICENSE BLOCK ***** */
 
 
-#ifndef AUDIO_GENERATOR_WRAPPER_H
-#define	AUDIO_GENERATOR_WRAPPER_H
+#include "AudioMetaDataWrapper.h"
 
 #include "wrapperTypes.h"
+#include "wrapperExceptions.h"
+#include "conversionHelpers.h"
 
-void AudioGenerator_Create_wrapped(xn::AudioGenerator& self, xn::Context& context);
+//Currently empty
 
-const XnUChar* AudioGenerator_GetAudioBuffer_wrapped(xn::AudioGenerator& self);
-
-xn::AudioMetaData* AudioGenerator_GetMetaData_wrapped(xn::AudioGenerator& self);
-
-#endif	/* AUDIO_GENERATOR_WRAPPER_H */
