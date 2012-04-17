@@ -25,10 +25,11 @@
 #define	AUDIO_GENERATOR_WRAPPER_H
 
 #include "wrapperTypes.h"
+#include <string>
 
 void AudioGenerator_Create_wrapped(xn::AudioGenerator& self, xn::Context& context);
 
-const XnUChar* AudioGenerator_GetAudioBuffer_wrapped(xn::AudioGenerator& self);
+std::string* AudioGenerator_GetAudioBuffer_wrapped(xn::AudioGenerator& self);
 
 xn::AudioMetaData* AudioGenerator_GetMetaData_wrapped(xn::AudioGenerator& self);
 

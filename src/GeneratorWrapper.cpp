@@ -68,6 +68,12 @@ XnBool Generator_IsDataNew_wrapped(xn::Generator& self) {
     return self.IsDataNew();
 }
 
+XnUInt32 Generator_GetDataSize_wrapped(xn::Generator& self) {
+    checkValid(self);
+    
+    return self.GetDataSize();
+}
+
 XnUInt64 Generator_GetTimestamp_wrapped(xn::Generator& self) {
     checkValid(self);
     

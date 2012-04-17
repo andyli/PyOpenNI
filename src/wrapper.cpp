@@ -524,6 +524,7 @@ BOOST_PYTHON_MODULE(openni) {
 
             //properties
             .add_property("data_new", &Generator_IsDataNew_wrapped, Generator_data_new_DOC)
+            .add_property("data_size", &Generator_GetDataSize_wrapped)
             .add_property("generating", &Generator_IsGenerating_wrapped, &Generator_SetGenerating, Generator_generating_DOC)
 
             .add_property("timestamp", &Generator_GetTimestamp_wrapped, Generator_timestamp_DOC)
@@ -680,7 +681,9 @@ BOOST_PYTHON_MODULE(openni) {
             .def("create", &AudioGenerator_Create_wrapped)
 
             // properties
-            .add_property("buffer", &AudioGenerator_GetAudioBuffer_wrapped)
+            .add_property("buffer",
+                    make_function(&AudioGenerator_GetAudioBuffer_wrapped,
+                    return_value_policy<manage_new_object>()))
 
             .add_property("metadata",
                     make_function(&AudioGenerator_GetMetaData_wrapped,
