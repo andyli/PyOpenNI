@@ -25,6 +25,8 @@
 #define WRAPPER_H
 
 #include "wrapperTypes.h"
+#include "boost/python/numeric.hpp"
+#include <numpy/noprefix.h>
 
 ////////////////////////////////////////////////////////////////////////////////
 // Constants

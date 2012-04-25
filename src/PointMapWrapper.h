@@ -28,6 +28,10 @@
 #include "conversionHelpers.h"
 
 #include <boost/shared_array.hpp>
+#include <numpy/noprefix.h>
+
+using namespace BP;
+using namespace BP::numeric;
 
 namespace pyopenni {
 
@@ -50,6 +54,12 @@ namespace pyopenni {
         XnUInt32 getWidth() {return size.X;}
         XnUInt32 getHeight() {return size.Y;}
         XnUInt32 getLength() {return size.X * size.Y;}
+    
+		array getArray(){
+			npy_intp N[] = {getHeight(), getWidth(), 3};
+			array numpy_x(static_cast<array>(handle<>(PyArray_SimpleNewFromData(3, N, PyArray_FLOAT, this->data.get()))));
+			return numpy_x;
+		}
     };
 
 }

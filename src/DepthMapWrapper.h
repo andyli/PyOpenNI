@@ -27,6 +27,12 @@
 #include "wrapperTypes.h"
 #include "conversionHelpers.h"
 
+#include <boost/shared_array.hpp>
+#include <numpy/noprefix.h>
+
+using namespace BP;
+using namespace BP::numeric;
+
 namespace pyopenni {
 
     class DepthMap {
@@ -47,6 +53,12 @@ namespace pyopenni {
         XnUInt32 getWidth() {return size.X;}
         XnUInt32 getHeight() {return size.Y;}
         XnUInt32 getLength() {return size.X * size.Y;}
+    
+		array getArray(){
+			npy_intp N[] = {getHeight(), getWidth()};
+			array numpy_x(static_cast<array>(handle<>(PyArray_SimpleNewFromData(2, N, PyArray_USHORT, (void*)this->data))));
+			return numpy_x;
+		}
     };
 
 }

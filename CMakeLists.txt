@@ -47,6 +47,10 @@ set(BUILD_SHARED_LIBS True)
 
 set(Boost_ADDITIONAL_VERSIONS "1.47" "1.47.0" "1.47.1" "1.48" "1.48.0" "1.49.0.beta.1" "1.49.0")
 
+find_package(NumPy REQUIRED)
+include_directories(
+    ${NUMPY_INCLUDE_DIRS}
+)
 
 project (PyOpenNI)
 

@@ -70,8 +70,9 @@ BP::list py_xnResolutionGetRes(XnResolution res) {
 // Boost Python wrapper code
 
 BOOST_PYTHON_MODULE(openni) {
-
-    using namespace boost::python;
+    
+    import_array();
+    BP::numeric::array::set_module_and_type("numpy", "ndarray");
     
     //Customize what will appear on the docstrings:
     docstring_options local_docstring_options(true, true, false);
@@ -288,6 +289,9 @@ BOOST_PYTHON_MODULE(openni) {
                     "The width (in pixels) of this map.")
             .add_property("height", &DepthMap::getHeight,
                     "The height (in pixels) of this map.")
+                    
+            .def("get_array", &DepthMap::getArray,
+            		"Numpy wrapper of the raw float array.")
 
             .def("__len__", &DepthMap::getLength,
                     "Returns the number of pixels in this map.")
@@ -307,6 +311,9 @@ BOOST_PYTHON_MODULE(openni) {
                     "The width of this map.")
             .add_property("height", &PointMap::getHeight,
                     "The height of this map.")
+                    
+            .def("get_array", &PointMap::getArray,
+            		"Numpy wrapper of the raw float array.")
 
             .def("__len__", &PointMap::getLength,
                     "Returns the number of points in this map.")
